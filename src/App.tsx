@@ -6,7 +6,6 @@ import "react-resizable/css/styles.css";
 import "./styles.css";
 
 interface Props {
-  domElements: any[];
   className?: string;
   rowHeight?: number;
   onLayoutChange?: (layout: any, layouts: any) => void;
@@ -18,7 +17,6 @@ interface Props {
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 const DropDrag: FunctionComponent<Props> = ({
-  domElements,
   className = "layout",
   rowHeight = 30,
   onLayoutChange = () => {},
@@ -27,42 +25,44 @@ const DropDrag: FunctionComponent<Props> = ({
   containerPadding = [0, 0],
 }) => {
   const [layouts, setLayouts] = useState<{ [key: string]: any[] }>({
-    lg: _.range(25).map((i) => ({
-      x: (_.random(0, 5) * 2) % 12,
-      y: Math.floor(i / 6) * (Math.ceil(Math.random() * 4) + 1),
-      w: 2,
-      h: Math.ceil(Math.random() * 4) + 1,
-      i: i.toString(),
-      static: Math.random() < 0.05,
-    })),
+    lg: [],
   });
 
-  const [currentBreakpoint, setCurrentBreakpoint] = useState<string>("lg");
-  const [compactType, setCompactType] = useState<"vertical" | "horizontal" | null>("vertical");
   const [mounted, setMounted] = useState(false);
-  const [toolbox, setToolbox] = useState<{ [key: string]: any[] }>({ lg: [] });
 
   useEffect(() => setMounted(true), []);
-
-  const handleBreakpointChange = (breakpoint: string) => {
-    setCurrentBreakpoint(breakpoint);
-    setToolbox((prevToolbox) => ({
-      ...prevToolbox,
-      [breakpoint]: prevToolbox[breakpoint] || prevToolbox[currentBreakpoint] || [],
-    }));
-  };
 
   const handleLayoutChange = (_layout: any, updatedLayouts: any) => {
     setLayouts({ ...updatedLayouts });
     onLayoutChange(_layout, updatedLayouts);
   };
 
-  const handleDrop = (_layout: any, layoutItem: any) => {
-    alert(`Element parameters:\n${JSON.stringify(layoutItem, ["x", "y", "w", "h"], 2)}`);
+  // Function to add a new element
+  const addItem = () => {
+    const newItem = {
+      x: 0,
+      y: 0,
+      w: 2,
+      h: 2,
+      i: `${layouts.lg.length}`, // unique ID based on current length
+    };
+    setLayouts((prevLayouts) => ({
+      ...prevLayouts,
+      lg: [...prevLayouts.lg, newItem],
+    }));
+  };
+
+  // Function to remove an element
+  const removeItem = (id: string) => {
+    setLayouts((prevLayouts) => ({
+      ...prevLayouts,
+      lg: prevLayouts.lg.filter((item) => item.i !== id),
+    }));
   };
 
   return (
     <div className="mb-4">
+      <button onClick={addItem}>Add Element</button>
       <ResponsiveReactGridLayout
         className={className}
         rowHeight={rowHeight}
@@ -72,22 +72,13 @@ const DropDrag: FunctionComponent<Props> = ({
         layouts={layouts}
         measureBeforeMount={false}
         useCSSTransforms={mounted}
-        compactType={compactType}
-        preventCollision={!compactType}
         onLayoutChange={handleLayoutChange}
-        onBreakpointChange={handleBreakpointChange}
-        onDrop={handleDrop}
         isDroppable
       >
         {layouts.lg.map((layoutItem) => (
-          <div
-            key={layoutItem.i}
-            style={{ background: "#ccc" }}
-            className={layoutItem.static ? "static" : ""}
-          >
-            <span className="text">
-              {layoutItem.static ? `Static - ${layoutItem.i}` : layoutItem.i}
-            </span>
+          <div key={layoutItem.i} className="grid-item">
+            <span className="remove-button" onClick={() => removeItem(layoutItem.i)}>x</span>
+            <span className="item-content">{layoutItem.i}</span>
           </div>
         ))}
       </ResponsiveReactGridLayout>
