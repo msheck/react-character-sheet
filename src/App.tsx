@@ -12,7 +12,7 @@ interface Props {
   onLayoutChange?: (layout: any, layouts: any) => void;
   cols?: any;
   breakpoints?: any;
-  containerPadding?: number[];
+  containerPadding?: [number, number] | { [P: string]: [number, number]; } | undefined;
 }
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -32,7 +32,7 @@ const DropDrag: FunctionComponent<Props> = (props) => {
     })
   });
   const [currentBreakpoint, setCurrentBreakpoint] = useState<string>("lg");
-  const [compactType, setCompactType] = useState<string | null>("vertical");
+  const [compactType, setCompactType] = useState<"vertical" | "horizontal" | null | undefined>("vertical");
   const [mounted, setMounted] = useState(false);
   const [toolbox, setToolbox] = useState<{ [index: string]: any[] }>({
     lg: []
