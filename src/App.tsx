@@ -1,6 +1,6 @@
 import { FunctionComponent, useState, useEffect } from "react";
-import _ from "lodash";
 import { Responsive, WidthProvider } from "react-grid-layout";
+import { v4 as uuidv4 } from 'uuid';  // Unique ID generator
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import "./styles.css";
@@ -33,18 +33,18 @@ const DropDrag: FunctionComponent<Props> = ({
   useEffect(() => setMounted(true), []);
 
   const handleLayoutChange = (_layout: any, updatedLayouts: any) => {
-    setLayouts({ ...updatedLayouts });
+    setLayouts(updatedLayouts);
     onLayoutChange(_layout, updatedLayouts);
   };
 
-  // Function to add a new element
+  // Function to add a new element with unique ID
   const addItem = () => {
     const newItem = {
       x: 0,
       y: 0,
       w: 2,
       h: 2,
-      i: `${layouts.lg.length}`, // unique ID based on current length
+      i: uuidv4(), // Use a unique ID to prevent key conflicts
     };
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
@@ -54,15 +54,15 @@ const DropDrag: FunctionComponent<Props> = ({
 
   // Function to remove an element
   const removeItem = (id: string) => {
-    setLayouts((prevLayouts) => ({
-      ...prevLayouts,
-      lg: prevLayouts.lg.filter((item) => item.i !== id),
-    }));
+    setLayouts((prevLayouts) => {
+      const updatedLayout = prevLayouts.lg.filter((item) => item.i !== id);
+      return { ...prevLayouts, lg: updatedLayout };
+    });
   };
 
   return (
     <div className="mb-4">
-      <button onClick={addItem}>Add Element</button>
+      <button className="add-button" onClick={addItem}>Add Element</button>
       <ResponsiveReactGridLayout
         className={className}
         rowHeight={rowHeight}
@@ -77,7 +77,7 @@ const DropDrag: FunctionComponent<Props> = ({
       >
         {layouts.lg.map((layoutItem) => (
           <div key={layoutItem.i} className="grid-item">
-            <span className="remove-button" onClick={() => removeItem(layoutItem.i)}>x</span>
+            <span className="remove-button" onClick={() => removeItem(layoutItem.i)}>&times;</span>
             <span className="item-content">{layoutItem.i}</span>
           </div>
         ))}
