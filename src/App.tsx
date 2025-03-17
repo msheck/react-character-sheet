@@ -12,6 +12,7 @@ interface Props {
   cols?: { [key: string]: number };
   breakpoints?: { [key: string]: number };
   containerPadding?: [number, number] | { [key: string]: [number, number] };
+  verticalCompact: boolean;
 }
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -23,6 +24,7 @@ const DropDrag: FunctionComponent<Props> = ({
   cols = { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
   breakpoints = { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
   containerPadding = [0, 0],
+  verticalCompact = false
 }) => {
   const [layouts, setLayouts] = useState<{ [key: string]: any[] }>({
     lg: getFromLS("layout") || [],
@@ -70,6 +72,7 @@ const DropDrag: FunctionComponent<Props> = ({
         cols={cols}
         breakpoints={breakpoints}
         containerPadding={containerPadding}
+        verticalCompact={verticalCompact}
         layouts={layouts}
         measureBeforeMount={false}
         useCSSTransforms={mounted}
