@@ -25,7 +25,7 @@ const DropDrag: FunctionComponent<Props> = ({
   containerPadding = [0, 0],
 }) => {
   const [layouts, setLayouts] = useState<{ [key: string]: any[] }>({
-    lg: [],
+    lg: getFromLS("layout") || [],
   });
 
   const [mounted, setMounted] = useState(false);
@@ -33,6 +33,7 @@ const DropDrag: FunctionComponent<Props> = ({
   useEffect(() => setMounted(true), []);
 
   const handleLayoutChange = (_layout: any, updatedLayouts: any) => {
+    saveToLS("layout", _layout);
     setLayouts(updatedLayouts);
     onLayoutChange(_layout, updatedLayouts);
   };
@@ -85,5 +86,25 @@ const DropDrag: FunctionComponent<Props> = ({
     </div>
   );
 };
+
+function getFromLS(key: string): any {
+  let ls: { [key: string]: any } = {};
+  if (global.localStorage) {
+    try {
+      ls = JSON.parse(global.localStorage.getItem("rgl-7") || "{}");
+    } catch (e) {
+      // Ignore errors
+    }
+  }
+  return ls[key];
+}
+
+function saveToLS(key: string, value: any): void {
+  if (global.localStorage) {
+    const existingData = JSON.parse(global.localStorage.getItem("rgl-7") || "{}");
+    existingData[key] = value;
+    global.localStorage.setItem("rgl-7", JSON.stringify(existingData));
+  }
+}
 
 export default DropDrag;
