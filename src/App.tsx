@@ -12,6 +12,7 @@ interface LayoutItem {
   w: number;
   h: number;
   i: string;
+  static?: boolean;
 }
 
 interface Layouts {
@@ -50,7 +51,7 @@ const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
 interface ToolBoxProps {
   items: LayoutItem[];
   onTakeItem: (item: LayoutItem) => void;
-  onRemoveItem: (item: LayoutItem) => void; // Add onRemoveItem prop
+  onRemoveItem: (item: LayoutItem) => void;
 }
 
 // ToolBox Component
@@ -110,6 +111,7 @@ const DropDrag: FunctionComponent<Props> = ({
   });
 
   const [mounted, setMounted] = useState(false);
+  const [editMode, setEditMode] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
@@ -121,6 +123,17 @@ const DropDrag: FunctionComponent<Props> = ({
   useEffect(() => {
     saveToLS("toolbox", toolbox.lg);
   }, [toolbox]);
+
+  // Update the static property of layout items based on editMode
+  useEffect(() => {
+    setLayouts((prevLayouts) => ({
+      ...prevLayouts,
+      lg: prevLayouts.lg.map((item) => ({
+        ...item,
+        static: !editMode, // Set static to true in view mode, false in edit mode
+      })),
+    }));
+  }, [editMode]);
 
   const handleLayoutChange = (_layout: LayoutItem[], updatedLayouts: Layouts) => {
     setLayouts(updatedLayouts);
@@ -134,7 +147,8 @@ const DropDrag: FunctionComponent<Props> = ({
       y: 0,
       w: 2,
       h: 2,
-      i: uuidv4(), // Use a unique ID to prevent key conflicts
+      i: uuidv4(),
+      static: !editMode,
     };
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
@@ -158,7 +172,7 @@ const DropDrag: FunctionComponent<Props> = ({
     }));
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
-      lg: [...prevLayouts.lg, item],
+      lg: [...prevLayouts.lg, { ...item, static: !editMode }], // Set static based on editMode
     }));
   };
 
@@ -182,16 +196,30 @@ const DropDrag: FunctionComponent<Props> = ({
     }));
   };
 
+  // Function to toggle edit mode
+  const toggleEditMode = () => {
+    setEditMode((prevEditMode) => !prevEditMode);
+  };
+
   return (
     <div className="mb-4">
-      <button className="add-button" onClick={addItem}>
-        Add Element
+      <button className="edit-button" onClick={toggleEditMode}>
+        {editMode ? "Save" : "Edit"}
       </button>
-      <ToolBox
-        items={toolbox.lg}
-        onTakeItem={onTakeItem}
-        onRemoveItem={onRemoveToolboxItem} // Pass the remove function
-      />
+
+      {editMode && ( // Show Add Element button and Toolbox only in edit mode
+        <>
+          <button className="add-button" onClick={addItem}>
+            Add Element
+          </button>
+          <ToolBox
+            items={toolbox.lg}
+            onTakeItem={onTakeItem}
+            onRemoveItem={onRemoveToolboxItem}
+          />
+        </>
+      )}
+
       <ResponsiveReactGridLayout
         className={className}
         rowHeight={rowHeight}
@@ -207,12 +235,14 @@ const DropDrag: FunctionComponent<Props> = ({
       >
         {layouts.lg.map((layoutItem) => (
           <div key={layoutItem.i} className="grid-item">
-            <span
-              className="remove-button"
-              onClick={() => onPutItem(layoutItem)}
-            >
-              &times;
-            </span>
+            {editMode && ( // Only show remove button in edit mode
+              <span
+                className="remove-button"
+                onClick={() => onPutItem(layoutItem)}
+              >
+                &times;
+              </span>
+            )}
             <span className="item-content">{layoutItem.i}</span>
           </div>
         ))}
