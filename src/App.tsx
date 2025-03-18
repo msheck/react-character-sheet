@@ -13,6 +13,7 @@ interface LayoutItem {
   h: number;
   i: string;
   static?: boolean;
+  isDraggable?: boolean;
 }
 
 interface Layouts {
@@ -62,7 +63,7 @@ const ToolBox: FunctionComponent<ToolBoxProps> = ({
 }) => {
   return (
     <div className="toolbox">
-      <span className="toolbox__title">Toolbox</span>
+      <h4 className="toolbox__title">Toolbox</h4>
       <div className="toolbox__items">
         {items.map((item) => (
           <ToolBoxItem
@@ -124,13 +125,14 @@ const DropDrag: FunctionComponent<Props> = ({
     saveToLS("toolbox", toolbox.lg);
   }, [toolbox]);
 
-  // Update the static property of layout items based on editMode
+  // Update the static and isDraggable properties of layout items based on editMode
   useEffect(() => {
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
       lg: prevLayouts.lg.map((item) => ({
         ...item,
         static: !editMode, // Set static to true in view mode, false in edit mode
+        isDraggable: editMode, // Set isDraggable to the inverse of static
       })),
     }));
   }, [editMode]);
@@ -149,6 +151,7 @@ const DropDrag: FunctionComponent<Props> = ({
       h: 2,
       i: uuidv4(),
       static: !editMode,
+      isDraggable: editMode,
     };
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
@@ -172,7 +175,7 @@ const DropDrag: FunctionComponent<Props> = ({
     }));
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
-      lg: [...prevLayouts.lg, { ...item, static: !editMode }], // Set static based on editMode
+      lg: [...prevLayouts.lg, { ...item, static: !editMode, isDraggable: editMode }], // Set static and isDraggable based on editMode
     }));
   };
 
@@ -231,7 +234,6 @@ const DropDrag: FunctionComponent<Props> = ({
         measureBeforeMount={false}
         useCSSTransforms={mounted}
         onLayoutChange={handleLayoutChange}
-        isDroppable
       >
         {layouts.lg.map((layoutItem) => (
           <div key={layoutItem.i} className="grid-item">
