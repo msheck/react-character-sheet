@@ -27,6 +27,28 @@
   background: #ddd;
 }
 
+.toolbox{
+  background-color:#eee;
+}
+
+.toolbox__items {
+  display: flex;
+}
+
+.toolbox__items__item{
+  padding: 0.4em;
+  margin: 0.6em;
+  border: 1px solid #000;
+  width: 10em;
+}
+
+.toolbox__items__item > button{
+  position: relative;
+  border: 0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 .item-content {
   margin: 2px;
   padding: 3px;

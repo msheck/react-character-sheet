@@ -5,7 +5,7 @@ import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import "./styles.css";
 
-// Define types for layout items and layouts
+// Define types for layout items
 interface LayoutItem {
   x: number;
   y: number;
@@ -18,7 +18,65 @@ interface Layouts {
   [key: string]: LayoutItem[];
 }
 
-// Define props for the DropDrag component
+// Props for ToolBoxItem
+interface ToolBoxItemProps {
+  item: LayoutItem;
+  onTakeItem: (item: LayoutItem) => void;
+  onRemoveItem: (item: LayoutItem) => void;
+}
+
+// ToolBoxItem Component
+const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
+  item,
+  onTakeItem,
+  onRemoveItem,
+}) => {
+  return (
+    <div className="toolbox__items__item">
+      <span onClick={() => onTakeItem(item)}>{item.i}</span>
+      <button
+        onClick={(e) => {
+          e.stopPropagation(); // Prevent triggering the onTakeItem event
+          onRemoveItem(item);
+        }}
+      >
+        &times;
+      </button>
+    </div>
+  );
+};
+
+// Props for ToolBox
+interface ToolBoxProps {
+  items: LayoutItem[];
+  onTakeItem: (item: LayoutItem) => void;
+  onRemoveItem: (item: LayoutItem) => void; // Add onRemoveItem prop
+}
+
+// ToolBox Component
+const ToolBox: FunctionComponent<ToolBoxProps> = ({
+  items,
+  onTakeItem,
+  onRemoveItem,
+}) => {
+  return (
+    <div className="toolbox">
+      <span className="toolbox__title">Toolbox</span>
+      <div className="toolbox__items">
+        {items.map((item) => (
+          <ToolBoxItem
+            key={item.i}
+            item={item}
+            onTakeItem={onTakeItem}
+            onRemoveItem={onRemoveItem}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// Props for DropDrag
 interface Props {
   className?: string;
   rowHeight?: number;
@@ -44,12 +102,27 @@ const DropDrag: FunctionComponent<Props> = ({
     lg: getFromLS("layout") || [],
   });
 
+  const [toolbox, setToolbox] = useState<Layouts>({
+    lg: getFromLS("toolbox") || [
+      { x: 0, y: 0, w: 2, h: 2, i: "toolbox-item-1" },
+      { x: 0, y: 0, w: 2, h: 2, i: "toolbox-item-2" },
+    ],
+  });
+
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
+  // Save both layouts and toolbox items to localStorage whenever they change
+  useEffect(() => {
+    saveToLS("layout", layouts.lg);
+  }, [layouts]);
+
+  useEffect(() => {
+    saveToLS("toolbox", toolbox.lg);
+  }, [toolbox]);
+
   const handleLayoutChange = (_layout: LayoutItem[], updatedLayouts: Layouts) => {
-    saveToLS("layout", _layout);
     setLayouts(updatedLayouts);
     onLayoutChange(_layout, updatedLayouts);
   };
@@ -69,7 +142,7 @@ const DropDrag: FunctionComponent<Props> = ({
     }));
   };
 
-  // Function to remove an element
+  // Function to remove an element from the grid
   const removeItem = (id: string) => {
     setLayouts((prevLayouts) => {
       const updatedLayout = prevLayouts.lg.filter((item) => item.i !== id);
@@ -77,9 +150,48 @@ const DropDrag: FunctionComponent<Props> = ({
     });
   };
 
+  // Function to move an item from the toolbox to the grid
+  const onTakeItem = (item: LayoutItem) => {
+    setToolbox((prevToolbox) => ({
+      ...prevToolbox,
+      lg: prevToolbox.lg.filter(({ i }) => i !== item.i),
+    }));
+    setLayouts((prevLayouts) => ({
+      ...prevLayouts,
+      lg: [...prevLayouts.lg, item],
+    }));
+  };
+
+  // Function to move an item from the grid back to the toolbox
+  const onPutItem = (item: LayoutItem) => {
+    setLayouts((prevLayouts) => ({
+      ...prevLayouts,
+      lg: prevLayouts.lg.filter(({ i }) => i !== item.i),
+    }));
+    setToolbox((prevToolbox) => ({
+      ...prevToolbox,
+      lg: [...prevToolbox.lg, item],
+    }));
+  };
+
+  // Function to remove an item from the toolbox
+  const onRemoveToolboxItem = (item: LayoutItem) => {
+    setToolbox((prevToolbox) => ({
+      ...prevToolbox,
+      lg: prevToolbox.lg.filter(({ i }) => i !== item.i),
+    }));
+  };
+
   return (
     <div className="mb-4">
-      <button className="add-button" onClick={addItem} aria-label="Add Element">Add Element</button>
+      <button className="add-button" onClick={addItem}>
+        Add Element
+      </button>
+      <ToolBox
+        items={toolbox.lg}
+        onTakeItem={onTakeItem}
+        onRemoveItem={onRemoveToolboxItem} // Pass the remove function
+      />
       <ResponsiveReactGridLayout
         className={className}
         rowHeight={rowHeight}
@@ -95,7 +207,12 @@ const DropDrag: FunctionComponent<Props> = ({
       >
         {layouts.lg.map((layoutItem) => (
           <div key={layoutItem.i} className="grid-item">
-            <span className="remove-button" onClick={() => removeItem(layoutItem.i)} aria-label="Remove Element">&times;</span>
+            <span
+              className="remove-button"
+              onClick={() => onPutItem(layoutItem)}
+            >
+              &times;
+            </span>
             <span className="item-content">{layoutItem.i}</span>
           </div>
         ))}
