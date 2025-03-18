@@ -35,15 +35,17 @@ const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
 }) => {
   return (
     <div className="toolbox__items__item">
-      <span onClick={() => onTakeItem(item)}>{item.i}</span>
-      <button
+      <div onClick={() => onTakeItem(item)}>
+        <span>{item.i}</span>
+      </div>
+      <div className="toolbox-remove"
         onClick={(e) => {
           e.stopPropagation(); // Prevent triggering the onTakeItem event
           onRemoveItem(item);
         }}
       >
-        &times;
-      </button>
+        <span>&times;</span>
+      </div>
     </div>
   );
 };

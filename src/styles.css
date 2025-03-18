@@ -40,11 +40,12 @@
   margin: 0.6em;
   border: 1px solid #000;
   width: 10em;
+  display: flex;
 }
 
-.toolbox__items__item > button{
-  position: relative;
-  border: 0;
+.toolbox__items__item > .toolbox-remove{
+  margin: 0.3em;
+  align-self: center;
   cursor: pointer;
   font-weight: bold;
 }
