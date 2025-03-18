@@ -13,22 +13,47 @@
 
 .remove-button {
   position: absolute;
-  right: 5px;
+  right: -9px;
+  top: -9px;
+  width: 0.9em;
+  height: 0.9em;
   border-radius: 50%;
-  padding: 0.1em;
   cursor: pointer;
   font-weight: bold;
+  text-align: center;
+  background-color: #fee;
 }
 
 .grid-item {
   margin: auto;
   border: 1px solid #000;
-  position: relative;
   background: #ddd;
+  display: inline-flex;
 }
+
+.item-content{
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  width: 100%;
+  margin: 2px;
+  padding: 3px;
+}
+
+.item-content > input, textarea, h4, p{
+  width: 100%;
+  /* height: 70%; */
+}
+
+/* .item-content > input, h4{
+  height: 15%;
+} */
 
 .toolbox{
   background-color:#eee;
+  margin: 1em;
+  padding: auto;
+  padding-left: 0.2em;
 }
 
 .toolbox__items {
@@ -43,14 +68,13 @@
   display: flex;
 }
 
-.toolbox__items__item > .toolbox-remove{
+.toolbox-label{
+  min-width: 90%;
+}
+
+.toolbox-remove{
   margin: 0.3em;
   align-self: center;
   cursor: pointer;
   font-weight: bold;
-}
-
-.item-content {
-  margin: 2px;
-  padding: 3px;
 }

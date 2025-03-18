@@ -14,6 +14,8 @@ interface LayoutItem {
   i: string;
   static?: boolean;
   isDraggable?: boolean;
+  title?: string; // Add title field
+  description?: string; // Add description field
 }
 
 interface Layouts {
@@ -35,10 +37,14 @@ const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
 }) => {
   return (
     <div className="toolbox__items__item">
-      <div onClick={() => onTakeItem(item)}>
-        <span>{item.i}</span>
+      <div 
+        className="toolbox-label" 
+        onClick={() => onTakeItem(item)}
+      >
+        <span>{item.title}</span>
       </div>
-      <div className="toolbox-remove"
+      <div
+        className="toolbox-remove"
         onClick={(e) => {
           e.stopPropagation(); // Prevent triggering the onTakeItem event
           onRemoveItem(item);
@@ -95,9 +101,9 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 const DropDrag: FunctionComponent<Props> = ({
   className = "layout",
-  rowHeight = 30,
+  rowHeight = 50,
   onLayoutChange = () => {},
-  cols = { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
+  cols = { lg: 14, md: 12, sm: 8, xs: 6, xxs: 4 },
   breakpoints = { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
   containerPadding = [0, 0],
   verticalCompact = false,
@@ -107,10 +113,12 @@ const DropDrag: FunctionComponent<Props> = ({
   });
 
   const [toolbox, setToolbox] = useState<Layouts>({
-    lg: getFromLS("toolbox") || [
-      { x: 0, y: 0, w: 2, h: 2, i: "toolbox-item-1" },
-      { x: 0, y: 0, w: 2, h: 2, i: "toolbox-item-2" },
-    ],
+    lg: getFromLS("toolbox").length === 0
+      ? [
+          { x: 0, y: 0, w: 2, h: 2, i: "toolbox-item-1", title: "Toolbox Item 1" },
+          { x: 0, y: 0, w: 2, h: 2, i: "toolbox-item-2", title: "title" },
+        ]
+      : getFromLS("toolbox"),
   });
 
   const [mounted, setMounted] = useState(false);
@@ -139,8 +147,19 @@ const DropDrag: FunctionComponent<Props> = ({
     }));
   }, [editMode]);
 
+  // Function to handle layout changes and preserve custom fields
   const handleLayoutChange = (_layout: LayoutItem[], updatedLayouts: Layouts) => {
-    setLayouts(updatedLayouts);
+    // Merge the new layout with the existing layout data to preserve custom fields
+    const mergedLayout = _layout.map((newItem) => {
+      const existingItem = layouts.lg.find((item) => item.i === newItem.i);
+      return {
+        ...newItem,
+        title: existingItem?.title,
+        description: existingItem?.description,
+      };
+    });
+
+    setLayouts({ lg: mergedLayout });
     onLayoutChange(_layout, updatedLayouts);
   };
 
@@ -201,6 +220,16 @@ const DropDrag: FunctionComponent<Props> = ({
     }));
   };
 
+  // Function to update the title or description of a grid item
+  const updateItem = (id: string, field: "title" | "description", value: string) => {
+    setLayouts((prevLayouts) => ({
+      ...prevLayouts,
+      lg: prevLayouts.lg.map((item) =>
+        item.i === id ? { ...item, [field]: value } : item
+      ),
+    }));
+  };
+
   // Function to toggle edit mode
   const toggleEditMode = () => {
     setEditMode((prevEditMode) => !prevEditMode);
@@ -247,7 +276,32 @@ const DropDrag: FunctionComponent<Props> = ({
                 &times;
               </span>
             )}
-            <span className="item-content">{layoutItem.i}</span>
+            <div className="item-content">
+              {editMode ? (
+                <>
+                  <input
+                    type="text"
+                    value={layoutItem.title || ""}
+                    onChange={(e) =>
+                      updateItem(layoutItem.i, "title", e.target.value)
+                    }
+                    placeholder="Title"
+                  />
+                  <textarea
+                    value={layoutItem.description || ""}
+                    onChange={(e) =>
+                      updateItem(layoutItem.i, "description", e.target.value)
+                    }
+                    placeholder="Description"
+                  />
+                </>
+              ) : (
+                <>
+                  <h4>{layoutItem.title}</h4>
+                  <p>{layoutItem.description}</p>
+                </>
+              )}
+            </div>
           </div>
         ))}
       </ResponsiveReactGridLayout>
