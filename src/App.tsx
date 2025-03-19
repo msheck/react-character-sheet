@@ -37,8 +37,8 @@ const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
 }) => {
   return (
     <div className="toolbox__items__item">
-      <div 
-        className="toolbox-label" 
+      <div
+        className="toolbox-label"
         onClick={() => onTakeItem(item)}
       >
         <span>{item.title}</span>
@@ -102,7 +102,7 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const DropDrag: FunctionComponent<Props> = ({
   className = "layout",
   rowHeight = 50,
-  onLayoutChange = () => {},
+  onLayoutChange = () => { },
   cols = { lg: 14, md: 12, sm: 8, xs: 6, xxs: 4 },
   breakpoints = { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
   containerPadding = [0, 0],
@@ -115,9 +115,9 @@ const DropDrag: FunctionComponent<Props> = ({
   const [toolbox, setToolbox] = useState<Layouts>({
     lg: getFromLS("toolbox").length === 0
       ? [
-          { x: 0, y: 0, w: 2, h: 2, i: "toolbox-item-1", title: "Toolbox Item 1" },
-          { x: 0, y: 0, w: 2, h: 2, i: "toolbox-item-2", title: "title" },
-        ]
+        { x: 0, y: 0, w: 2, h: 2, i: "toolbox-item-1", title: "Toolbox Item 1" },
+        { x: 0, y: 0, w: 2, h: 2, i: "toolbox-item-2", title: "title" },
+      ]
       : getFromLS("toolbox"),
   });
 
