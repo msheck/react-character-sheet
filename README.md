@@ -1,7 +1,10 @@
-# react-grid-typescript
-React Grid created using the examples provided on the library [GitHub Repository](https://github.com/react-grid-layout/react-grid-layout?tab=readme-ov-file).
+# ReactCharacterSheet
 
-The example code has been adpated to run using **TypeScript**.
+A customizable character sheet project. The goal is to allow role players to create their own character sheet, choosing where to keep the information on the page as well as permitting to create new fields to retain additional or homebrew information.
+
+The react grid was created using the examples provided on the library [GitHub Repository](https://github.com/react-grid-layout/react-grid-layout?tab=readme-ov-file).
+
+The examples code has been adpated to run using **TypeScript**.
 
 <hr>
 
