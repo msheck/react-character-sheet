@@ -24,6 +24,19 @@
   background-color: #fee;
 }
 
+.edit-button {
+  position: absolute;
+  right: -9px;
+  top: 9px;
+  width: 0.9em;
+  height: 0.9em;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  background-color: #eee;
+}
+
 .grid-item {
   margin: auto;
   border: 1px solid #000;

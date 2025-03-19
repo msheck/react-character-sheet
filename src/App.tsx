@@ -230,6 +230,15 @@ const DropDrag: FunctionComponent<Props> = ({
     }));
   };
 
+  const allowEditItem = (id: string) => {
+    setLayouts((prevLayouts) => ({
+      ...prevLayouts,
+      lg: prevLayouts.lg.map((item) =>
+        item.i === id ? { ...item, static: !item.static, isDraggable: !item.isDraggable } : item
+      ),
+    }));
+  }
+
   // Function to toggle edit mode
   const toggleEditMode = () => {
     setEditMode((prevEditMode) => !prevEditMode);
@@ -237,7 +246,7 @@ const DropDrag: FunctionComponent<Props> = ({
 
   return (
     <div className="mb-4">
-      <button className="edit-button" onClick={toggleEditMode}>
+      <button className="edit-mode" onClick={toggleEditMode}>
         {editMode ? "Save" : "Edit"}
       </button>
 
@@ -269,15 +278,28 @@ const DropDrag: FunctionComponent<Props> = ({
         {layouts.lg.map((layoutItem) => (
           <div key={layoutItem.i} className="grid-item">
             {editMode && ( // Only show remove button in edit mode
-              <span
-                className="remove-button"
-                onClick={() => onPutItem(layoutItem)}
-              >
-                &times;
-              </span>
+              <>
+                <span
+                  className="remove-button"
+                  onClick={() => onPutItem(layoutItem)}
+                >
+                  &times;
+                </span>
+                <span
+                  className="edit-button"
+                  onClick={() => allowEditItem(layoutItem.i)}
+                >
+                  <small>&#9998;</small>
+                </span>
+              </>
             )}
             <div className="item-content">
-              {editMode ? (
+              {layoutItem.static ? (
+                <>
+                  <h4>{layoutItem.title}</h4>
+                  <p>{layoutItem.description}</p>
+                </>
+              ) : (
                 <>
                   <input
                     type="text"
@@ -294,11 +316,6 @@ const DropDrag: FunctionComponent<Props> = ({
                     }
                     placeholder="Description"
                   />
-                </>
-              ) : (
-                <>
-                  <h4>{layoutItem.title}</h4>
-                  <p>{layoutItem.description}</p>
                 </>
               )}
             </div>
