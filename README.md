@@ -4,7 +4,7 @@ A customizable character sheet project. The goal is to allow role players to cre
 
 The react grid was created using the examples provided on the library [GitHub Repository](https://github.com/react-grid-layout/react-grid-layout?tab=readme-ov-file).
 
-The examples code has been adpated to run using **TypeScript**.
+The examples code has been adapted to run using **TypeScript**.
 
 <hr>
 
