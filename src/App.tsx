@@ -29,6 +29,24 @@ interface ToolBoxItemProps {
   onRemoveItem: (item: LayoutItem) => void;
 }
 
+// Props for ToolBox
+interface ToolBoxProps {
+  items: LayoutItem[];
+  onTakeItem: (item: LayoutItem) => void;
+  onRemoveItem: (item: LayoutItem) => void;
+}
+
+// Props for DropDrag
+interface Props {
+  className?: string;
+  rowHeight?: number;
+  cols?: { [key: string]: number };
+  breakpoints?: { [key: string]: number };
+  containerPadding?: [number, number] | { [key: string]: [number, number] };
+  verticalCompact?: boolean;
+  onLayoutChange?: (layout: LayoutItem[], layouts: Layouts) => void;
+}
+
 // ToolBoxItem Component
 const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
   item,
@@ -36,7 +54,7 @@ const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
   onRemoveItem,
 }) => {
   return (
-    <div className="toolbox__items__item">
+    <div className="toolbox-item">
       <div
         className="toolbox-label"
         onClick={() => onTakeItem(item)}
@@ -56,13 +74,6 @@ const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
   );
 };
 
-// Props for ToolBox
-interface ToolBoxProps {
-  items: LayoutItem[];
-  onTakeItem: (item: LayoutItem) => void;
-  onRemoveItem: (item: LayoutItem) => void;
-}
-
 // ToolBox Component
 const ToolBox: FunctionComponent<ToolBoxProps> = ({
   items,
@@ -71,8 +82,8 @@ const ToolBox: FunctionComponent<ToolBoxProps> = ({
 }) => {
   return (
     <div className="toolbox">
-      <h4 className="toolbox__title">Toolbox</h4>
-      <div className="toolbox__items">
+      <h4 className="toolbox-title">Toolbox</h4>
+      <div className="toolbox-grid">
         {items.map((item) => (
           <ToolBoxItem
             key={item.i}
@@ -86,24 +97,13 @@ const ToolBox: FunctionComponent<ToolBoxProps> = ({
   );
 };
 
-// Props for DropDrag
-interface Props {
-  className?: string;
-  rowHeight?: number;
-  onLayoutChange?: (layout: LayoutItem[], layouts: Layouts) => void;
-  cols?: { [key: string]: number };
-  breakpoints?: { [key: string]: number };
-  containerPadding?: [number, number] | { [key: string]: [number, number] };
-  verticalCompact?: boolean;
-}
-
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 const DropDrag: FunctionComponent<Props> = ({
   className = "layout",
-  rowHeight = 50,
+  rowHeight = 60,
   onLayoutChange = () => { },
-  cols = { lg: 14, md: 12, sm: 8, xs: 6, xxs: 4 },
+  cols = { lg: 24, md: 20, sm: 16, xs: 8, xxs: 4 },
   breakpoints = { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
   containerPadding = [0, 0],
   verticalCompact = false,
@@ -178,14 +178,6 @@ const DropDrag: FunctionComponent<Props> = ({
       ...prevLayouts,
       lg: [...prevLayouts.lg, newItem],
     }));
-  };
-
-  // Function to remove an element from the grid
-  const removeItem = (id: string) => {
-    setLayouts((prevLayouts) => {
-      const updatedLayout = prevLayouts.lg.filter((item) => item.i !== id);
-      return { ...prevLayouts, lg: updatedLayout };
-    });
   };
 
   // Function to move an item from the toolbox to the grid
@@ -270,10 +262,10 @@ const DropDrag: FunctionComponent<Props> = ({
         breakpoints={breakpoints}
         containerPadding={containerPadding}
         verticalCompact={verticalCompact}
+        onLayoutChange={handleLayoutChange}
         layouts={layouts}
         measureBeforeMount={false}
         useCSSTransforms={mounted}
-        onLayoutChange={handleLayoutChange}
       >
         {layouts.lg.map((layoutItem) => (
           <div key={layoutItem.i} className="grid-item">

@@ -1,82 +1,120 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
+:root {
+  --main-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --main-bg-color: #dfdfdf;
+  --dist-small: 0.2em;
+  --dist-medium: 0.4em;
+  --dist-large: 1em;
+}
+
+body {
+  font-family: var(--main-font);
+  background-color: #f5f7fa;
+  color: #333333;
 }
 
 .layout {
-  height: fit-content;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.add-button {
-  margin-bottom: 1em;
+button {
+  margin: var(--dist-small);
+  margin-bottom: var(--dist-large);
+  font-family: var(--main-font);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.remove-button {
+.remove-button, .toolbox-remove, .edit-button {
+  font-family: sans-serif;
+}
+
+.remove-button, .edit-button {
   position: absolute;
   right: -9px;
-  top: -9px;
   width: 0.9em;
   height: 0.9em;
   border-radius: 50%;
   cursor: pointer;
   font-weight: bold;
   text-align: center;
-  background-color: #fee;
+  opacity: 0.75;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+  .edit-button:hover, .remove-button:hover, .toolbox-remove:hover {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+.remove-button {
+  top: -9px;
+  color: #773333;
+  background-color: #ffefef;
 }
 
 .edit-button {
-  position: absolute;
-  right: -9px;
   top: 9px;
-  width: 0.9em;
-  height: 0.9em;
-  border-radius: 50%;
+  background-color: #e9e9e9;
+}
+
+.toolbox-remove {
+  margin: var(--dist-medium);
+  align-self: center;
   cursor: pointer;
   font-weight: bold;
-  text-align: center;
-  background-color: #eee;
+  color: #773333;
+  opacity: 0.75;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 .grid-item {
   margin: auto;
-  border: 1px solid #000;
-  background: #ddd;
+  border: 1px solid black;
+  border-radius: 4px;
+  background: var(--main-bg-color);
   display: inline-flex;
 }
 
 .item-content {
-  display: flex;
-  flex-wrap: wrap;
-  height: auto;
+  display: grid;
+  grid-template-rows: 2em 1fr;
   width: 100%;
-  margin: 2px;
-  padding: 3px;
+  margin: var(--dist-small);
 }
 
   .item-content > input, textarea, h4, p {
-    width: 100%;
-    /* height: 70%; */
+    display: inline-flex;
+    min-width: 0;
+    overflow: auto;
+    overflow-wrap: break-word;
+    scrollbar-width: thin;
+    margin: var(--dist-small);
   }
 
-/* .item-content > input, h4{
-  height: 15%;
-} */
+  .item-content > input, h4 {
+    min-height: 2em;
+  }
+
+  html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+  }
 
 .toolbox {
-  background-color: #eee;
-  margin: 1em;
-  padding: auto;
-  padding-left: 0.2em;
+  background-color: #e9e9e9;
+  margin: var(--dist-large);
+  padding-left: var(--dist-small);
 }
 
-.toolbox__items {
+.toolbox-grid {
   display: flex;
 }
 
-.toolbox__items__item {
-  padding: 0.4em;
-  margin: 0.6em;
-  border: 1px solid #000;
+.toolbox-item {
+  padding: var(--dist-medium);
+  margin: var(--dist-large);
+  border: 1px solid black;
+  border-radius: 6px;
   width: 10em;
   display: flex;
 }
@@ -85,9 +123,34 @@
   min-width: 90%;
 }
 
-.toolbox-remove {
-  margin: 0.3em;
-  align-self: center;
-  cursor: pointer;
-  font-weight: bold;
+/* React Grid Layout specific styles */
+.react-grid-item.react-grid-placeholder {
+  background: #4a6cf7;
+  opacity: 0.2;
+  border-radius: 6px;
+}
+
+.react-grid-item > .react-resizable-handle {
+  right: 3px;
+  bottom: 3px;
+  cursor: se-resize;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+  .react-grid-item > .react-resizable-handle:hover {
+    opacity: 1;
+  }
+
+/* Animation for item appearance */
+.react-grid-item.cssTransforms {
+  transition-property: transform, opacity !important;
+}
+
+.react-grid-item.adding {
+  opacity: 0;
+}
+
+.react-grid-item.added {
+  opacity: 1;
 }
