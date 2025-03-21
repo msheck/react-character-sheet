@@ -1,13 +1,13 @@
 import { StrictMode } from "react";
 import * as ReactDOMClient from "react-dom/client";
 
-import App from "./App";
+import Sheet from "./Sheet";
 
 const rootElement = document.getElementById("root") as HTMLElement;
 const root = ReactDOMClient.createRoot(rootElement);
 
 root.render(
   <StrictMode>
-    <App verticalCompact={false} />
+    <Sheet verticalCompact={false} />
   </StrictMode>
 );

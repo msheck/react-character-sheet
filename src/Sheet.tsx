@@ -1,101 +1,12 @@
 import { FunctionComponent, useState, useEffect } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { v4 as uuidv4 } from "uuid"; // Unique ID generator
+import { LayoutItem, Layouts, Props } from "./Types";
+import ToolBox from "./ToolBox";
+import { getFromLS, saveToLS } from "./Utils";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
-import "./styles.css";
-
-// Define types for layout items
-interface LayoutItem {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-  i: string;
-  static?: boolean;
-  isDraggable?: boolean;
-  title?: string; // Add title field
-  description?: string; // Add description field
-}
-
-interface Layouts {
-  [key: string]: LayoutItem[];
-}
-
-// Props for ToolBoxItem
-interface ToolBoxItemProps {
-  item: LayoutItem;
-  onTakeItem: (item: LayoutItem) => void;
-  onRemoveItem: (item: LayoutItem) => void;
-}
-
-// Props for ToolBox
-interface ToolBoxProps {
-  items: LayoutItem[];
-  onTakeItem: (item: LayoutItem) => void;
-  onRemoveItem: (item: LayoutItem) => void;
-}
-
-// Props for DropDrag
-interface Props {
-  className?: string;
-  rowHeight?: number;
-  cols?: { [key: string]: number };
-  breakpoints?: { [key: string]: number };
-  containerPadding?: [number, number] | { [key: string]: [number, number] };
-  verticalCompact?: boolean;
-  onLayoutChange?: (layout: LayoutItem[], layouts: Layouts) => void;
-}
-
-// ToolBoxItem Component
-const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
-  item,
-  onTakeItem,
-  onRemoveItem,
-}) => {
-  return (
-    <div className="toolbox-item">
-      <div
-        className="toolbox-label"
-        onClick={() => onTakeItem(item)}
-      >
-        <span>{item.title}</span>
-      </div>
-      <div
-        className="toolbox-remove"
-        onClick={(e) => {
-          e.stopPropagation(); // Prevent triggering the onTakeItem event
-          onRemoveItem(item);
-        }}
-      >
-        <span>&times;</span>
-      </div>
-    </div>
-  );
-};
-
-// ToolBox Component
-const ToolBox: FunctionComponent<ToolBoxProps> = ({
-  items,
-  onTakeItem,
-  onRemoveItem,
-}) => {
-  return (
-    <div className="toolbox">
-      <h4 className="toolbox-title">Toolbox</h4>
-      <div className="toolbox-grid">
-        {items.map((item) => (
-          <ToolBoxItem
-            key={item.i}
-            item={item}
-            onTakeItem={onTakeItem}
-            onRemoveItem={onRemoveItem}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
+import "./Styles/Global.css";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -317,30 +228,5 @@ const DropDrag: FunctionComponent<Props> = ({
     </div>
   );
 };
-
-// Utility functions for localStorage
-function getFromLS(key: string): LayoutItem[] {
-  let ls: { [key: string]: LayoutItem[] } = {};
-  if (global.localStorage) {
-    try {
-      ls = JSON.parse(global.localStorage.getItem("rgl-7") || "{}");
-    } catch (e) {
-      console.error("Failed to parse localStorage data:", e);
-    }
-  }
-  return ls[key] || [];
-}
-
-function saveToLS(key: string, value: LayoutItem[]): void {
-  if (global.localStorage) {
-    try {
-      const existingData = JSON.parse(global.localStorage.getItem("rgl-7") || "{}");
-      existingData[key] = value;
-      global.localStorage.setItem("rgl-7", JSON.stringify(existingData));
-    } catch (e) {
-      console.error("Failed to save to localStorage:", e);
-    }
-  }
-}
 
 export default DropDrag;
