@@ -7,8 +7,9 @@ export interface LayoutItem {
   i: string;
   static?: boolean;
   isDraggable?: boolean;
-  title?: string; // Add title field
-  description?: string; // Add description field
+  template?: boolean;
+  title?: string;
+  description?: string;
 }
 
 //Define layouts
