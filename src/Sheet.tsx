@@ -4,7 +4,7 @@ import { LayoutItem, Layouts, Props } from "./Types";
 import { useSheetFunctions } from "./SheetFunctions";
 import { saveToLS } from "./Utils";
 import ToolBox from "./ToolBox";
-import GridItem from "./GridItem";
+import GridItem from "./Components/GridItem";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import "./Styles/Global.css";

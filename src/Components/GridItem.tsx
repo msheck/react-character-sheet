@@ -1,4 +1,6 @@
-import { LayoutItem } from "./Types";
+import { LayoutItem } from "../Types";
+import { getTitleCard } from "./TitleCard";
+import { getTextBox } from "./TextBox";
 
 function GridItem(
   layoutItem: LayoutItem,
@@ -20,27 +22,21 @@ function GridItem(
         </>
       )}
       <div className="item-content">
-        {layoutItem.static ? (
-          <>
-            <h4>{layoutItem.title}</h4>
-            <p>{layoutItem.description}</p>
-          </>
-        ) : (
-          <>
-            <input
-              type="text"
-              value={layoutItem.title || ""}
-              onChange={(e) => updateItem(layoutItem.i, "title", e.target.value)}
-              placeholder="Title" />
-            <textarea
-              value={layoutItem.description || ""}
-              onChange={(e) => updateItem(layoutItem.i, "description", e.target.value)}
-              placeholder="Description" />
-          </>
-        )}
+        {getItemContent(layoutItem, updateItem)}
       </div>
     </div>
   );
+}
+
+function getItemContent(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
+  switch (layoutItem.i) {
+    case 'title-card':
+      return getTitleCard(layoutItem, updateItem);
+    case 'text-box':
+      return getTextBox(layoutItem, updateItem);
+    default:
+      return null;
+  }
 }
 
 export default GridItem;

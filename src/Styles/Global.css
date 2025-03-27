@@ -87,7 +87,7 @@ button {
     display: inline-flex;
     min-width: 0;
     overflow: auto;
-    overflow-wrap: break-word;
+    overflow-wrap: anywhere;
     scrollbar-width: thin;
     margin: var(--dist-small);
   }
