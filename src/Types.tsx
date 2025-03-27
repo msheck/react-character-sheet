@@ -31,6 +31,14 @@ export interface ToolBoxProps {
   onRemoveItem: (item: LayoutItem) => void;
 }
 
+export interface GridItemProps {
+  layoutItem: LayoutItem;
+  editMode: boolean;
+  onPutItem: (item: LayoutItem) => void;
+  allowEditItem: (id: string) => void;
+  updateItem: (id: string, field: string, value: string) => void;
+}
+
 // Props for DropDrag
 export interface Props {
   className?: string;

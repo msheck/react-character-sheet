@@ -69,7 +69,7 @@ export const useSheetFunctions = () => {
   };
 
   // Function to update the title or description of a grid item
-  const updateItem = (id: string, field: "title" | "description", value: string) => {
+  const updateItem = (id: string, field: string, value: string) => {
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
       lg: prevLayouts.lg.map((item) =>

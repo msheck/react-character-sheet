@@ -1,9 +1,10 @@
 import { FunctionComponent, useState, useEffect } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { LayoutItem, Layouts, Props } from "./Types";
-import ToolBox from "./ToolBox";
-import { saveToLS } from "./Utils";
 import { useSheetFunctions } from "./SheetFunctions";
+import { saveToLS } from "./Utils";
+import ToolBox from "./ToolBox";
+import GridItem from "./GridItem";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import "./Styles/Global.css";
@@ -106,50 +107,7 @@ const DropDrag: FunctionComponent<Props> = ({
         useCSSTransforms={mounted}
       >
         {layouts.lg.map((layoutItem) => (
-          <div key={layoutItem.i} className="grid-item">
-            {editMode && ( // Only show remove button in edit mode
-              <>
-                <span
-                  className="remove-button"
-                  onClick={() => onPutItem(layoutItem)}
-                >
-                  &times;
-                </span>
-                <span
-                  className="edit-button"
-                  onClick={() => allowEditItem(layoutItem.i)}
-                >
-                  <small>&#9998;</small>
-                </span>
-              </>
-            )}
-            <div className="item-content">
-              {layoutItem.static ? (
-                <>
-                  <h4>{layoutItem.title}</h4>
-                  <p>{layoutItem.description}</p>
-                </>
-              ) : (
-                <>
-                  <input
-                    type="text"
-                    value={layoutItem.title || ""}
-                    onChange={(e) =>
-                      updateItem(layoutItem.i, "title", e.target.value)
-                    }
-                    placeholder="Title"
-                  />
-                  <textarea
-                    value={layoutItem.description || ""}
-                    onChange={(e) =>
-                      updateItem(layoutItem.i, "description", e.target.value)
-                    }
-                    placeholder="Description"
-                  />
-                </>
-              )}
-            </div>
-          </div>
+          GridItem(layoutItem, editMode, onPutItem, allowEditItem, updateItem)
         ))}
       </ResponsiveReactGridLayout>
     </div>

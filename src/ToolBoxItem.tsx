@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { LayoutItem, Layouts, ToolBoxItemProps, ToolBoxProps, Props } from "./Types";
+import { ToolBoxItemProps } from "./Types";
 
 // ToolBoxItem Component
 const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
