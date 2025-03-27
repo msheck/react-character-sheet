@@ -5,7 +5,8 @@ function GridItem(
   editMode: boolean,
   onPutItem: (item: LayoutItem) => void,
   allowEditItem: (id: string) => void,
-  updateItem: (id: string, field: string, value: string) => void) {
+  updateItem: (id: string, field: string, value: string) => void
+) {
   return (
     <div key={layoutItem.i} className="grid-item">
       {editMode && (

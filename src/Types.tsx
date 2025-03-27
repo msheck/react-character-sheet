@@ -8,6 +8,7 @@ export interface LayoutItem {
   static?: boolean;
   isDraggable?: boolean;
   template?: boolean;
+  label?: string;
   title?: string;
   description?: string;
 }

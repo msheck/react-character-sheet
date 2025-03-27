@@ -2,6 +2,7 @@ import { LayoutItem, Layouts } from "./Types";
 import { getFromLS } from "./Utils";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+import ToolboxTemplates from "./Data/ToolboxTemplates.json";
 
 export const useSheetFunctions = () => {
   const [layouts, setLayouts] = useState<Layouts>({
@@ -10,11 +11,7 @@ export const useSheetFunctions = () => {
 
   const [toolbox, setToolbox] = useState<Layouts>({
     lg: getFromLS("toolbox").length === 0
-      ? [
-        { x: 0, y: 0, w: 2, h: 2, i: "toolbox-item-1", title: "Toolbox Item 1" },
-        { x: 0, y: 0, w: 2, h: 2, i: "toolbox-item-2", title: "title" },
-      ]
-      : getFromLS("toolbox"),
+      ? ToolboxTemplates : getFromLS("toolbox"),
   });
 
   const [editMode, setEditMode] = useState(false);
@@ -78,6 +75,7 @@ export const useSheetFunctions = () => {
     }));
   };
 
+  // Function to allow/lock editing of a grid item while in edit mode
   const allowEditItem = (id: string) => {
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
