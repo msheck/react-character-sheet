@@ -24,3 +24,11 @@ export function saveToLS(key: string, value: LayoutItem[]): void {
     }
   }
 }
+
+export function hasTitle(layoutItem: LayoutItem): boolean {
+  return layoutItem.title != "" && layoutItem.title != null
+}
+
+export function itemSumSize(layoutItem: LayoutItem): number {
+  return layoutItem.w + layoutItem.h;
+}

@@ -3,6 +3,7 @@ import { getTitleCard } from "./TitleCard";
 import { getTextBox } from "./TextBox";
 import { getAttributeCounter } from "./AttributeCounter";
 
+// Basic GridItem component, renders the remove and edit buttons, gets content by type
 function GridItem(
   layoutItem: LayoutItem,
   editMode: boolean,
@@ -11,7 +12,7 @@ function GridItem(
   updateItem: (id: string, field: string, value: string) => void
 ) {
   return (
-    <div key={layoutItem.i} className="grid-item">
+    <div key={layoutItem.i} className="grid-item" id={layoutItem.type}>
       {editMode && (
         <>
           <span className="remove-button" onClick={() => onPutItem(layoutItem)}>
@@ -27,8 +28,12 @@ function GridItem(
   );
 }
 
-function getItemContent(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
-  switch (layoutItem.i.split('#')[0]) {
+// Get content by one of the types defined in the ToolboxTemplates
+function getItemContent(
+  layoutItem: LayoutItem,
+  updateItem: (id: string, field: string, value: string) => void
+) {
+  switch (layoutItem.type) {
     case 'title-card':
       return getTitleCard(layoutItem, updateItem);
     case 'text-box':

@@ -4,7 +4,6 @@ function staticTitleCard(layoutItem: LayoutItem) {
   return (
     <>
       <h4>{layoutItem.title}</h4>
-      <hr />
     </>
   );
 }
@@ -24,7 +23,7 @@ function editableTitleCard(layoutItem: LayoutItem, updateItem: (id: string, fiel
 export function getTitleCard(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
   return (
     <>
-      <div className="item-content">
+      <div className="item-content" id="title-card-content">
         {
           layoutItem.static
             ? staticTitleCard(layoutItem)

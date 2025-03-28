@@ -4,9 +4,10 @@
     "y": 0,
     "w": 2,
     "h": 1,
-    "maxH": 1,
+    "maxH": 2,
     "template": true,
     "i": "title-card",
+    "type": "title-card",
     "label": "Title Card"
   },
   {
@@ -14,17 +15,20 @@
     "y": 0,
     "w": 2,
     "h": 2,
+    "minH": 2,
     "template": true,
     "i": "text-box",
+    "type": "text-box",
     "label": "Text Box"
   },
   {
     "x": 0,
     "y": 0,
     "w": 1,
-    "h": 1,
+    "h": 2,
     "template": true,
     "i": "attribute-counter",
+    "type": "attribute-counter",
     "label": "Attribute Counter"
   }
 ]

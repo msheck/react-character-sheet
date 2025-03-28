@@ -25,6 +25,28 @@ button {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
+.edit-mode {
+  position: fixed;
+  z-index: 1000;
+  left: -2.8rem;
+  background-color: #4a6cf7;
+  height: 2rem;
+  width: 3rem;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: var(--dist-medium);
+  cursor: pointer;
+  opacity: 0.75;
+  transition: background-color 0.2s, transform 0.7s, opacity 0.2s;
+}
+
+  .edit-mode:hover {
+    background-color: #204bd6;
+    transform: translateX(2.8rem);
+    opacity: 1;
+  }
+
 .remove-button, .toolbox-remove, .edit-button {
   font-family: sans-serif;
 }
@@ -95,13 +117,14 @@ button {
     text-align: center;
   }
 
-  html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-  }
+html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
 
 .toolbox {
   background-color: #e9e9e9;
   margin: var(--dist-large);
+  margin-top: 0;
   padding-left: var(--dist-small);
 }
 
@@ -115,6 +138,7 @@ button {
   border: 1px solid black;
   border-radius: 6px;
   width: 10em;
+  min-height: 2em;
   display: flex;
 }
 
@@ -153,3 +177,7 @@ button {
 .react-grid-item.added {
   opacity: 1;
 }
+
+@import "./TitleCard.css";
+@import "./TextBox.css";
+@import "./AttributeCounter.css";

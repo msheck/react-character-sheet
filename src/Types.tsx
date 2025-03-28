@@ -9,6 +9,7 @@ export interface LayoutItem {
   minH?: number;
   maxH?: number;
   i: string;
+  type?: string;
   static?: boolean;
   isDraggable?: boolean;
   template?: boolean;
@@ -17,7 +18,7 @@ export interface LayoutItem {
   description?: string;
 }
 
-//Define layouts
+// Define layouts
 export interface Layouts {
   [key: string]: LayoutItem[];
 }
@@ -36,6 +37,7 @@ export interface ToolBoxProps {
   onRemoveItem: (item: LayoutItem) => void;
 }
 
+// Props for GridItem
 export interface GridItemProps {
   layoutItem: LayoutItem;
   editMode: boolean;

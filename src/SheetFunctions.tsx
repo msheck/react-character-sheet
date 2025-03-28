@@ -27,7 +27,8 @@ export const useSheetFunctions = () => {
       maxW: item.maxW,
       minH: item.minH,
       maxH: item.maxH,
-      i: item.i + '#' + uuidv4(),
+      i: uuidv4(),
+      type: item.type,
       static: !editMode,
       isDraggable: editMode,
     };

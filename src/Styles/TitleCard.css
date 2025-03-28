@@ -1,0 +1,12 @@
+#title-card {
+  border: hidden;
+  border-radius: 0px;
+  border-bottom: 3px ridge #555555;
+  background: none;
+}
+
+#title-card-content {
+  margin: 0;
+  align-content: center;
+  grid-template-rows: auto;
+}

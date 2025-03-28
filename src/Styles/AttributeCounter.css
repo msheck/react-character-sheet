@@ -1,0 +1,27 @@
+#attribute-counter {
+}
+
+#attribute-counter-content {
+  margin: 0;
+  grid-template-rows: 1.2em 1fr;
+}
+
+#attribute-counter-content-notitle {
+  margin: 0;
+  grid-template-rows: 1fr;
+}
+
+#attribute-counter-title, #attribute-counter-count {
+  margin: 0;
+  padding: 0;
+}
+
+#attribute-counter-title {
+  font-size: 0.8em;
+  overflow: hidden;
+}
+
+#attribute-counter-count {
+  border: 0;
+  background: none;
+}

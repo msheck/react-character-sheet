@@ -28,7 +28,7 @@ function editableTextBox(layoutItem: LayoutItem, updateItem: (id: string, field:
 export function getTextBox(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
   return (
     <>
-      <div className="item-content">
+      <div className="item-content" id="text-box-content">
         {
           layoutItem.static
             ? staticTextBox(layoutItem)

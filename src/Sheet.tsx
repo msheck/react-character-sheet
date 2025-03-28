@@ -13,7 +13,7 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 const DropDrag: FunctionComponent<Props> = ({
   className = "layout",
-  rowHeight = 60,
+  rowHeight = 30,
   onLayoutChange = () => { },
   cols = { lg: 24, md: 20, sm: 16, xs: 8, xxs: 4 },
   breakpoints = { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
@@ -68,6 +68,7 @@ const DropDrag: FunctionComponent<Props> = ({
         title: existingItem?.title,
         description: existingItem?.description,
         label: existingItem?.label,
+        type: existingItem?.type,
       };
     });
 
