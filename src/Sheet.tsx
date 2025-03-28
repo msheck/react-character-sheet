@@ -24,7 +24,6 @@ const DropDrag: FunctionComponent<Props> = ({
     layouts,
     toolbox,
     editMode,
-    addItem,
     onTakeItem,
     onPutItem,
     onRemoveToolboxItem,
@@ -84,9 +83,6 @@ const DropDrag: FunctionComponent<Props> = ({
 
       {editMode && ( // Show Add Element button and Toolbox only in edit mode
         <>
-          <button className="add-button" onClick={addItem}>
-            Add Element
-          </button>
           <ToolBox
             items={toolbox.lg}
             onTakeItem={onTakeItem}

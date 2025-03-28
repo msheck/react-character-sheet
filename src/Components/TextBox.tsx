@@ -14,11 +14,11 @@ function editableTextBox(layoutItem: LayoutItem, updateItem: (id: string, field:
     <>
       <input
         type="text"
-        value={layoutItem.title || ""}
+        value={layoutItem.title}
         onChange={(e) => updateItem(layoutItem.i, "title", e.target.value)}
         placeholder="Title" />
       <textarea
-        value={layoutItem.description || ""}
+        value={layoutItem.description}
         onChange={(e) => updateItem(layoutItem.i, "description", e.target.value)}
         placeholder="Description" />
     </>
@@ -26,7 +26,15 @@ function editableTextBox(layoutItem: LayoutItem, updateItem: (id: string, field:
 }
 
 export function getTextBox(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
-  return layoutItem.static
-    ? staticTextBox(layoutItem)
-    : editableTextBox(layoutItem, updateItem);
+  return (
+    <>
+      <div className="item-content">
+        {
+          layoutItem.static
+            ? staticTextBox(layoutItem)
+            : editableTextBox(layoutItem, updateItem)
+        }
+      </div>
+    </>
+  );
 }

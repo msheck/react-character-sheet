@@ -17,13 +17,17 @@ export const useSheetFunctions = () => {
   const [editMode, setEditMode] = useState(false);
 
   // Function to add a new element with a unique ID
-  const addItem = () => {
+  const addItem = (item: LayoutItem) => {
     const newItem: LayoutItem = {
       x: 0,
       y: 0,
-      w: 2,
-      h: 2,
-      i: uuidv4(),
+      w: item.w,
+      h: item.h,
+      minW: item.minW,
+      maxW: item.maxW,
+      minH: item.minH,
+      maxH: item.maxH,
+      i: item.i + '#' + uuidv4(),
       static: !editMode,
       isDraggable: editMode,
     };
@@ -35,14 +39,19 @@ export const useSheetFunctions = () => {
 
   // Function to move an item from the toolbox to the grid
   const onTakeItem = (item: LayoutItem) => {
-    setToolbox((prevToolbox) => ({
-      ...prevToolbox,
-      lg: prevToolbox.lg.filter(({ i }) => i !== item.i),
-    }));
-    setLayouts((prevLayouts) => ({
-      ...prevLayouts,
-      lg: [...prevLayouts.lg, { ...item, static: !editMode, isDraggable: editMode }], // Set static and isDraggable based on editMode
-    }));
+    if (item.template) {
+      addItem(item);
+    }
+    else {
+      setToolbox((prevToolbox) => ({
+        ...prevToolbox,
+        lg: prevToolbox.lg.filter(({ i }) => i !== item.i),
+      }));
+      setLayouts((prevLayouts) => ({
+        ...prevLayouts,
+        lg: [...prevLayouts.lg, { ...item, static: !editMode, isDraggable: editMode }], // Set static and isDraggable based on editMode
+      }));
+    }
   };
 
   // Function to move an item from the grid back to the toolbox

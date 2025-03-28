@@ -4,6 +4,10 @@ export interface LayoutItem {
   y: number;
   w: number;
   h: number;
+  minW?: number;
+  maxW?: number;
+  minH?: number;
+  maxH?: number;
   i: string;
   static?: boolean;
   isDraggable?: boolean;

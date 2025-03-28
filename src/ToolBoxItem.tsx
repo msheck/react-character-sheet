@@ -13,17 +13,21 @@ const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
         className="toolbox-label"
         onClick={() => onTakeItem(item)}
       >
-        <span>{item.label ?? item.title}</span>
+        <span>{item.title ?? item.label}</span>
       </div>
-      <div
-        className="toolbox-remove"
-        onClick={(e) => {
-          e.stopPropagation(); // Prevent triggering the onTakeItem event
-          onRemoveItem(item);
-        }}
-      >
-        <span>&times;</span>
-      </div>
+      {!item.template &&
+        <>
+          <div
+            className="toolbox-remove"
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent triggering the onTakeItem event
+              onRemoveItem(item);
+            }}
+          >
+            <span>&times;</span>
+          </div>
+        </>
+      }
     </div>
   );
 };

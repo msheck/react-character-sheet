@@ -1,6 +1,7 @@
 import { LayoutItem } from "../Types";
 import { getTitleCard } from "./TitleCard";
 import { getTextBox } from "./TextBox";
+import { getAttributeCounter } from "./AttributeCounter";
 
 function GridItem(
   layoutItem: LayoutItem,
@@ -21,19 +22,19 @@ function GridItem(
           </span>
         </>
       )}
-      <div className="item-content">
-        {getItemContent(layoutItem, updateItem)}
-      </div>
+      {getItemContent(layoutItem, updateItem)}
     </div>
   );
 }
 
 function getItemContent(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
-  switch (layoutItem.i) {
+  switch (layoutItem.i.split('#')[0]) {
     case 'title-card':
       return getTitleCard(layoutItem, updateItem);
     case 'text-box':
-      return getTextBox(layoutItem, updateItem);
+      return getTextBox(layoutItem, updateItem)
+    case 'attribute-counter':
+      return getAttributeCounter(layoutItem, updateItem);
     default:
       return null;
   }

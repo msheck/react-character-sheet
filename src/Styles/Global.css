@@ -78,13 +78,12 @@ button {
 
 .item-content {
   display: grid;
-  grid-template-rows: 2em 1fr;
+  grid-template-rows: 1.8em 1fr;
   width: 100%;
   margin: var(--dist-small);
 }
 
   .item-content > input, textarea, h4, p {
-    display: inline-flex;
     min-width: 0;
     overflow: auto;
     overflow-wrap: anywhere;
@@ -93,7 +92,7 @@ button {
   }
 
   .item-content > input, h4 {
-    min-height: 2em;
+    text-align: center;
   }
 
   html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {

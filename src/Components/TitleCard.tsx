@@ -14,7 +14,7 @@ function editableTitleCard(layoutItem: LayoutItem, updateItem: (id: string, fiel
     <>
       <input
         type="text"
-        value={layoutItem.title || ""}
+        value={layoutItem.title}
         onChange={(e) => updateItem(layoutItem.i, "title", e.target.value)}
         placeholder="Title" />
     </>
@@ -22,7 +22,15 @@ function editableTitleCard(layoutItem: LayoutItem, updateItem: (id: string, fiel
 }
 
 export function getTitleCard(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
-  return layoutItem.static
-    ? staticTitleCard(layoutItem)
-    : editableTitleCard(layoutItem, updateItem);
+  return (
+    <>
+      <div className="item-content">
+        {
+          layoutItem.static
+            ? staticTitleCard(layoutItem)
+            : editableTitleCard(layoutItem, updateItem)
+        }
+      </div>
+    </>
+  );
 }
