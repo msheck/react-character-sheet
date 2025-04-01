@@ -34,8 +34,8 @@ export function getAttributeCounter(layoutItem: LayoutItem, updateItem: (id: str
         <input id="attribute-counter-count"
           style={{ fontSize: 12 * itemSumSize(layoutItem), paddingLeft: 2.25 * itemSumSize(layoutItem) }}
           type="number"
-          value={layoutItem.description}
-          onChange={(e) => updateItem(layoutItem.i, "description", e.target.value)} />
+          value={layoutItem.data?.at(0)}
+          onChange={(e) => updateItem(layoutItem.i, "data-0", e.target.value)} />
       </div>
     </>
   );

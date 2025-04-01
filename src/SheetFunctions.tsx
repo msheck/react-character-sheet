@@ -31,6 +31,7 @@ export const useSheetFunctions = () => {
       type: item.type,
       static: !editMode,
       isDraggable: editMode,
+      data: item.data,
     };
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
@@ -77,12 +78,34 @@ export const useSheetFunctions = () => {
 
   // Function to update the title or description of a grid item
   const updateItem = (id: string, field: string, value: string) => {
-    setLayouts((prevLayouts) => ({
-      ...prevLayouts,
-      lg: prevLayouts.lg.map((item) =>
-        item.i === id ? { ...item, [field]: value } : item
-      ),
-    }));
+    if (field.startsWith("data")) {
+      let index: number = Number(field.split("-")[1]);
+      setLayouts((prevLayouts) => ({
+        ...prevLayouts,
+        lg: prevLayouts.lg.map((item) => {
+          if (item.i === id) {
+            // Initialize data array if it doesn't exist
+            const newData = item.data ? [...item.data] : [];
+            // Ensure the array has the required length
+            while (newData.length <= index) {
+              newData.push("");
+            }
+            // Update the specific index
+            newData[index] = value;
+            return { ...item, data: newData };
+          }
+          return item;
+        }),
+      }));
+    }
+    else {
+      setLayouts((prevLayouts) => ({
+        ...prevLayouts,
+        lg: prevLayouts.lg.map((item) =>
+          item.i === id ? { ...item, [field]: value } : item
+        ),
+      }));
+    }
   };
 
   // Function to allow/lock editing of a grid item while in edit mode
