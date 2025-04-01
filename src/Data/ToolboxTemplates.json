@@ -30,5 +30,15 @@
     "i": "attribute-counter",
     "type": "attribute-counter",
     "label": "Attribute Counter"
+  },
+  {
+    "x": 0,
+    "y": 0,
+    "w": 1,
+    "h": 2,
+    "template": true,
+    "i": "stat-pool",
+    "type": "stat-pool",
+    "label": "Stat Pool"
   }
 ]

@@ -29,6 +29,6 @@ export function hasTitle(layoutItem: LayoutItem): boolean {
   return layoutItem.title != "" && layoutItem.title != null
 }
 
-export function itemSumSize(layoutItem: LayoutItem): number {
-  return layoutItem.w + layoutItem.h;
+export function itemSumSize(layoutItem: LayoutItem, widthMod: number = 1, heightMod: number = 1): number {
+  return (widthMod * layoutItem.w) + (heightMod * layoutItem.h);
 }

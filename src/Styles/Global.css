@@ -181,3 +181,4 @@ html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {
 @import "./TitleCard.css";
 @import "./TextBox.css";
 @import "./AttributeCounter.css";
+@import "./StatPool.css";

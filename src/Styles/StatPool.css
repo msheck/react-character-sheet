@@ -1,0 +1,38 @@
+#stat-pool {
+}
+
+#stat-pool-content {
+  margin: 0;
+  grid-template-rows: 1.2em 1fr;
+}
+
+#stat-pool-content-notitle {
+  margin: 0;
+  grid-template-rows: 1fr;
+}
+
+#stat-pool-comparer {
+  display: grid;
+  margin: 0;
+  grid-template-rows: 1fr;
+  grid-template-columns: 49.5% 1% 49.5%;
+}
+
+#stat-pool-title, #stat-pool-count {
+  margin: 0;
+  padding: 0;
+}
+
+#stat-pool-title {
+  font-size: 0.8em;
+  overflow: hidden;
+}
+
+#stat-pool-count {
+  border: 0;
+  background: none;
+}
+
+  #stat-pool-count:disabled {
+    color: initial;
+  }

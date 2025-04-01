@@ -1,9 +1,10 @@
 import { LayoutItem } from "../Types";
+import { hasTitle } from "../Utils";
 
 function staticTextBox(layoutItem: LayoutItem) {
   return (
     <>
-      <h4>{layoutItem.title}</h4>
+      {(hasTitle(layoutItem)) && <h4>{layoutItem.title}</h4>}
       <p>{layoutItem.data?.at(0)}</p>
     </>
   );
@@ -28,7 +29,7 @@ function editableTextBox(layoutItem: LayoutItem, updateItem: (id: string, field:
 export function getTextBox(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
   return (
     <>
-      <div className="item-content" id="text-box-content">
+      <div className="item-content" id={(hasTitle(layoutItem) || !layoutItem.static) ? "text-box-content" : "text-box-content-notitle"}>
         {
           layoutItem.static
             ? staticTextBox(layoutItem)

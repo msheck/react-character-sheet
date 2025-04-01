@@ -32,7 +32,7 @@ export function getAttributeCounter(layoutItem: LayoutItem, updateItem: (id: str
             : editableAttributeCounter(layoutItem, updateItem)
         }
         <input id="attribute-counter-count"
-          style={{ fontSize: 12 * itemSumSize(layoutItem), paddingLeft: 2.25 * itemSumSize(layoutItem) }}
+          style={{ fontSize: 12 * itemSumSize(layoutItem, 0.5, 1), paddingLeft: 2.25 * itemSumSize(layoutItem) }}
           type="number"
           value={layoutItem.data?.at(0)}
           onChange={(e) => updateItem(layoutItem.i, "data-0", e.target.value)} />

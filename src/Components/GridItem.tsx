@@ -2,6 +2,7 @@ import { LayoutItem } from "../Types";
 import { getTitleCard } from "./TitleCard";
 import { getTextBox } from "./TextBox";
 import { getAttributeCounter } from "./AttributeCounter";
+import { getStatPool } from "./StatPool";
 
 // Basic GridItem component, renders the remove and edit buttons, gets content by type
 function GridItem(
@@ -40,6 +41,8 @@ function getItemContent(
       return getTextBox(layoutItem, updateItem)
     case 'attribute-counter':
       return getAttributeCounter(layoutItem, updateItem);
+    case 'stat-pool':
+      return getStatPool(layoutItem, updateItem);
     default:
       return null;
   }
