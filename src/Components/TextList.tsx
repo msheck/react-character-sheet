@@ -16,7 +16,7 @@ function renderListItem(
             value={value}
             onChange={(e) => updateItem(layoutItem.i, "data-" + index, e.target.value)}
             placeholder="New Item" />
-          <span hidden={layoutItem.static} className="remove-button" id="text-list-item-remove" onClick={() => removeItem(layoutItem.i, index)}>&times;</span>
+          <span hidden={layoutItem.static} className="remove-button" id="text-list-item-remove" onMouseDown={(e) => { e.stopPropagation(); removeItem(layoutItem.i, index); }}>&times;</span>
         </li>
       ))}
       {layoutItem.static ? null : renderAddItem(layoutItem, addItem)}

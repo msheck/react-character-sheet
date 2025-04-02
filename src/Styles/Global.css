@@ -132,22 +132,39 @@ html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {
   padding-left: var(--dist-small);
 }
 
+.toolbox-title {
+  font-size: 1.2rem;
+  margin: var(--dist-medium);
+  margin-left: var(--dist-large);
+}
+
 .toolbox-grid {
   display: flex;
 }
 
 .toolbox-item {
-  padding: var(--dist-medium);
-  margin: var(--dist-large);
+  display: flex;
   border: 1px solid black;
   border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: var(--dist-medium);
+  margin: var(--dist-large);
   width: 10em;
   min-height: 2rem;
-  display: flex;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
 }
+
+  .toolbox-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: scale(1.05);
+  }
 
 .toolbox-label {
   min-width: 90%;
+  text-align: center;
+  align-self: center;
+  font-weight: bold;
 }
 
 /* React Grid Layout specific styles */

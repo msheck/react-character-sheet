@@ -19,10 +19,10 @@ function GridItem(
     <div key={layoutItem.i} className="grid-item" id={layoutItem.type}>
       {editMode && (
         <>
-          <span className="remove-button" onClick={() => onPutItem(layoutItem)}>
+          <span className="remove-button" onMouseDown={(e) => { e.stopPropagation(); onPutItem(layoutItem) }}>
             &times;
           </span>
-          <span className="edit-button" onClick={() => allowEditItem(layoutItem.i)}>
+          <span className="edit-button" onMouseDown={(e) => { e.stopPropagation(); allowEditItem(layoutItem.i) }}>
             <small>&#9998;</small>
           </span>
         </>
