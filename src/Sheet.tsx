@@ -28,6 +28,8 @@ const DropDrag: FunctionComponent<Props> = ({
     onPutItem,
     onRemoveToolboxItem,
     updateItem,
+    removeItem,
+    addItem,
     allowEditItem,
     toggleEditMode,
     setLayouts,
@@ -105,7 +107,7 @@ const DropDrag: FunctionComponent<Props> = ({
         useCSSTransforms={mounted}
       >
         {layouts.lg.map((layoutItem) => (
-          GridItem(layoutItem, editMode, onPutItem, allowEditItem, updateItem)
+          GridItem(layoutItem, editMode, onPutItem, allowEditItem, updateItem, removeItem, addItem)
         ))}
       </ResponsiveReactGridLayout>
     </div>

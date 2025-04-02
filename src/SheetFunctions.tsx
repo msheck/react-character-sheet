@@ -17,7 +17,7 @@ export const useSheetFunctions = () => {
   const [editMode, setEditMode] = useState(false);
 
   // Function to add a new element with a unique ID
-  const addItem = (item: LayoutItem) => {
+  const addGridItem = (item: LayoutItem) => {
     const newItem: LayoutItem = {
       x: 0,
       y: 0,
@@ -42,7 +42,7 @@ export const useSheetFunctions = () => {
   // Function to move an item from the toolbox to the grid
   const onTakeItem = (item: LayoutItem) => {
     if (item.template) {
-      addItem(item);
+      addGridItem(item);
     }
     else {
       setToolbox((prevToolbox) => ({
@@ -76,7 +76,7 @@ export const useSheetFunctions = () => {
     }));
   };
 
-  // Function to update the title or description of a grid item
+  // Function to update the title or data array of a grid item
   const updateItem = (id: string, field: string, value: string) => {
     if (field.startsWith("data")) {
       let index: number = Number(field.split("-")[1]);
@@ -108,6 +108,37 @@ export const useSheetFunctions = () => {
     }
   };
 
+  // Function to remove an item in data array property of a grid item
+  const removeItem = (id: string, index: number) => {
+    setLayouts((prevLayouts) => ({
+      ...prevLayouts,
+      lg: prevLayouts.lg.map((item) => {
+        if (item.i === id) {
+          // Remove the specific index
+          const newData = item.data ? [...item.data] : [];
+          newData.splice(index, 1);
+          return { ...item, data: newData };
+        }
+        return item;
+      }),
+    }));
+  };
+
+  // Function to add an item to the data array property of a grid item
+  const addItem = (id: string, value: string) => {
+    setLayouts((prevLayouts) => ({
+      ...prevLayouts,
+      lg: prevLayouts.lg.map((item) => {
+        if (item.i === id) {
+          // Add the new value to the end of the array
+          const newData = item.data ? [...item.data, value] : [value];
+          return { ...item, data: newData };
+        }
+        return item;
+      }),
+    }));
+  };
+
   // Function to allow/lock editing of a grid item while in edit mode
   const allowEditItem = (id: string) => {
     setLayouts((prevLayouts) => ({
@@ -127,11 +158,13 @@ export const useSheetFunctions = () => {
     layouts,
     toolbox,
     editMode,
-    addItem,
+    addGridItem,
     onTakeItem,
     onPutItem,
     onRemoveToolboxItem,
     updateItem,
+    removeItem,
+    addItem,
     allowEditItem,
     toggleEditMode,
     setLayouts,

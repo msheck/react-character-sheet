@@ -1,9 +1,9 @@
 :root {
   --main-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --main-bg-color: #dfdfdf;
-  --dist-small: 0.2em;
-  --dist-medium: 0.4em;
-  --dist-large: 1em;
+  --main-item-bgcolor: #dfdfdf;
+  --dist-small: 0.15rem;
+  --dist-medium: 0.3rem;
+  --dist-large: 1rem;
 }
 
 body {
@@ -54,8 +54,8 @@ button {
 .remove-button, .edit-button {
   position: absolute;
   right: -9px;
-  width: 0.9em;
-  height: 0.9em;
+  width: 0.9rem;
+  height: 0.9rem;
   border-radius: 50%;
   cursor: pointer;
   font-weight: bold;
@@ -94,18 +94,21 @@ button {
   margin: auto;
   border: 1px solid black;
   border-radius: 4px;
-  background: var(--main-bg-color);
+  background: var(--main-item-bgcolor);
   display: inline-flex;
 }
 
 .item-content {
   display: grid;
-  grid-template-rows: 1.8em 1fr;
+  grid-template-rows: 1.8rem 1fr;
   width: 100%;
   margin: var(--dist-small);
 }
 
-  .item-content > input, textarea, h4, p {
+  .item-content input,
+  .item-content textarea,
+  .item-content h4,
+  .item-content p {
     min-width: 0;
     overflow: auto;
     overflow-wrap: anywhere;
@@ -113,7 +116,8 @@ button {
     margin: var(--dist-small);
   }
 
-  .item-content > input, h4 {
+  .item-content input,
+  .item-content h4 {
     text-align: center;
   }
 
@@ -138,7 +142,7 @@ html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {
   border: 1px solid black;
   border-radius: 6px;
   width: 10em;
-  min-height: 2em;
+  min-height: 2rem;
   display: flex;
 }
 
@@ -182,3 +186,4 @@ html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {
 @import "./TextBox.css";
 @import "./AttributeCounter.css";
 @import "./StatPool.css";
+@import "./TextList.css";

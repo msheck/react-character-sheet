@@ -3,7 +3,7 @@
 
 #stat-pool-content {
   margin: 0;
-  grid-template-rows: 1.2em 1fr;
+  grid-template-rows: 1.2rem 1fr;
 }
 
 #stat-pool-content-notitle {
@@ -24,7 +24,7 @@
 }
 
 #stat-pool-title {
-  font-size: 0.8em;
+  font-size: 0.8rem;
   overflow: hidden;
 }
 

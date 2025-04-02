@@ -4,6 +4,10 @@
 #text-box-content {
 }
 
+  #text-box-content > textarea {
+    resize: none;
+  }
+
 #text-box-content-notitle {
   grid-template-rows: 1fr;
 }

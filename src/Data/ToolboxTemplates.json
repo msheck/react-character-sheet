@@ -40,5 +40,16 @@
     "i": "stat-pool",
     "type": "stat-pool",
     "label": "Stat Pool"
+  },
+  {
+    "x": 0,
+    "y": 0,
+    "w": 2,
+    "h": 2,
+    "minH": 2,
+    "template": true,
+    "i": "text-list",
+    "type": "text-list",
+    "label": "Text List"
   }
 ]
