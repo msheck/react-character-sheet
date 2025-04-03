@@ -15,7 +15,7 @@ export interface LayoutItem {
   template?: boolean;
   label?: string;
   title?: string;
-  data?: string[];
+  data?: string[][];
 }
 
 // Define layouts

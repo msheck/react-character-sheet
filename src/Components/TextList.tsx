@@ -4,19 +4,29 @@ import { hasTitle } from "../Utils";
 function renderListItem(
   layoutItem: LayoutItem,
   updateItem: (id: string, field: string, value: string) => void,
-  removeItem: (id: string, index: number) => void,
-  addItem: (id: string, value: string) => void
+  removeItem: (id: string, rowIndex: number, colIndex: number) => void,
+  addItem: (id: string, rowIndex: number, value: string) => void
 ) {
   return (
     <ul id="text-list-unordered-list">
-      {layoutItem.data?.map((value, index) => (
+      {layoutItem.data?.at(0)?.map((value, index) => (
         <li key={index} id="text-list-item">
           <textarea id="text-list-item-input"
-            className={layoutItem.data?.length === index + 1 ? "focus-item-" + layoutItem.i : ""}
+            className={layoutItem.data?.at(0)?.length === index + 1 ? "focus-item-" + layoutItem.i : ""}
             value={value}
             onChange={(e) => updateItem(layoutItem.i, "data-" + index, e.target.value)}
             placeholder="New Item" />
-          <span hidden={layoutItem.static} className="remove-button" id="text-list-item-remove" onMouseDown={(e) => { e.stopPropagation(); removeItem(layoutItem.i, index); }}>&times;</span>
+          <span id="text-list-item-remove"
+            className="remove-button"
+            hidden={layoutItem.static}
+            onMouseDown={
+              (e) => {
+                e.stopPropagation();
+                removeItem(layoutItem.i, 0, index);
+              }}
+          >
+            &times;
+          </span>
         </li>
       ))}
       {layoutItem.static ? null : renderAddItem(layoutItem, addItem)}
@@ -26,7 +36,7 @@ function renderListItem(
 
 function renderAddItem(
   layoutItem: LayoutItem,
-  addItem: (id: string, value: string) => void
+  addItem: (id: string, rowIndex: number, value: string) => void
 ) {
   return (
     <li id="text-list-item">
@@ -34,7 +44,7 @@ function renderAddItem(
         value=""
         onChange={(e) => {
           e.stopPropagation();
-          addItem(layoutItem.i, e.target.value);
+          addItem(layoutItem.i, 0, e.target.value);
           setTimeout(() => {
             const newItem = document.getElementsByClassName("focus-item-" + layoutItem.i)[0] as HTMLTextAreaElement;
             if (newItem) {
@@ -51,8 +61,8 @@ function renderAddItem(
 function staticTextList(
   layoutItem: LayoutItem,
   updateItem: (id: string, field: string, value: string) => void,
-  removeItem: (id: string, index: number) => void,
-  addItem: (id: string, value: string) => void
+  removeItem: (id: string, rowIndex: number, colIndex: number) => void,
+  addItem: (id: string, rowIndex: number, value: string) => void
 ) {
   return (
     <>
@@ -65,8 +75,8 @@ function staticTextList(
 function editableTextList(
   layoutItem: LayoutItem,
   updateItem: (id: string, field: string, value: string) => void,
-  removeItem: (id: string, index: number) => void,
-  addItem: (id: string, value: string) => void
+  removeItem: (id: string, rowIndex: number, colIndex: number) => void,
+  addItem: (id: string, rowIndex: number, value: string) => void
 ) {
   return (
     <>
@@ -83,8 +93,8 @@ function editableTextList(
 export function getTextList(
   layoutItem: LayoutItem,
   updateItem: (id: string, field: string, value: string) => void,
-  removeItem: (id: string, index: number) => void,
-  addItem: (id: string, value: string) => void
+  removeItem: (id: string, rowIndex: number, colIndex: number) => void,
+  addItem: (id: string, rowIndex: number, value: string) => void
 ) {
   return (
     <>

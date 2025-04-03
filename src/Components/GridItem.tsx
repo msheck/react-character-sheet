@@ -12,8 +12,8 @@ function GridItem(
   onPutItem: (item: LayoutItem) => void,
   allowEditItem: (id: string) => void,
   updateItem: (id: string, field: string, value: string) => void,
-  removeItem: (id: string, index: number) => void,
-  addItem: (id: string, value: string) => void
+  removeItem: (id: string, rowIndex: number, colIndex: number) => void,
+  addItem: (id: string, rowIndex: number, value: string) => void
 ) {
   return (
     <div key={layoutItem.i} className="grid-item" id={layoutItem.type}>
@@ -36,8 +36,8 @@ function GridItem(
 function getItemContent(
   layoutItem: LayoutItem,
   updateItem: (id: string, field: string, value: string) => void,
-  removeItem: (id: string, index: number) => void,
-  addItem: (id: string, value: string) => void
+  removeItem: (id: string, rowIndex: number, colIndex: number) => void,
+  addItem: (id: string, rowIndex: number, value: string) => void
 ) {
   switch (layoutItem.type) {
     case 'title-card':

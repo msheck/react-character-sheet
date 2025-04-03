@@ -10,7 +10,7 @@ const ToolBox: FunctionComponent<ToolBoxProps> = ({
 }) => {
   return (
     <div className="toolbox">
-      <h4 className="toolbox-title">Toolbox</h4> 
+      <h4 className="toolbox-title">Toolbox</h4>
       <div className="toolbox-grid">
         {items.map((item) => (
           <ToolBoxItem

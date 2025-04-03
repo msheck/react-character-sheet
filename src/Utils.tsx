@@ -29,6 +29,11 @@ export function hasTitle(layoutItem: LayoutItem): boolean {
   return layoutItem.title != "" && layoutItem.title != null
 }
 
-export function itemSumSize(layoutItem: LayoutItem, widthMod: number = 1, heightMod: number = 1): number {
-  return (widthMod * layoutItem.w) + (heightMod * layoutItem.h);
+export function itemSumSize(layoutItem: LayoutItem, widthMod: number = 1, heightMod: number = 1, offset: number = 0): number {
+  return (widthMod * layoutItem.w) + (heightMod * layoutItem.h) + offset;
+}
+
+export function getPaddingValue(layoutItem: LayoutItem, mod:number = 1, offset: number = 1, maxValue: number = Number.MAX_VALUE) {
+  let paddingLeft = (mod * itemSumSize(layoutItem)) + offset;
+  return paddingLeft > maxValue ? maxValue : paddingLeft;
 }

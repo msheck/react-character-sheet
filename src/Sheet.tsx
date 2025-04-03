@@ -68,7 +68,7 @@ const DropDrag: FunctionComponent<Props> = ({
       return {
         ...newItem,
         title: existingItem?.title,
-        data: existingItem?.data ?? [],
+        data: existingItem?.data ?? [[]],
         label: existingItem?.label,
         type: existingItem?.type,
       };

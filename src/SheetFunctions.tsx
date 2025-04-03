@@ -79,19 +79,25 @@ export const useSheetFunctions = () => {
   // Function to update the title or data array of a grid item
   const updateItem = (id: string, field: string, value: string) => {
     if (field.startsWith("data")) {
-      let index: number = Number(field.split("-")[1]);
+      let [rowIndex, colIndex] = field.split("-").slice(1).map(Number);
+      if (colIndex === undefined) { // If colIndex is undefined, it's a unidimensional array
+        colIndex = rowIndex;
+        rowIndex = 0;
+      }
       setLayouts((prevLayouts) => ({
         ...prevLayouts,
         lg: prevLayouts.lg.map((item) => {
           if (item.i === id) {
-            // Initialize data array if it doesn't exist
             const newData = item.data ? [...item.data] : [];
             // Ensure the array has the required length
-            while (newData.length <= index) {
-              newData.push("");
+            while (newData.length < rowIndex) {
+              newData.push([]);
+            }
+            while (newData[rowIndex].length < colIndex) {
+              newData[rowIndex].push("");
             }
             // Update the specific index
-            newData[index] = value;
+            newData[rowIndex][colIndex] = value;
             return { ...item, data: newData };
           }
           return item;
@@ -109,14 +115,16 @@ export const useSheetFunctions = () => {
   };
 
   // Function to remove an item in data array property of a grid item
-  const removeItem = (id: string, index: number) => {
+  const removeItem = (id: string, rowIndex: number, colIndex: number) => {
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
       lg: prevLayouts.lg.map((item) => {
         if (item.i === id) {
           // Remove the specific index
           const newData = item.data ? [...item.data] : [];
-          newData.splice(index, 1);
+          if (newData[rowIndex]) {
+            newData[rowIndex] = newData[rowIndex].filter((_, index) => index !== colIndex);
+          }
           return { ...item, data: newData };
         }
         return item;
@@ -125,13 +133,17 @@ export const useSheetFunctions = () => {
   };
 
   // Function to add an item to the data array property of a grid item
-  const addItem = (id: string, value: string) => {
+  const addItem = (id: string, rowIndex: number, value: string) => {
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
       lg: prevLayouts.lg.map((item) => {
         if (item.i === id) {
           // Add the new value to the end of the array
-          const newData = item.data ? [...item.data, value] : [value];
+          const newData = item.data ? [...item.data] : [];
+          while (newData.length <= rowIndex) {
+            newData.push([]);
+          }
+          newData[rowIndex] = [...newData[rowIndex], value];
           return { ...item, data: newData };
         }
         return item;
