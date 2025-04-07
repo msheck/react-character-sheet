@@ -16,6 +16,7 @@ export interface LayoutItem {
   label?: string;
   title?: string;
   data?: string[][];
+  colSizes?: number[];
 }
 
 // Define layouts

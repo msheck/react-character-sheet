@@ -52,5 +52,20 @@
     "i": "text-list",
     "type": "text-list",
     "label": "Text List"
+  },
+  {
+    "x": 0,
+    "y": 0,
+    "w": 2,
+    "h": 2,
+    "minH": 2,
+    "template": true,
+    "i": "text-table",
+    "type": "text-table",
+    "label": "Text Table",
+    "data": [
+      [ "" ],
+      [ "" ]
+    ]
   }
 ]

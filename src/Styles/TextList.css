@@ -1,10 +1,12 @@
 #text-list {
+  border: hidden;
+  border-radius: 0px;
+  background: none;
 }
 
 #text-list-content {
   margin: 0;
   grid-template-rows: 1.2rem 1fr;
-  grid-template-columns: 1fr;
 }
 
 #text-list-content-notitle {
@@ -34,19 +36,16 @@
   min-height: 1.8rem;
   display: grid;
   grid-template-columns: 1fr 0.1rem;
-  box-shadow: inset -2px 2px 10px 0px rgba(0, 0, 0, 0.05);
 }
 
 #text-list-item-input {
-  font-family: var(--main-font);
   text-align: left;
-  resize: none;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: inset -2px 2px 5px 0px rgba(0, 0, 0, 0.05);
   border-radius: 2px;
   min-height: 1.2rem;
   border-width: 0 0 1px 1px;
   overflow: auto;
-  scrollbar-width: thin;
 }
 
 .text-list-add-item-area {

@@ -4,6 +4,7 @@ import { getTextBox } from "./TextBox";
 import { getAttributeCounter } from "./AttributeCounter";
 import { getStatPool } from "./StatPool";
 import { getTextList } from "./TextList";
+import { getTextTable } from "./TextTable";
 
 // Basic GridItem component, renders the remove and edit buttons, gets content by type
 function GridItem(
@@ -13,21 +14,22 @@ function GridItem(
   allowEditItem: (id: string) => void,
   updateItem: (id: string, field: string, value: string) => void,
   removeItem: (id: string, rowIndex: number, colIndex: number) => void,
-  addItem: (id: string, rowIndex: number, value: string) => void
+  addItem: (id: string, rowIndex: number, value: string) => void,
+  updateColSize: (id: string, colIndex: number, size: number) => void
 ) {
   return (
     <div key={layoutItem.i} className="grid-item" id={layoutItem.type}>
       {editMode && (
         <>
-          <span className="remove-button" onMouseDown={(e) => { e.stopPropagation(); onPutItem(layoutItem) }}>
+          <span id="remove-grid-item" className="remove-button" onMouseDown={(e) => { e.stopPropagation(); onPutItem(layoutItem) }}>
             &times;
           </span>
-          <span className="edit-button" onMouseDown={(e) => { e.stopPropagation(); allowEditItem(layoutItem.i) }}>
+          <span id="edit-grid-item" className="edit-button" onMouseDown={(e) => { e.stopPropagation(); allowEditItem(layoutItem.i) }}>
             <small>&#9998;</small>
           </span>
         </>
       )}
-      {getItemContent(layoutItem, updateItem, removeItem, addItem)}
+      {getItemContent(layoutItem, updateItem, removeItem, addItem, updateColSize)}
     </div>
   );
 }
@@ -37,7 +39,8 @@ function getItemContent(
   layoutItem: LayoutItem,
   updateItem: (id: string, field: string, value: string) => void,
   removeItem: (id: string, rowIndex: number, colIndex: number) => void,
-  addItem: (id: string, rowIndex: number, value: string) => void
+  addItem: (id: string, rowIndex: number, value: string) => void,
+  updateColSize: (id: string, colIndex: number, size: number) => void
 ) {
   switch (layoutItem.type) {
     case 'title-card':
@@ -50,6 +53,8 @@ function getItemContent(
       return getStatPool(layoutItem, updateItem);
     case 'text-list':
       return getTextList(layoutItem, updateItem, removeItem, addItem);
+    case 'text-table':
+      return getTextTable(layoutItem, updateItem, removeItem, addItem, updateColSize);
     default:
       return null;
   }

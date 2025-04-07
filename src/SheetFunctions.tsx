@@ -32,6 +32,7 @@ export const useSheetFunctions = () => {
       static: !editMode,
       isDraggable: editMode,
       data: item.data,
+      colSizes: item.colSizes || [],
     };
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
@@ -116,20 +117,24 @@ export const useSheetFunctions = () => {
 
   // Function to remove an item in data array property of a grid item
   const removeItem = (id: string, rowIndex: number, colIndex: number) => {
-    setLayouts((prevLayouts) => ({
-      ...prevLayouts,
-      lg: prevLayouts.lg.map((item) => {
-        if (item.i === id) {
-          // Remove the specific index
-          const newData = item.data ? [...item.data] : [];
-          if (newData[rowIndex]) {
-            newData[rowIndex] = newData[rowIndex].filter((_, index) => index !== colIndex);
-          }
-          return { ...item, data: newData };
-        }
-        return item;
-      }),
-    }));
+   setLayouts((prevLayouts) => ({
+     ...prevLayouts,
+     lg: prevLayouts.lg.map((item) => {
+       if (item.i === id) {
+         // Remove the specific index or entire row
+         const newData = item.data ? [...item.data] : [];
+         if (newData[rowIndex]) {
+           if (colIndex === -1) {
+             newData.splice(rowIndex, 1);
+           } else {
+             newData[rowIndex] = newData[rowIndex].filter((_, index) => index !== colIndex);
+           }
+         }
+         return { ...item, data: newData };
+       }
+       return item;
+     }),
+   }));
   };
 
   // Function to add an item to the data array property of a grid item
@@ -145,6 +150,21 @@ export const useSheetFunctions = () => {
           }
           newData[rowIndex] = [...newData[rowIndex], value];
           return { ...item, data: newData };
+        }
+        return item;
+      }),
+    }));
+  };
+
+  // Function to update the column size of a grid item
+  const updateColSize = (id: string, colIndex: number, size: number) => {
+    setLayouts((prevLayouts) => ({
+      ...prevLayouts,
+      lg: prevLayouts.lg.map((item) => {
+        if (item.i === id) {
+          const newColSizes = item.colSizes ? [...item.colSizes] : [];
+          newColSizes[colIndex] = size;
+          return { ...item, colSizes: newColSizes };
         }
         return item;
       }),
@@ -177,6 +197,7 @@ export const useSheetFunctions = () => {
     updateItem,
     removeItem,
     addItem,
+    updateColSize,
     allowEditItem,
     toggleEditMode,
     setLayouts,

@@ -1,0 +1,91 @@
+#text-table {
+  border: hidden;
+  border-radius: 0px;
+  background: none;
+}
+
+#text-table-content {
+  grid-template-rows: 1.2rem 1fr;
+}
+
+#text-table-content-notitle {
+  grid-template-rows: 1fr;
+}
+
+#text-table-table-div {
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+#text-table-title {
+  font-size: 0.8rem;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+#text-table-table {
+  border-spacing: 0;
+  border: 1px ridge #999999;
+  border-width: 1px 1px 0 0;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#text-table-header {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#text-table-body {
+}
+
+#text-table-cell {
+  height: 3rem;
+  border: 1px ridge #999999;
+  border-width: 0 0 1px 1px;
+  box-shadow: inset -2px 2px 5px 0px rgba(0, 0, 0, 0.05);
+  margin: 0;
+  padding: 0;
+}
+
+#text-table-cell-headcontent,
+#text-table-cell-content,
+#text-table-cell-content-on-edit {
+  display: inline-grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  width: stretch;
+}
+
+#text-table-cell-content-on-edit {
+  grid-template-columns: 1fr 20px;
+}
+
+#text-table-header-input, #text-table-cell-input {
+  margin: 0;
+  padding: 0;
+  padding-left: var(--dist-small);
+  min-width: 0;
+  width: stretch;
+  border: none;
+  background: none;
+}
+
+#text-table-header-input {
+  font-weight: bold;
+}
+
+#text-table-remove-col,
+#text-table-remove-row {
+  position: relative;
+}
+
+#text-table-add-row,
+#text-table-add-column {
+  position: relative;
+}
+
+#buttons-case {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: end;
+}
