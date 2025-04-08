@@ -63,7 +63,7 @@ button {
   transition: opacity 0.2s, transform 0.2s;
 }
 
-  .add-butoon:hover, .edit-button:hover, .remove-button:hover, .toolbox-remove:hover {
+  .add-button:hover, .edit-button:hover, .remove-button:hover, .toolbox-remove:hover {
     opacity: 1;
     transform: scale(1.05);
   }
@@ -222,6 +222,7 @@ html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {
 }
 
 @import "./TitleCard.css";
+@import "./TextField.css";
 @import "./TextBox.css";
 @import "./AttributeCounter.css";
 @import "./StatPool.css";

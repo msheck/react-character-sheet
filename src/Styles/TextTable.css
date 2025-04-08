@@ -15,6 +15,7 @@
 #text-table-table-div {
   overflow: auto;
   scrollbar-width: thin;
+  margin: var(--dist-small);
 }
 
 #text-table-title {
@@ -34,7 +35,8 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-#text-table-body {
+#text-table-body .react-resizable-handle {
+  opacity: 0;
 }
 
 #text-table-cell {

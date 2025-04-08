@@ -14,6 +14,16 @@
     "x": 0,
     "y": 0,
     "w": 2,
+    "h": 1,
+    "template": true,
+    "i": "text-field",
+    "type": "text-field",
+    "label": "Text Field"
+  },
+  {
+    "x": 0,
+    "y": 0,
+    "w": 2,
     "h": 2,
     "minH": 2,
     "template": true,

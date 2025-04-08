@@ -1,0 +1,31 @@
+#text-field {
+}
+
+#text-field-content,
+#text-field-content-notitle{
+  margin: 0;
+  align-content: center;
+  grid-template-rows: auto;
+  grid-template-columns: 20% 1fr;
+  grid-template-rows: 1fr;
+}
+
+  #text-field-content > h4 {
+    overflow: hidden;
+    align-self: center;
+  }
+
+#text-field-content-notitle {
+  grid-template-columns: 1fr;
+}
+
+#text-field-title {
+  font-weight: bold;
+}
+
+#text-field-input {
+  border: hidden;
+  border-radius: 0px;
+  border-bottom: 1px ridge rgba(0, 0, 0, 0.2);
+  background: none;
+}

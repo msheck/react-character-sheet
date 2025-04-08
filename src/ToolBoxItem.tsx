@@ -8,11 +8,8 @@ const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
   onRemoveItem,
 }) => {
   return (
-    <div className="toolbox-item">
-      <div
-        className="toolbox-label"
-        onClick={() => onTakeItem(item)}
-      >
+    <div className="toolbox-item" onClick={() => onTakeItem(item)}>
+      <div className="toolbox-label">
         <span>{item.title ?? item.label}</span>
       </div>
       {!item.template &&

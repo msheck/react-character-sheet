@@ -4,7 +4,7 @@ import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
 
 function defaultColSize(layoutItem: LayoutItem) {
-  return (64*layoutItem.w)/(layoutItem.data?.at(0)?.length ?? 1);
+  return Math.floor(((74.75 * layoutItem.w ) - 28 + layoutItem.w * 5) / (layoutItem.data?.at(0)?.length ?? 1));
 }
 
 export function getTextTable(
@@ -96,35 +96,42 @@ export function getTextTable(
                   <tr key={rowIndex}>
                     {row.map((cell: string, colIndex: number) => ( // Body cells
                       <td id="text-table-cell" key={colIndex} style={{ width: (layoutItem.colSizes?.[colIndex] || defaultColSize(layoutItem)) }}>
-                        <div id={layoutItem.static ? "text-table-cell-content" : "text-table-cell-content-on-edit"}>
-                          <textarea id="text-table-cell-input" // Cell Textarea
-                            value={cell}
-                            onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + "-" + colIndex, e.target.value)}
-                          />
-                          {!layoutItem.static && layoutItem.data?.at(rowIndex)?.length === colIndex + 1 && ( // Only show add/remove buttons if not static and is the last cell in the row
-                            <div id="buttons-case">
-                              {layoutItem.data?.length === rowIndex + 1 &&
-                                <span id="text-table-add-row"
-                                  className="add-button"
-                                  onMouseDown={addRow}
-                                >
-                                  &#43;
-                                </span>
-                              }
-                              {layoutItem.data?.length > 2 && // Only show remove button if more than one row
-                                <span id="text-table-remove-row"
-                                  className="remove-button"
-                                  onMouseDown={(e) => {
-                                    e.stopPropagation();
-                                    removeItem(layoutItem.i, rowIndex, -1)
-                                  }}
-                                >
-                                  &times;
-                                </span>
-                              }
-                            </div>
-                          )}
-                        </div>
+                        <ResizableBox
+                          width={layoutItem.colSizes?.[colIndex] || defaultColSize(layoutItem)}
+                          axis="x"
+                          resizeHandles={['e']}
+                          onResizeStop={(e, data) => updateColSize(layoutItem.i, colIndex, data.size.width)}
+                        >
+                          <div id={layoutItem.static ? "text-table-cell-content" : "text-table-cell-content-on-edit"}>
+                            <textarea id="text-table-cell-input" // Cell Textarea
+                              value={cell}
+                              onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + "-" + colIndex, e.target.value)}
+                            />
+                            {!layoutItem.static && layoutItem.data?.at(rowIndex)?.length === colIndex + 1 && ( // Only show add/remove buttons if not static and is the last cell in the row
+                              <div id="buttons-case">
+                                {layoutItem.data?.length === rowIndex + 1 &&
+                                  <span id="text-table-add-row"
+                                    className="add-button"
+                                    onMouseDown={addRow}
+                                  >
+                                    &#43;
+                                  </span>
+                                }
+                                {layoutItem.data?.length > 2 && // Only show remove button if more than one row
+                                  <span id="text-table-remove-row"
+                                    className="remove-button"
+                                    onMouseDown={(e) => {
+                                      e.stopPropagation();
+                                      removeItem(layoutItem.i, rowIndex, -1)
+                                    }}
+                                  >
+                                    &times;
+                                  </span>
+                                }
+                              </div>
+                            )}
+                          </div>
+                        </ResizableBox>
                       </td>
                     ))}
                   </tr>
