@@ -32,6 +32,7 @@ export const useSheetFunctions = () => {
       isLocked: item.isLocked,
       static: !editMode,
       isDraggable: editMode,
+      label: item.label,
       data: item.data,
       colSizes: item.colSizes || [],
     };
@@ -64,10 +65,12 @@ export const useSheetFunctions = () => {
       ...prevLayouts,
       lg: prevLayouts.lg.filter(({ i }) => i !== item.i),
     }));
-    setToolbox((prevToolbox) => ({
-      ...prevToolbox,
-      lg: [...prevToolbox.lg, item],
-    }));
+    if (!((item.title == null || item.title == "") && item.data?.every(r => r.every(c => c == null || c == "")))) {
+      setToolbox((prevToolbox) => ({
+        ...prevToolbox,
+        lg: [...prevToolbox.lg, item],
+      }));
+    }
   };
 
   // Function to remove an item from the toolbox
@@ -118,24 +121,24 @@ export const useSheetFunctions = () => {
 
   // Function to remove an item in data array property of a grid item
   const removeItem = (id: string, rowIndex: number, colIndex: number) => {
-   setLayouts((prevLayouts) => ({
-     ...prevLayouts,
-     lg: prevLayouts.lg.map((item) => {
-       if (item.i === id) {
-         // Remove the specific index or entire row
-         const newData = item.data ? [...item.data] : [];
-         if (newData[rowIndex]) {
-           if (colIndex === -1) {
-             newData.splice(rowIndex, 1);
-           } else {
-             newData[rowIndex] = newData[rowIndex].filter((_, index) => index !== colIndex);
-           }
-         }
-         return { ...item, data: newData };
-       }
-       return item;
-     }),
-   }));
+    setLayouts((prevLayouts) => ({
+      ...prevLayouts,
+      lg: prevLayouts.lg.map((item) => {
+        if (item.i === id) {
+          // Remove the specific index or entire row
+          const newData = item.data ? [...item.data] : [];
+          if (newData[rowIndex]) {
+            if (colIndex === -1) {
+              newData.splice(rowIndex, 1);
+            } else {
+              newData[rowIndex] = newData[rowIndex].filter((_, index) => index !== colIndex);
+            }
+          }
+          return { ...item, data: newData };
+        }
+        return item;
+      }),
+    }));
   };
 
   // Function to add an item to the data array property of a grid item
