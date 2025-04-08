@@ -11,7 +11,7 @@ function GridItem(
   layoutItem: LayoutItem,
   editMode: boolean,
   onPutItem: (item: LayoutItem) => void,
-  allowEditItem: (id: string) => void,
+  lockItem: (id: string) => void,
   updateItem: (id: string, field: string, value: string) => void,
   removeItem: (id: string, rowIndex: number, colIndex: number) => void,
   addItem: (id: string, rowIndex: number, value: string) => void,
@@ -24,7 +24,7 @@ function GridItem(
           <span id="remove-grid-item" className="remove-button" onMouseDown={(e) => { e.stopPropagation(); onPutItem(layoutItem) }}>
             &times;
           </span>
-          <span id="edit-grid-item" className="edit-button" onMouseDown={(e) => { e.stopPropagation(); allowEditItem(layoutItem.i) }}>
+          <span id="edit-grid-item" className="edit-button" onMouseDown={(e) => { e.stopPropagation(); lockItem(layoutItem.i) }}>
             <small>&#9998;</small>
           </span>
         </>

@@ -29,6 +29,7 @@ export const useSheetFunctions = () => {
       maxH: item.maxH,
       i: uuidv4(),
       type: item.type,
+      isLocked: item.isLocked,
       static: !editMode,
       isDraggable: editMode,
       data: item.data,
@@ -52,7 +53,7 @@ export const useSheetFunctions = () => {
       }));
       setLayouts((prevLayouts) => ({
         ...prevLayouts,
-        lg: [...prevLayouts.lg, { ...item, static: !editMode, isDraggable: editMode }], // Set static and isDraggable based on editMode
+        lg: [...prevLayouts.lg, { ...item, static: item.static, isDraggable: item.isDraggable }],
       }));
     }
   };
@@ -172,11 +173,11 @@ export const useSheetFunctions = () => {
   };
 
   // Function to allow/lock editing of a grid item while in edit mode
-  const allowEditItem = (id: string) => {
+  const lockItem = (id: string) => {
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
       lg: prevLayouts.lg.map((item) =>
-        item.i === id ? { ...item, static: !item.static, isDraggable: !item.isDraggable } : item
+        item.i === id ? { ...item, isLocked: !item.isLocked, static: (!editMode || !item.isLocked), isDraggable: (editMode && item.isLocked) } : item
       ),
     }));
   };
@@ -198,7 +199,7 @@ export const useSheetFunctions = () => {
     removeItem,
     addItem,
     updateColSize,
-    allowEditItem,
+    lockItem,
     toggleEditMode,
     setLayouts,
   };

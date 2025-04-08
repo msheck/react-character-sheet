@@ -31,7 +31,7 @@ const DropDrag: FunctionComponent<Props> = ({
     removeItem,
     addItem,
     updateColSize,
-    allowEditItem,
+    lockItem,
     toggleEditMode,
     setLayouts,
   } = useSheetFunctions();
@@ -55,8 +55,9 @@ const DropDrag: FunctionComponent<Props> = ({
       ...prevLayouts,
       lg: prevLayouts.lg.map((item) => ({
         ...item,
-        static: !editMode, // Set static to true in view mode, false in edit mode
-        isDraggable: editMode, // Set isDraggable to the inverse of static
+        isLocked: item.isLocked,
+        static: !editMode || item.isLocked, // Set static to true in view mode, false in edit mode
+        isDraggable: editMode && !item.isLocked, // Set isDraggable to the inverse of static
       })),
     }));
   }, [editMode]);
@@ -72,6 +73,7 @@ const DropDrag: FunctionComponent<Props> = ({
         data: existingItem?.data ?? [[]],
         label: existingItem?.label,
         type: existingItem?.type,
+        isLocked: existingItem?.isLocked ?? false,
         colSizes: existingItem?.colSizes ?? [],
       };
     });
@@ -109,7 +111,7 @@ const DropDrag: FunctionComponent<Props> = ({
         useCSSTransforms={mounted}
       >
         {layouts.lg.map((layoutItem) => (
-          GridItem(layoutItem, editMode, onPutItem, allowEditItem, updateItem, removeItem, addItem, updateColSize)
+          GridItem(layoutItem, editMode, onPutItem, lockItem, updateItem, removeItem, addItem, updateColSize)
         ))}
       </ResponsiveReactGridLayout>
     </div>

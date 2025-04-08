@@ -10,6 +10,7 @@ export interface LayoutItem {
   maxH?: number;
   i: string;
   type?: string;
+  isLocked?: boolean;
   static?: boolean;
   isDraggable?: boolean;
   template?: boolean;
