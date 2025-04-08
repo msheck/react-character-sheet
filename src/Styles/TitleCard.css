@@ -10,3 +10,7 @@
   align-content: center;
   grid-template-rows: auto;
 }
+
+  #title-card-content > h4 {
+    overflow: hidden;
+  }

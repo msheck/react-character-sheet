@@ -1,9 +1,10 @@
 import { LayoutItem } from "../Types";
+import { itemSumSize } from "../Utils";
 
 function staticTitleCard(layoutItem: LayoutItem) {
   return (
     <>
-      <h4>{layoutItem.title}</h4>
+      <h4 style={{ fontSize: 15 * itemSumSize(layoutItem, 0.3, 1, -0.5) }}>{layoutItem.title}</h4>
     </>
   );
 }
