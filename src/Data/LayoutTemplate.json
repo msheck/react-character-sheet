@@ -1,0 +1,1123 @@
+[
+  {
+    "w": 8,
+    "h": 1,
+    "x": 0,
+    "y": 0,
+    "i": "9e4a933e-b593-4df4-9e08-fc37c921a7b6",
+    "maxH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Character Name",
+    "data": [
+      []
+    ],
+    "label": "Title Card",
+    "type": "title-card",
+    "isLocked": false,
+    "colSizes": []
+  },
+  {
+    "w": 8,
+    "h": 1,
+    "x": 0,
+    "y": 1,
+    "i": "306c4cb0-5080-4e59-bbbd-dd8591cc5a3a",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "data": [
+      []
+    ],
+    "label": "Text Field",
+    "type": "text-field",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 6,
+    "h": 1,
+    "x": 8,
+    "y": 0,
+    "i": "d72e212f-3249-4cc2-a04c-0eca995e81d4",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Class & Level:",
+    "data": [
+      []
+    ],
+    "label": "Text Field",
+    "type": "text-field",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 6,
+    "h": 1,
+    "x": 8,
+    "y": 1,
+    "i": "6688c64b-682b-4b7a-a08e-ef01d42a90a4",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Race:",
+    "data": [
+      []
+    ],
+    "label": "Text Field",
+    "type": "text-field",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 5,
+    "h": 1,
+    "x": 14,
+    "y": 0,
+    "i": "cc54608b-ff1a-4769-8f76-4d4d0d2ab7ea",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Background:",
+    "data": [
+      [
+        ""
+      ]
+    ],
+    "label": "Text Field",
+    "type": "text-field",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 5,
+    "h": 1,
+    "x": 14,
+    "y": 1,
+    "i": "ea8088f1-1811-46ce-a438-c9d692cdd483",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Alignment:",
+    "data": [
+      []
+    ],
+    "label": "Text Field",
+    "type": "text-field",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 5,
+    "h": 1,
+    "x": 19,
+    "y": 0,
+    "i": "1f72922e-6073-46bc-9f01-e8fc37f13e3d",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Player Name:",
+    "data": [
+      []
+    ],
+    "label": "Text Field",
+    "type": "text-field",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 5,
+    "h": 1,
+    "x": 19,
+    "y": 1,
+    "i": "2da8dcd3-39bd-4d33-a6e8-324ba036a4a5",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Experience:",
+    "data": [
+      []
+    ],
+    "label": "Text Field",
+    "type": "text-field",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 4,
+    "h": 1,
+    "x": 0,
+    "y": 2,
+    "i": "731aabaf-33e7-45b7-bca7-b42f46b6b841",
+    "maxH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Attributes",
+    "data": [
+      []
+    ],
+    "label": "Title Card",
+    "type": "title-card",
+    "isLocked": false,
+    "colSizes": []
+  },
+  {
+    "w": 3,
+    "h": 3,
+    "x": 1,
+    "y": 3,
+    "i": "07f6315c-f67e-4dd1-afde-c8e6f164bfbc",
+    "minW": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Strength",
+    "data": [
+      [
+        "floor(x/2-5)",
+        "10"
+      ]
+    ],
+    "label": "Math Formula",
+    "type": "math-formula",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 3,
+    "h": 3,
+    "x": 1,
+    "y": 6,
+    "i": "a9005ea7-9cd6-4799-80f2-cd10c8cc228b",
+    "minW": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Dexterity",
+    "data": [
+      [
+        "floor(x/2-5)",
+        "10"
+      ]
+    ],
+    "label": "Math Formula",
+    "type": "math-formula",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 3,
+    "h": 3,
+    "x": 1,
+    "y": 9,
+    "i": "55590688-5c16-4e77-99b5-5d8f6a2b8c5d",
+    "minW": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Constitution",
+    "data": [
+      [
+        "floor(x/2-5)",
+        "10"
+      ]
+    ],
+    "label": "Math Formula",
+    "type": "math-formula",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 3,
+    "h": 3,
+    "x": 1,
+    "y": 12,
+    "i": "c149e80d-a96c-4ce4-a9ab-aa665278123a",
+    "minW": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Intelligence",
+    "data": [
+      [
+        "floor(x/2-5)",
+        "10"
+      ]
+    ],
+    "label": "Math Formula",
+    "type": "math-formula",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 3,
+    "h": 3,
+    "x": 1,
+    "y": 15,
+    "i": "9c22d8af-5f80-4c4b-b8b7-5fbe86bbc288",
+    "minW": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Wisdom",
+    "data": [
+      [
+        "floor(x/2-5)",
+        "10"
+      ]
+    ],
+    "label": "Math Formula",
+    "type": "math-formula",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 3,
+    "h": 3,
+    "x": 1,
+    "y": 18,
+    "i": "efc9a1c5-70a5-453e-af8a-2d8d166fdf1c",
+    "minW": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Charisma",
+    "data": [
+      [
+        "floor(x/2-5)",
+        "10"
+      ]
+    ],
+    "label": "Math Formula",
+    "type": "math-formula",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 4,
+    "h": 9,
+    "x": 4,
+    "y": 6,
+    "i": "d71946a5-77cc-4951-b484-eedb2b8af304",
+    "minW": 4,
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Saving Throws",
+    "data": [
+      [
+        "",
+        "",
+        ""
+      ],
+      [
+        "/checkbox",
+        "",
+        "Strength"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Dexterity"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Constitution"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Intelligence"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Wisdom"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Charisma"
+      ]
+    ],
+    "label": "Text Table",
+    "type": "text-table",
+    "isLocked": true,
+    "colSizes": [
+      66,
+      76,
+      153
+    ]
+  },
+  {
+    "w": 1,
+    "h": 2,
+    "x": 4,
+    "y": 2,
+    "i": "3b5d25e9-64d0-45ea-8309-cc646df3fc8c",
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "data": [
+      [
+        "/checkbox"
+      ]
+    ],
+    "label": "Text List",
+    "type": "text-list",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 3,
+    "h": 2,
+    "x": 5,
+    "y": 2,
+    "i": "93703eea-2f61-4a3a-b2eb-a4f5a94903f7",
+    "maxH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Inspiration",
+    "data": [
+      []
+    ],
+    "label": "Title Card",
+    "type": "title-card",
+    "isLocked": false,
+    "colSizes": []
+  },
+  {
+    "w": 1,
+    "h": 2,
+    "x": 4,
+    "y": 4,
+    "i": "7821e90f-021c-4ed3-a33a-98337cc77bb5",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "data": [
+      [
+        "2"
+      ]
+    ],
+    "label": "Attribute Counter",
+    "type": "attribute-counter",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 3,
+    "h": 2,
+    "x": 5,
+    "y": 4,
+    "i": "9f39e8d3-489f-495c-8cd1-8a53db6523c5",
+    "maxH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Proficiency Bonus",
+    "data": [
+      []
+    ],
+    "label": "Title Card",
+    "type": "title-card",
+    "isLocked": false,
+    "colSizes": []
+  },
+  {
+    "w": 4,
+    "h": 23,
+    "x": 4,
+    "y": 15,
+    "i": "e301ebbf-9cf8-431d-a672-c810ff005f7f",
+    "minW": 4,
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Skills",
+    "data": [
+      [
+        "",
+        "",
+        ""
+      ],
+      [
+        "/checkbox",
+        "",
+        "Acrobatics (Dex)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Animal Handling (Wis)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Arcana (Int)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Athletics (Str)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Deception (Cha)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "History (Int)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Insight (Wis)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Intimidation (Cha)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Investigation (Int)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Medicine (Wis)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Nature (Int)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Perception (Wis)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Performance (Cha)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Persuasion (Cha)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Religion (Int)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Sleight of Hand (Dex)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Stealth (Dex)"
+      ],
+      [
+        "/checkbox",
+        "",
+        "Survival (Wis)"
+      ]
+    ],
+    "label": "Text Table",
+    "type": "text-table",
+    "isLocked": true,
+    "colSizes": [
+      64,
+      77,
+      151
+    ]
+  },
+  {
+    "w": 3,
+    "h": 2,
+    "x": 1,
+    "y": 21,
+    "i": "89db0a0c-97ba-4aed-bac9-bae0ef36ff5c",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Passive Perception",
+    "data": [
+      []
+    ],
+    "label": "Attribute Counter",
+    "type": "attribute-counter",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 3,
+    "h": 15,
+    "x": 1,
+    "y": 23,
+    "i": "42005b56-66ad-4b68-b9fd-34cd262064ec",
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Other Proficiencies & Languages",
+    "data": [
+      [
+        "Common",
+        "Simple Weapons",
+        "Martial Weapons"
+      ]
+    ],
+    "label": "Text List",
+    "type": "text-list",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 2,
+    "h": 3,
+    "x": 8,
+    "y": 2,
+    "i": "6180a5ac-c37c-42f5-9ce5-43a9c2c72f68",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Armor Class",
+    "data": [
+      [
+        "10"
+      ]
+    ],
+    "label": "Attribute Counter",
+    "type": "attribute-counter",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 2,
+    "h": 3,
+    "x": 10,
+    "y": 2,
+    "i": "104236f8-b522-4152-9fa7-c32e4d26ddfa",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Initiative",
+    "data": [
+      [
+        "0"
+      ]
+    ],
+    "label": "Attribute Counter",
+    "type": "attribute-counter",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 2,
+    "h": 3,
+    "x": 12,
+    "y": 2,
+    "i": "8b1bf3a6-5712-4cfe-a1c4-b74b022cec9a",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Speed",
+    "data": [
+      [
+        "30"
+      ]
+    ],
+    "label": "Attribute Counter",
+    "type": "attribute-counter",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 6,
+    "h": 3,
+    "x": 8,
+    "y": 6,
+    "i": "17f7ebae-f050-4ddf-b8de-0a066611893b",
+    "minW": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Current Hit Points",
+    "data": [
+      []
+    ],
+    "label": "Stat Pool",
+    "type": "stat-pool",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 6,
+    "h": 1,
+    "x": 8,
+    "y": 9,
+    "i": "6559cba3-e6e9-4eac-a50c-20eef53d3dd8",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Hit Points Max:",
+    "data": [
+      []
+    ],
+    "label": "Text Field",
+    "type": "text-field",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 3,
+    "h": 4,
+    "x": 8,
+    "y": 10,
+    "i": "671326ca-7767-4b54-8d1a-12ca0c27c35e",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Hit Dice",
+    "data": [
+      []
+    ],
+    "label": "Text Field",
+    "type": "text-field",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 3,
+    "h": 2,
+    "x": 8,
+    "y": 14,
+    "i": "60b56e9a-e32b-4579-9708-df1a004f6e7a",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Total",
+    "data": [
+      []
+    ],
+    "label": "Text Field",
+    "type": "text-field",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 3,
+    "h": 1,
+    "x": 11,
+    "y": 10,
+    "i": "8364973b-3139-400a-bab3-ccc034a73c6d",
+    "maxH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Death Saves",
+    "data": [
+      []
+    ],
+    "label": "Title Card",
+    "type": "title-card",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 1,
+    "h": 5,
+    "x": 11,
+    "y": 11,
+    "i": "448d5d65-e82e-42bd-8d16-826765796a61",
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Successes",
+    "data": [
+      [
+        "/checkbox",
+        "/checkbox",
+        "/checkbox"
+      ]
+    ],
+    "label": "Text List",
+    "type": "text-list",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 1,
+    "h": 5,
+    "x": 13,
+    "y": 11,
+    "i": "bbea097c-b593-4fb2-b4b9-54e9299a2b5c",
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Failures",
+    "data": [
+      [
+        "/checkbox",
+        "/checkbox",
+        "/checkbox"
+      ]
+    ],
+    "label": "Text List",
+    "type": "text-list",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 6,
+    "h": 1,
+    "x": 8,
+    "y": 5,
+    "i": "6d2a7b3a-2e4d-49d6-bfa4-9e000bfc69ec",
+    "maxH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "data": [
+      []
+    ],
+    "label": "Title Card",
+    "type": "title-card",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 6,
+    "h": 7,
+    "x": 8,
+    "y": 16,
+    "i": "619a6f1b-6677-4647-bcae-16c6181b2309",
+    "minW": 4,
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Attacks & Spellcasting",
+    "data": [
+      [
+        "Name",
+        "Atack Bonus",
+        "Damage/Type",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        ""
+      ]
+    ],
+    "label": "Text Table",
+    "type": "text-table",
+    "isLocked": true,
+    "colSizes": [
+      null,
+      null,
+      159
+    ]
+  },
+  {
+    "w": 6,
+    "h": 4,
+    "x": 8,
+    "y": 23,
+    "i": "9d39a511-92c0-480b-a797-af2788ac939e",
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "data": [
+      []
+    ],
+    "label": "Text Box",
+    "type": "text-box",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 6,
+    "h": 1,
+    "x": 8,
+    "y": 27,
+    "i": "31e62f8f-b513-4aa5-aec3-5f43877673bd",
+    "maxH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Equipment",
+    "data": [
+      []
+    ],
+    "label": "Title Card",
+    "type": "title-card",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 4,
+    "h": 10,
+    "x": 10,
+    "y": 28,
+    "i": "7675d220-6ffd-4954-8f4a-9aced05816b0",
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "data": [
+      [
+        "Backpack",
+        "Armor"
+      ]
+    ],
+    "label": "Text List",
+    "type": "text-list",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 2,
+    "h": 2,
+    "x": 8,
+    "y": 28,
+    "i": "534b2b3c-0f98-4692-acf0-b3a10a76904a",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Copper Piece",
+    "data": [
+      []
+    ],
+    "label": "Attribute Counter",
+    "type": "attribute-counter",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 2,
+    "h": 2,
+    "x": 8,
+    "y": 30,
+    "i": "45f29855-1302-4f81-8ea6-f24a8591ab59",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Silver Piece",
+    "data": [
+      []
+    ],
+    "label": "Attribute Counter",
+    "type": "attribute-counter",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 2,
+    "h": 2,
+    "x": 8,
+    "y": 32,
+    "i": "976e602a-d322-4a8d-b97e-f27a22fae5c7",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Electrum Piece",
+    "data": [
+      []
+    ],
+    "label": "Attribute Counter",
+    "type": "attribute-counter",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 2,
+    "h": 2,
+    "x": 8,
+    "y": 34,
+    "i": "d78875dc-9b27-420d-bb19-eaea4879066f",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Gold Piece",
+    "data": [
+      []
+    ],
+    "label": "Attribute Counter",
+    "type": "attribute-counter",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 2,
+    "h": 2,
+    "x": 8,
+    "y": 36,
+    "i": "2b34a522-5789-417d-be7b-f6a52fd84c0d",
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Platinum Piece",
+    "data": [
+      []
+    ],
+    "label": "Attribute Counter",
+    "type": "attribute-counter",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 9,
+    "h": 4,
+    "x": 14,
+    "y": 2,
+    "i": "e97b1441-3eba-431d-94e6-3c95522ef6c5",
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Personality Traits",
+    "data": [
+      []
+    ],
+    "label": "Text Box",
+    "type": "text-box",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 9,
+    "h": 4,
+    "x": 14,
+    "y": 6,
+    "i": "7acefdec-0379-4cc1-a115-65fa92df7b07",
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Ideals",
+    "data": [
+      []
+    ],
+    "label": "Text Box",
+    "type": "text-box",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 9,
+    "h": 4,
+    "x": 14,
+    "y": 10,
+    "i": "93a82b68-7fa8-4eac-bfbd-f2959f5422fd",
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Bonds",
+    "data": [
+      []
+    ],
+    "label": "Text Box",
+    "type": "text-box",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 9,
+    "h": 4,
+    "x": 14,
+    "y": 14,
+    "i": "25c4296c-3a67-44a6-b231-688b7a66732c",
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Flaws",
+    "data": [
+      []
+    ],
+    "label": "Text Box",
+    "type": "text-box",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 9,
+    "h": 19,
+    "x": 14,
+    "y": 19,
+    "i": "1831dac8-5839-4a8b-8af6-13b8c3f7c390",
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "data": [
+      []
+    ],
+    "label": "Text List",
+    "type": "text-list",
+    "isLocked": true,
+    "colSizes": []
+  },
+  {
+    "w": 9,
+    "h": 1,
+    "x": 14,
+    "y": 18,
+    "i": "c5588a05-1355-4714-841d-d256ffe2ac4d",
+    "maxH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "title": "Features & Traits",
+    "data": [
+      []
+    ],
+    "label": "Title Card",
+    "type": "title-card",
+    "isLocked": false,
+    "colSizes": []
+  }
+]

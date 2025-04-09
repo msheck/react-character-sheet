@@ -1,6 +1,10 @@
 import { LayoutItem } from "../Types";
 import { getPaddingValue, hasTitle, itemSumSize } from "../Utils";
 
+function fontSize(layoutItem: LayoutItem) {
+  return Math.min((12 * itemSumSize(layoutItem, 0.4, 0.9, -0.5)), 24 * layoutItem.h);
+}
+
 function calculateMathFormula(layoutItem: LayoutItem): string {
   const formula = layoutItem.data?.at(0)?.at(0);
   const x = layoutItem.data?.at(0)?.at(1);
@@ -20,7 +24,7 @@ function calculateMathFormula(layoutItem: LayoutItem): string {
       console.error("Error evaluating formula:", e);
     }
   }
-  return "0";
+  return "";
 }
 
 function staticMathFormula(layoutItem: LayoutItem) {
@@ -63,7 +67,7 @@ export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, 
           : editableMathFormula(layoutItem, updateItem)}
         <div className="item-content" id="math-formula-div">
           <input id="math-formula-input"
-            style={{ fontSize: 12 * itemSumSize(layoutItem, 0.5, 1, -0.5), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
+            style={{ fontSize: fontSize(layoutItem), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
             type="number"
             value={layoutItem.data?.at(0)?.at(1) || ""}
             placeholder="x"
@@ -71,7 +75,7 @@ export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, 
           />
           <hr />
           <input id="math-formula-input"
-            style={{ fontSize: 12 * itemSumSize(layoutItem, 0.5, 1, -0.5), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15), fontStyle: "italic" }}
+            style={{ fontSize: fontSize(layoutItem), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15), fontStyle: "italic" }}
             disabled={true}
             type="text"
             value={y}

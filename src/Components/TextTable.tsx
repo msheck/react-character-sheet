@@ -103,10 +103,18 @@ export function getTextTable(
                           onResizeStop={(e, data) => updateColSize(layoutItem.i, colIndex, data.size.width)}
                         >
                           <div id={layoutItem.static ? "text-table-cell-content" : "text-table-cell-content-on-edit"}>
-                            <textarea id="text-table-cell-input" // Cell Textarea
-                              value={cell}
-                              onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + "-" + colIndex, e.target.value)}
-                            />
+                            {cell.startsWith("/checkbox") && layoutItem.static ?
+                              <input id="text-table-checkbox" // Cell Checkbox
+                                type="checkbox"
+                                checked={cell === "/checkbox-checked"}
+                                onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + "-" + colIndex, e.target.checked ? "/checkbox-checked" : "/checkbox")}
+                              />
+                              :
+                              <textarea id="text-table-cell-input" // Cell Textarea
+                                value={cell}
+                                onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + "-" + colIndex, e.target.value)}
+                              />
+                            }
                             {!layoutItem.static && layoutItem.data?.at(rowIndex)?.length === colIndex + 1 && ( // Only show add/remove buttons if not static and is the last cell in the row
                               <div id="buttons-case">
                                 {layoutItem.data?.length === rowIndex + 1 &&

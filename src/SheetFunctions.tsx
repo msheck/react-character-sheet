@@ -2,16 +2,28 @@ import { LayoutItem, Layouts } from "./Types";
 import { getFromLS } from "./Utils";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+import LayoutTemplate from "./Data/LayoutTemplate.json";
 import ToolboxTemplates from "./Data/ToolboxTemplates.json";
 
 export const useSheetFunctions = () => {
   const [layouts, setLayouts] = useState<Layouts>({
-    lg: getFromLS("layout") || [],
+    lg: (getFromLS("layout").length === 0
+      ? LayoutTemplate
+      : getFromLS("layout") || []
+    ).map((item: LayoutItem) => ({
+      ...item,
+      colSizes: item.colSizes?.map((size) => size ?? 0) || [], // Ensure colSizes is a number[]
+    })),
   });
 
   const [toolbox, setToolbox] = useState<Layouts>({
-    lg: getFromLS("toolbox").length === 0
-      ? ToolboxTemplates : getFromLS("toolbox"),
+    lg: (getFromLS("toolbox").length === 0
+      ? ToolboxTemplates
+      : getFromLS("toolbox")
+    ).map((item: LayoutItem) => ({
+      ...item,
+      colSizes: item.colSizes?.map((size) => size ?? 0) || [], // Ensure colSizes is a number[]
+    })),
   });
 
   const [editMode, setEditMode] = useState(false);

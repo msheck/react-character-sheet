@@ -1,6 +1,10 @@
 import { LayoutItem } from "../Types";
 import { hasTitle, itemSumSize, getPaddingValue } from "../Utils";
 
+function fontSize(layoutItem: LayoutItem) {
+  return Math.min((12 * itemSumSize(layoutItem, 0.4, 0.9, -0.5)), 24 * layoutItem.h);
+}
+
 function staticStatPool(layoutItem: LayoutItem) {
   return (
     (hasTitle(layoutItem)) &&
@@ -33,13 +37,13 @@ export function getStatPool(layoutItem: LayoutItem, updateItem: (id: string, fie
         }
         <div className="item-content" id="stat-pool-comparer">
           <input id="stat-pool-count"
-            style={{ fontSize: 12 * itemSumSize(layoutItem, 0.5, 1, -0.5), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
+            style={{ fontSize: fontSize(layoutItem), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
             type="number"
             value={layoutItem.data?.at(0)?.at(0)}
             onChange={(e) => updateItem(layoutItem.i, "data-0", e.target.value)} />
           <hr />
           <input id="stat-pool-count"
-            style={{ fontSize: 12 * itemSumSize(layoutItem, 0.5, 1, -0.5), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
+            style={{ fontSize: fontSize(layoutItem), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
             type="number"
             value={layoutItem.data?.at(0)?.at(1)}
             onChange={(e) => updateItem(layoutItem.i, "data-1", e.target.value)}

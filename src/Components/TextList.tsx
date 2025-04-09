@@ -11,11 +11,19 @@ function renderListItem(
     <ul id="text-list-unordered-list">
       {layoutItem.data?.at(0)?.map((value, index) => (
         <li key={index} id="text-list-item">
-          <textarea id="text-list-item-input"
-            className={layoutItem.data?.at(0)?.length === index + 1 ? "focus-item-" + layoutItem.i : ""}
-            value={value}
-            onChange={(e) => updateItem(layoutItem.i, "data-" + index, e.target.value)}
-            placeholder="New Item" />
+          {value.startsWith("/checkbox") && layoutItem.static ?
+            <input id="text-table-checkbox"
+              type="checkbox"
+              checked={value === "/checkbox-checked"}
+              onChange={(e) => updateItem(layoutItem.i, "data-" + index, e.target.checked ? "/checkbox-checked" : "/checkbox")}
+            />
+            :
+            <textarea id="text-list-item-input"
+              className={layoutItem.data?.at(0)?.length === index + 1 ? "focus-item-" + layoutItem.i : ""}
+              value={value}
+              onChange={(e) => updateItem(layoutItem.i, "data-" + index, e.target.value)}
+              placeholder="New Item" />
+          }
           <span id="text-list-item-remove"
             className="remove-button"
             hidden={layoutItem.static}
