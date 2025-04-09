@@ -1,0 +1,35 @@
+#math-formula {
+}
+
+#math-formula-content {
+  grid-template-rows: 1.5rem 1fr;
+}
+
+#math-formula-content-notitle {
+  grid-template-rows: 1fr;
+}
+
+#math-formula-header {
+  display: inline-grid;
+  grid-template-columns: 40% 1fr;
+}
+
+#math-formula-title {
+  margin: 0;
+  padding: 0;
+}
+
+#math-formula-div {
+  display: inline-grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 49.5% 1% 49.5%;
+}
+
+#math-formula-input {
+  border: 0;
+  background: none;
+}
+
+  #math-formula-input:disabled {
+    color: initial;
+  }

@@ -16,6 +16,7 @@ body {
   background-color: white;
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  height: stretch !important;
 }
 
 button {
@@ -115,9 +116,8 @@ button {
   display: grid;
   grid-template-rows: 1.8rem 1fr;
   grid-template-columns: 1fr;
-  overflow: auto;
   scrollbar-width: thin;
-  width: 100%;
+  width: stretch;
   margin: var(--dist-small);
 }
 
@@ -148,10 +148,22 @@ html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {
 }
 
 .toolbox {
+  position: fixed;
   background-color: #e9e9e9;
   margin: var(--dist-large);
   margin-top: 0;
   padding-left: var(--dist-small);
+  z-index: 800;
+  opacity: 0.4;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+  .toolbox:hover {
+    opacity: 0.95;
+  }
+
+.collapsedToolbox {
+  transform: translateY(-1.8rem);
 }
 
 .toolbox-title {
@@ -228,3 +240,4 @@ html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {
 @import "./StatPool.css";
 @import "./TextList.css";
 @import "./TextTable.css";
+@import "./MathFormula.css";

@@ -34,6 +34,6 @@ export function itemSumSize(layoutItem: LayoutItem, widthMod: number = 1, height
 }
 
 export function getPaddingValue(layoutItem: LayoutItem, mod:number = 1, offset: number = 1, maxValue: number = Number.MAX_VALUE) {
-  let paddingLeft = (mod * itemSumSize(layoutItem)) + offset;
-  return paddingLeft > maxValue ? maxValue : paddingLeft;
+  let padding = (mod * itemSumSize(layoutItem)) + offset;
+  return padding > maxValue ? maxValue : padding;
 }

@@ -1,11 +1,15 @@
 import { LayoutItem } from "../Types";
 import { hasTitle, itemSumSize } from "../Utils";
 
+function fontSize(layoutItem: LayoutItem) {
+  return Math.min((15 * itemSumSize(layoutItem, 0, 1, 0)), 20);
+}
+
 function staticTextField(layoutItem: LayoutItem) {
   return (
     <>
       {(hasTitle(layoutItem)) &&
-        <h4 id="text-field-title" style={{ fontSize: 15 * itemSumSize(layoutItem, 0, 1, 0) }}>{layoutItem.title}</h4>
+        <h4 id="text-field-title" style={{ fontSize: fontSize(layoutItem) }}>{layoutItem.title}</h4>
       }
     </>
   );
@@ -16,7 +20,7 @@ function editableTextField(layoutItem: LayoutItem, updateItem: (id: string, fiel
     <>
       <input id="text-field-title"
         type="text"
-        style={{ fontSize: 15 * itemSumSize(layoutItem, 0, 1, 0) }}
+        style={{ fontSize: fontSize(layoutItem) }}
         value={layoutItem.title}
         onChange={(e) => updateItem(layoutItem.i, "title", e.target.value)}
         placeholder="Title" />

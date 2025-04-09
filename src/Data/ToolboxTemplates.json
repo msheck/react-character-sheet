@@ -68,7 +68,7 @@
     "y": 0,
     "w": 4,
     "h": 2,
-    "minW":  4,
+    "minW": 4,
     "minH": 2,
     "template": true,
     "i": "text-table",
@@ -78,5 +78,16 @@
       [ "" ],
       [ "" ]
     ]
+  },
+  {
+    "x": 0,
+    "y": 0,
+    "w": 2,
+    "h": 2,
+    "minW": 2,
+    "template": true,
+    "i": "math-formula",
+    "type": "math-formula",
+    "label": "Math Formula"
   }
 ]

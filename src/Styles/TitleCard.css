@@ -7,10 +7,19 @@
 
 #title-card-content {
   margin: 0;
-  align-content: center;
+  align-self: center;
   grid-template-rows: auto;
 }
 
-  #title-card-content > h4 {
+  #title-card-content > h4, input {
+    font-family: var(--main-font);
+    align-self: center;
     overflow: hidden;
+    height: stretch;
+    font-weight: bold;
+  }
+
+  #title-card-content > input {
+    border: hidden;
+    background: none;
   }

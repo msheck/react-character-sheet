@@ -5,10 +5,12 @@
 }
 
 #text-table-content {
+  margin: 0;
   grid-template-rows: 1.2rem 1fr;
 }
 
 #text-table-content-notitle {
+  margin: 0;
   grid-template-rows: 1fr;
 }
 
@@ -90,4 +92,5 @@
   flex-wrap: wrap;
   justify-content: center;
   align-content: end;
+  z-index: 1000;
 }

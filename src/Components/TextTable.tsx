@@ -4,7 +4,7 @@ import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
 
 function defaultColSize(layoutItem: LayoutItem) {
-  return Math.floor(((74.75 * layoutItem.w ) - 28 + layoutItem.w * 5) / (layoutItem.data?.at(0)?.length ?? 1));
+  return Math.floor(((74.75 * layoutItem.w) - 35 + layoutItem.w * 5) / (layoutItem.data?.at(0)?.length ?? 1));
 }
 
 export function getTextTable(
@@ -117,6 +117,7 @@ export function getTextTable(
                                     &#43;
                                   </span>
                                 }
+                                <div id="buttom-space" />
                                 {layoutItem.data?.length > 2 && // Only show remove button if more than one row
                                   <span id="text-table-remove-row"
                                     className="remove-button"

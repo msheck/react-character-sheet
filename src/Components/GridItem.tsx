@@ -1,11 +1,12 @@
 import { LayoutItem } from "../Types";
 import { getTitleCard } from "./TitleCard";
+import { getTextField } from "./TextField";
 import { getTextBox } from "./TextBox";
 import { getAttributeCounter } from "./AttributeCounter";
 import { getStatPool } from "./StatPool";
 import { getTextList } from "./TextList";
 import { getTextTable } from "./TextTable";
-import { getTextField } from "./TextField";
+import { getMathFormula } from "./MathFormula";
 
 // Basic GridItem component, renders the remove and edit buttons, gets content by type
 function GridItem(
@@ -58,6 +59,8 @@ function getItemContent(
       return getTextList(layoutItem, updateItem, removeItem, addItem);
     case 'text-table':
       return getTextTable(layoutItem, updateItem, removeItem, addItem, updateColSize);
+    case 'math-formula':
+      return getMathFormula(layoutItem, updateItem);
     default:
       return null;
   }

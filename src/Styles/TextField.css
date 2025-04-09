@@ -6,7 +6,7 @@
   margin: 0;
   align-content: center;
   grid-template-rows: auto;
-  grid-template-columns: 20% 1fr;
+  grid-template-columns: minmax(2.2rem,25%) 1fr;
   grid-template-rows: 1fr;
 }
 
@@ -19,8 +19,15 @@
   grid-template-columns: 1fr;
 }
 
+#text-field-title,
+#text-field-input {
+  margin: var(--dist-small) 0 var(--dist-small) 0;
+}
+
 #text-field-title {
   font-weight: bold;
+  border: hidden;
+  border-radius: 4px;
 }
 
 #text-field-input {

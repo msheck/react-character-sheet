@@ -10,6 +10,7 @@
 }
 
 #text-list-content-notitle {
+  margin: 0;
   grid-template-rows: 1fr;
 }
 
