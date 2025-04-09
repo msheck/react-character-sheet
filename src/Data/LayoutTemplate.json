@@ -355,26 +355,6 @@
     ]
   },
   {
-    "w": 1,
-    "h": 2,
-    "x": 4,
-    "y": 2,
-    "i": "3b5d25e9-64d0-45ea-8309-cc646df3fc8c",
-    "minH": 2,
-    "moved": false,
-    "static": true,
-    "isDraggable": false,
-    "data": [
-      [
-        "/checkbox"
-      ]
-    ],
-    "label": "Text List",
-    "type": "text-list",
-    "isLocked": true,
-    "colSizes": []
-  },
-  {
     "w": 3,
     "h": 2,
     "x": 5,
@@ -1113,6 +1093,26 @@
     "label": "Title Card",
     "type": "title-card",
     "isLocked": false,
+    "colSizes": []
+  },
+  {
+    "w": 1,
+    "h": 2,
+    "x": 4,
+    "y": 2,
+    "i": "4eba0b4d-b7da-435b-905a-18c9057437c5",
+    "minH": 2,
+    "moved": false,
+    "static": true,
+    "isDraggable": false,
+    "data": [
+      [
+        "/checkbox"
+      ]
+    ],
+    "label": "Text Box",
+    "type": "text-box",
+    "isLocked": true,
     "colSizes": []
   }
 ]

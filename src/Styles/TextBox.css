@@ -6,6 +6,12 @@
   overflow: auto;
 }
 
+#text-box-data:disabled {
+  background: none;
+  border: hidden;
+  color: initial;
+}
+
 #text-box-content-notitle {
   grid-template-rows: 1fr;
 }

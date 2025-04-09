@@ -63,7 +63,8 @@
   grid-template-columns: 1fr 20px;
 }
 
-#text-table-header-input, #text-table-cell-input {
+#text-table-header-input,
+#text-table-cell-data {
   margin: 0;
   padding: 0;
   padding-left: var(--dist-small);
@@ -71,6 +72,7 @@
   width: stretch;
   border: none;
   background: none;
+  align-content: center;
 }
 
 #text-table-header-input {

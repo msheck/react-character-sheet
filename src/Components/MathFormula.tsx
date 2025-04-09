@@ -27,46 +27,36 @@ function calculateMathFormula(layoutItem: LayoutItem): string {
   return "";
 }
 
-function staticMathFormula(layoutItem: LayoutItem) {
-  return (
-    <>
-      {hasTitle(layoutItem) && <h4 id="math-formula-title">{layoutItem.title}</h4>}
-    </>
-  );
-}
-
-function editableMathFormula(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
-  return (
-    <>
-      <div id="math-formula-header">
-        <input
-          type="text"
-          value={layoutItem.title}
-          onChange={(e) => updateItem(layoutItem.i, "title", e.target.value)}
-          placeholder="Title"
-        />
-        <input
-          type="text"
-          value={layoutItem.data?.at(0)?.at(0) || ""}
-          onChange={(e) => updateItem(layoutItem.i, "data-0", e.target.value)}
-          placeholder="Formula (e.g., 2*x+3)"
-        />
-      </div>
-    </>
-  );
-}
-
 export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
   const y = calculateMathFormula(layoutItem);
 
   return (
     <>
       <div className="item-content" id={hasTitle(layoutItem) || !layoutItem.static ? "math-formula-content" : "math-formula-content-notitle"}>
-        {layoutItem.static
-          ? staticMathFormula(layoutItem)
-          : editableMathFormula(layoutItem, updateItem)}
+        {
+          layoutItem.static ?
+            (hasTitle(layoutItem) &&
+              <h4 id="math-formula-title">{layoutItem.title}</h4>
+            ) : (
+              <div id="math-formula-header">
+                <input
+                  type="text"
+                  value={layoutItem.title}
+                  onChange={(e) => updateItem(layoutItem.i, "title", e.target.value)}
+                  placeholder="Title"
+                />
+                <input
+                  type="text"
+                  value={layoutItem.data?.at(0)?.at(0) || ""}
+                  onChange={(e) => updateItem(layoutItem.i, "data-0", e.target.value)}
+                  placeholder="Formula (e.g., 2*x+3)"
+                />
+              </div>
+            )
+        }
         <div className="item-content" id="math-formula-div">
-          <input id="math-formula-input"
+          <input
+            id="math-formula-input"
             style={{ fontSize: fontSize(layoutItem), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
             type="number"
             value={layoutItem.data?.at(0)?.at(1) || ""}
@@ -74,7 +64,8 @@ export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, 
             onChange={(e) => updateItem(layoutItem.i, "data-1", e.target.value)}
           />
           <hr />
-          <input id="math-formula-input"
+          <input
+            id="math-formula-input"
             style={{ fontSize: fontSize(layoutItem), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15), fontStyle: "italic" }}
             disabled={true}
             type="text"
@@ -82,7 +73,7 @@ export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, 
             placeholder="y"
           />
         </div>
-      </div>
+      </div >
     </>
   );
 }
