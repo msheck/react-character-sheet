@@ -67,7 +67,7 @@ export const useSheetFunctions = () => {
       ...prevLayouts,
       lg: prevLayouts.lg.filter(({ i }) => i !== item.i),
     }));
-    if (!((item.title == null || item.title == "") && item.data?.every(r => r.every(c => c == null || c == "")))) {
+    if (!((item.title == null || item.title == "") && (item.data == null || item.data?.every(r => r.every(c => c == null || c == ""))))) {
       setToolbox((prevToolbox) => ({
         ...prevToolbox,
         lg: [...prevToolbox.lg, item],

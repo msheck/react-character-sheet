@@ -109,6 +109,7 @@ const DropDrag: FunctionComponent<Props> = ({
         layouts={layouts}
         measureBeforeMount={false}
         useCSSTransforms={mounted}
+        preventCollision={true}
       >
         {layouts.lg.map((layoutItem) => (
           GridItem(layoutItem, editMode, onPutItem, lockItem, updateItem, removeItem, addItem, updateColSize)
