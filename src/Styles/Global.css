@@ -9,7 +9,7 @@
 body {
   font-family: var(--main-font);
   background-color: #f5f7fa;
-  color: #333333;
+  color: #333333 !important;
 }
 
 .layout {
@@ -17,6 +17,10 @@ body {
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   height: stretch !important;
+}
+
+input {
+  color: #333333 !important;
 }
 
 button {
