@@ -7,23 +7,13 @@ import ToolboxTemplates from "./Data/ToolboxTemplates.json";
 
 export const useSheetFunctions = () => {
   const [layouts, setLayouts] = useState<Layouts>({
-    lg: (getFromLS("layout").length === 0
-      ? LayoutTemplate
-      : getFromLS("layout") || []
-    ).map((item: LayoutItem) => ({
-      ...item,
-      colSizes: item.colSizes?.map((size) => size ?? 0) || [], // Ensure colSizes is a number[]
-    })),
+    lg: getFromLS("layout").length === 0
+      ? LayoutTemplate : getFromLS("layout") || []
   });
 
   const [toolbox, setToolbox] = useState<Layouts>({
-    lg: (getFromLS("toolbox").length === 0
-      ? ToolboxTemplates
-      : getFromLS("toolbox")
-    ).map((item: LayoutItem) => ({
-      ...item,
-      colSizes: item.colSizes?.map((size) => size ?? 0) || [], // Ensure colSizes is a number[]
-    })),
+    lg: getFromLS("toolbox").length === 0
+      ? ToolboxTemplates : getFromLS("toolbox")
   });
 
   const [editMode, setEditMode] = useState(false);
