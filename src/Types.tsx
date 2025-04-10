@@ -58,3 +58,10 @@ export interface Props {
   verticalCompact?: boolean;
   onLayoutChange?: (layout: LayoutItem[], layouts: Layouts) => void;
 }
+
+// Props for ColorItems
+export interface ColorItems {
+  primaryColor: string;
+  secondaryColor: string;
+  accentColor: string;
+}
