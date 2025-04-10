@@ -889,7 +889,7 @@
     ],
     "label": "Text List",
     "type": "text-list",
-    "isLocked": true,
+    "isLocked": false,
     "colSizes": []
   },
   {
