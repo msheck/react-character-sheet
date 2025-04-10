@@ -19,7 +19,7 @@ export function getTextBox(layoutItem: LayoutItem, updateItem: (id: string, fiel
             )
         }
         {
-          useCheckbox(layoutItem, layoutItem.data?.at(0)?.at(0) ?? "", 0, 0, updateItem, "text-box-data", "",
+          useCheckbox(layoutItem, layoutItem.data?.at(0)?.at(0) ?? "", 0, undefined, updateItem, "text-box-data", "",
             <textarea
               id="text-box-data"
               disabled={layoutItem.static}

@@ -13,7 +13,7 @@ function renderListItem(
         layoutItem.data?.at(0)?.map((value, index) => (
           <li key={index} id="text-list-item">
             { // Renders a Checkbox or Textarea
-              useCheckbox(layoutItem, value, index, 0, updateItem, "text-list-item-data", (layoutItem.data?.at(0)?.length === index + 1 ? "focus-item-" + layoutItem.i : ""))
+              useCheckbox(layoutItem, value, index, undefined, updateItem, "text-list-item-data", (layoutItem.data?.at(0)?.length === index + 1 ? "focus-item-" + layoutItem.i : ""))
             }
             <span
               id="text-list-item-remove"

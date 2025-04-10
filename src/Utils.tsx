@@ -6,7 +6,7 @@ export function getFromLS(key: string): LayoutItem[] {
   let ls: { [key: string]: LayoutItem[] } = {};
   if (global.localStorage) {
     try {
-      ls = JSON.parse(global.localStorage.getItem("rgl-7") || "{}");
+      ls = JSON.parse(global.localStorage.getItem("appData") || "{}");
     } catch (e) {
       console.error("Failed to parse localStorage data:", e);
     }
@@ -17,9 +17,9 @@ export function getFromLS(key: string): LayoutItem[] {
 export function saveToLS(key: string, value: LayoutItem[]): void {
   if (global.localStorage) {
     try {
-      const existingData = JSON.parse(global.localStorage.getItem("rgl-7") || "{}");
+      const existingData = JSON.parse(global.localStorage.getItem("appData") || "{}");
       existingData[key] = value;
-      global.localStorage.setItem("rgl-7", JSON.stringify(existingData));
+      global.localStorage.setItem("appData", JSON.stringify(existingData));
     } catch (e) {
       console.error("Failed to save to localStorage:", e);
     }
@@ -43,7 +43,7 @@ export function useCheckbox(
   layoutItem: LayoutItem,
   data: string,
   rowIndex: number,
-  colIndex: number,
+  colIndex: number | undefined,
   updateItem: (id: string, field: string, value: string) => void,
   idHtml: string | "" = "",
   classHtlm: string | "" = "",
@@ -56,7 +56,7 @@ export function useCheckbox(
         className={classHtlm + "-checkbox"}
         type="checkbox"
         checked={data === "/checkbox-checked"}
-        onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + "-" + colIndex, e.target.checked ? "/checkbox-checked" : "/checkbox")}
+        onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), e.target.checked ? "/checkbox-checked" : "/checkbox")}
       />
     ) : (
       customElement ?
@@ -65,7 +65,7 @@ export function useCheckbox(
           id={idHtml}
           className={classHtlm}
           value={data}
-          onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + "-" + colIndex, e.target.value)}
+          onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), e.target.value)}
         />
     )
 }
