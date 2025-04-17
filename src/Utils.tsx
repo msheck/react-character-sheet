@@ -23,7 +23,7 @@ export function getColorsFromLS(): ColorItems {
       console.error("Failed to parse localStorage data:", e);
     }
   }
-  return ls["defaultColors"] || { primaryColor: "#333333", secondaryColor: "#555555", accentColor: "#dddddd" };
+  return ls["defaultColors"];
 }
 
 export function saveToLS(key: string, value: LayoutItem[]): void {

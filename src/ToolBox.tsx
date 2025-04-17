@@ -1,12 +1,12 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import { ToolBoxProps } from "./Types";
+import { ColorItems, ToolboxProps } from "./Types";
 import { useDefaultColors } from "./DefaultColors";
-import ToolBoxItem from "./ToolBoxItem";
+import ToolboxItem from "./ToolboxItem";
 import { SketchPicker } from "react-color";
 import Modal from "./Components/Modal";
 
-// ToolBox Component
-const ToolBox: FunctionComponent<ToolBoxProps> = ({
+// Toolbox Component
+const Toolbox: FunctionComponent<ToolboxProps> = ({
   items,
   onTakeItem,
   onRemoveItem,
@@ -27,59 +27,66 @@ const ToolBox: FunctionComponent<ToolBoxProps> = ({
     setActivePicker(null);
   };
 
+  const modalTemplate = (message: string, defaultColors: ColorItems, propertyName: keyof ColorItems) => {
+    return (
+      <Modal isOpen={activePicker === propertyName} onClose={closePicker}>
+        <h4>{message}</h4>
+        <SketchPicker
+          color={defaultColors[propertyName]}
+          onChange={(color) =>
+            setColorType(
+              propertyName,
+              `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a ?? 1})`
+            )
+          }
+        />
+      </Modal>
+    );
+  }
+
   return (
     <>
       <div className={`toolbox ${isCollapsed ? "collapsedToolbox" : ""}`} onClick={handleToggleCollapse}>
-        <h4 className="toolbox-title">Toolbox</h4>
-        {!isCollapsed && (
-          <div className="toolbox-content">
-            <div className="toolbox-grid">
-              {items.map((item) => (
-                <ToolBoxItem
-                  key={item.i}
-                  item={item}
-                  onTakeItem={onTakeItem}
-                  onRemoveItem={onRemoveItem}
-                />
-              ))}
-            </div>
+        <div className="toolbox-content">
+          <div>
+            <h4 className="toolbox-title">Toolbox</h4>
+            {!isCollapsed && (
+              <div className="toolbox-grid">
+                {items.map((item) => (
+                  <ToolboxItem
+                    key={item.i}
+                    item={item}
+                    onTakeItem={onTakeItem}
+                    onRemoveItem={onRemoveItem}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+          {!isCollapsed && (
             <div className="color-picker-section">
-              <h5>Set Colors</h5>
+              <h4>Set Colors</h4>
               <div className="color-picker">
-                <button onClick={() => openPicker("primaryColor")}>Set Primary Color</button>
-                <button onClick={() => openPicker("secondaryColor")}>Set Secondary Color</button>
-                <button onClick={() => openPicker("accentColor")}>Set Accent Color</button>
+                <button onClick={() => openPicker("primaryColor")}>Primary Color<div className="color-preview" style={{ backgroundColor: defaultColors.primaryColor }} /></button>
+                <button onClick={() => openPicker("secondaryColor")}>Secondary Color<div className="color-preview" style={{ backgroundColor: defaultColors.secondaryColor }} /></button>
+                <button onClick={() => openPicker("accentColor")}>Accent Color<div className="color-preview" style={{ backgroundColor: defaultColors.accentColor }} /></button>
+                <button onClick={() => openPicker("sheetBackground")}>Sheet Background Color<div className="color-preview" style={{ backgroundColor: defaultColors.sheetBackground }} /></button>
+                <button onClick={() => openPicker("itemBackground")}>Item Background Color<div className="color-preview" style={{ backgroundColor: defaultColors.itemBackground }} /></button>
+                <button onClick={() => openPicker("accentBackground")}>Accent Background Color<div className="color-preview" style={{ backgroundColor: defaultColors.accentBackground }} /></button>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
-      <Modal isOpen={activePicker === "primaryColor"} onClose={closePicker}>
-        <h5>Pick Primary Color</h5>
-        <SketchPicker
-          color={defaultColors.primaryColor}
-          onChange={(color) => setColorType("primaryColor", color.hex)}
-        />
-      </Modal>
-
-      <Modal isOpen={activePicker === "secondaryColor"} onClose={closePicker}>
-        <h5>Pick Secondary Color</h5>
-        <SketchPicker
-          color={defaultColors.secondaryColor}
-          onChange={(color) => setColorType("secondaryColor", color.hex)}
-        />
-      </Modal>
-
-      <Modal isOpen={activePicker === "accentColor"} onClose={closePicker}>
-        <h5>Pick Accent Color</h5>
-        <SketchPicker
-          color={defaultColors.accentColor}
-          onChange={(color) => setColorType("accentColor", color.hex)}
-        />
-      </Modal>
+      {modalTemplate("Pick Primary Color", defaultColors, "primaryColor")}
+      {modalTemplate("Pick Secondary Color", defaultColors, "secondaryColor")}
+      {modalTemplate("Pick Accent Color", defaultColors, "accentColor")}
+      {modalTemplate("Pick Sheet Background Color", defaultColors, "sheetBackground")}
+      {modalTemplate("Pick Item Background Color", defaultColors, "itemBackground")}
+      {modalTemplate("Pick Accent Background Color", defaultColors, "accentBackground")}
     </>
   );
 };
 
-export default ToolBox;
+export default Toolbox;

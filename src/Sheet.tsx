@@ -4,7 +4,7 @@ import { LayoutItem, Layouts, Props } from "./Types";
 import { useSheetFunctions } from "./SheetFunctions";
 import { useDefaultColors } from "./DefaultColors";
 import { saveToLS } from "./Utils";
-import ToolBox from "./ToolBox";
+import Toolbox from "./Toolbox";
 import GridItem from "./Components/GridItem";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
@@ -65,6 +65,30 @@ const DropDrag: FunctionComponent<Props> = ({
     }));
   }, [editMode]);
 
+  useEffect(() => {
+    document.documentElement.style.setProperty('--primary-color', defaultColors.primaryColor);
+  }, [defaultColors.primaryColor]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--secondary-color', defaultColors.secondaryColor);
+  }, [defaultColors.secondaryColor]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--accent-color', defaultColors.accentColor);
+  }, [defaultColors.accentColor]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--sheet-background', defaultColors.sheetBackground);
+  }, [defaultColors.sheetBackground]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--item-background', defaultColors.itemBackground);
+  }, [defaultColors.itemBackground]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--accent-background', defaultColors.accentBackground);
+  }, [defaultColors.accentBackground]);
+
   // Function to handle layout changes and preserve custom fields
   const handleLayoutChange = (_layout: LayoutItem[], updatedLayouts: Layouts) => {
     // Merge the new layout with the existing layout data to preserve custom fields
@@ -86,14 +110,14 @@ const DropDrag: FunctionComponent<Props> = ({
   };
 
   return (
-    <div className="mb-4">
+    <div className="sheet">
       <button className="edit-mode" onClick={toggleEditMode}>
         {editMode ? "Save" : "Edit"}
       </button>
 
       {editMode && ( // Show Add Element button and Toolbox only in edit mode
         <>
-          <ToolBox
+          <Toolbox
             items={toolbox.lg}
             onTakeItem={onTakeItem}
             onRemoveItem={onRemoveToolboxItem}
@@ -115,7 +139,7 @@ const DropDrag: FunctionComponent<Props> = ({
         preventCollision={true}
       >
         {layouts.lg.map((layoutItem) => (
-          GridItem(layoutItem, defaultColors, editMode, onPutItem, lockItem, updateItem, removeItem, addItem, updateColSize)
+          GridItem(layoutItem, editMode, onPutItem, lockItem, updateItem, removeItem, addItem, updateColSize)
         ))}
       </ResponsiveReactGridLayout>
     </div>

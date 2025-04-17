@@ -31,8 +31,8 @@ function renderListItem(
             </li>
           ))
         }
+        {layoutItem.isLocked ? null : renderAddItem(layoutItem, addItem)}
       </ul>
-      {layoutItem.isLocked ? null : renderAddItem(layoutItem, addItem)}
     </>
   )
 }

@@ -22,7 +22,7 @@
 }
 
 #attribute-counter-count {
-  border: 0;
+  border: none;
   background: none;
   padding-left: 15px;
 }

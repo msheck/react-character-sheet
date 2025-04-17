@@ -1,7 +1,8 @@
 #title-card {
   border: hidden;
   border-radius: 0px;
-  border-bottom: 3px ridge #555555;
+  border-bottom: 3px ridge;
+  border-color: var(--accent-background);
   background: none;
 }
 

@@ -3,6 +3,9 @@ export interface ColorItems {
   primaryColor: string;
   secondaryColor: string;
   accentColor: string;
+  sheetBackground: string;
+  itemBackground: string;
+  accentBackground: string;
 }
 
 // Define layout items
@@ -32,15 +35,15 @@ export interface Layouts {
   [key: string]: LayoutItem[];
 }
 
-// Props for ToolBoxItem
-export interface ToolBoxItemProps {
+// Props for ToolboxItem
+export interface ToolboxItemProps {
   item: LayoutItem;
   onTakeItem: (item: LayoutItem) => void;
   onRemoveItem: (item: LayoutItem) => void;
 }
 
-// Props for ToolBox
-export interface ToolBoxProps {
+// Props for Toolbox
+export interface ToolboxProps {
   items: LayoutItem[];
   onTakeItem: (item: LayoutItem) => void;
   onRemoveItem: (item: LayoutItem) => void;

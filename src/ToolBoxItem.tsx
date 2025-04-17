@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react";
-import { ToolBoxItemProps } from "./Types";
+import { ToolboxItemProps } from "./Types";
 
-// ToolBoxItem Component
-const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
+// ToolboxItem Component
+const ToolboxItem: FunctionComponent<ToolboxItemProps> = ({
   item,
   onTakeItem,
   onRemoveItem,
@@ -33,4 +33,4 @@ const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
   );
 };
 
-export default ToolBoxItem;
+export default ToolboxItem;

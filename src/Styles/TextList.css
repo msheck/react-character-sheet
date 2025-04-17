@@ -1,5 +1,5 @@
 #text-list {
-  border: hidden;
+  border: none;
   border-radius: 0px;
   background: none;
 }
@@ -21,13 +21,13 @@
 }
 
 #text-list-unordered-list {
+  display: grid;
+  grid-template-columns: 1fr;
   min-width: 0;
   width: stretch;
   margin: var(--dist-small) auto var(--dist-small) auto;
   padding: 0 0.05rem 0 var(--dist-small);
   list-style: none;
-  display: grid;
-  grid-template-columns: 1fr;
   overflow: auto;
   scrollbar-width: thin;
 }
@@ -41,17 +41,19 @@
 
 #text-list-item-data {
   text-align: left;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--item-background);
+  filter: brightness(0.95);
   box-shadow: inset -2px 2px 5px 0px rgba(0, 0, 0, 0.05);
   border-radius: 2px;
   min-height: 1.2rem;
   border-width: 0 0 1px 1px;
+  border-color: var(--accent-background);
   overflow: auto;
 }
 
 .text-list-add-item-area {
-  max-height: 1.8rem;
-  margin: 0 var(--dist-medium) 0 var(--dist-medium) !important;
+  max-height: 1.6rem;
+  margin: 0 var(--dist-medium) 0 var(--dist-small) !important;
 }
 
 #text-list-item-remove {
