@@ -2,6 +2,7 @@ import { FunctionComponent, useState, useEffect } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { LayoutItem, Layouts, Props } from "./Types";
 import { useSheetFunctions } from "./SheetFunctions";
+import { useDefaultColors } from "./DefaultColors";
 import { saveToLS } from "./Utils";
 import ToolBox from "./ToolBox";
 import GridItem from "./Components/GridItem";
@@ -35,6 +36,8 @@ const DropDrag: FunctionComponent<Props> = ({
     toggleEditMode,
     setLayouts,
   } = useSheetFunctions();
+
+  const { defaultColors } = useDefaultColors();
 
   const [mounted, setMounted] = useState(false);
 
@@ -112,7 +115,7 @@ const DropDrag: FunctionComponent<Props> = ({
         preventCollision={true}
       >
         {layouts.lg.map((layoutItem) => (
-          GridItem(layoutItem, editMode, onPutItem, lockItem, updateItem, removeItem, addItem, updateColSize)
+          GridItem(layoutItem, defaultColors, editMode, onPutItem, lockItem, updateItem, removeItem, addItem, updateColSize)
         ))}
       </ResponsiveReactGridLayout>
     </div>

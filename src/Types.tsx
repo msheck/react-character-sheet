@@ -1,3 +1,10 @@
+// Props for ColorItems
+export interface ColorItems {
+  primaryColor: string;
+  secondaryColor: string;
+  accentColor: string;
+}
+
 // Define layout items
 export interface LayoutItem {
   x: number;
@@ -57,11 +64,4 @@ export interface Props {
   containerPadding?: [number, number] | { [key: string]: [number, number] };
   verticalCompact?: boolean;
   onLayoutChange?: (layout: LayoutItem[], layouts: Layouts) => void;
-}
-
-// Props for ColorItems
-export interface ColorItems {
-  primaryColor: string;
-  secondaryColor: string;
-  accentColor: string;
 }

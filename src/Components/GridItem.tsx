@@ -1,4 +1,4 @@
-import { LayoutItem } from "../Types";
+import { ColorItems, LayoutItem } from "../Types";
 import { getTitleCard } from "./TitleCard";
 import { getTextField } from "./TextField";
 import { getTextBox } from "./TextBox";
@@ -11,6 +11,7 @@ import { getMathFormula } from "./MathFormula";
 // Basic GridItem component, renders the remove and edit buttons, gets content by type
 function GridItem(
   layoutItem: LayoutItem,
+  defaultColors: ColorItems,
   editMode: boolean,
   onPutItem: (item: LayoutItem) => void,
   lockItem: (id: string) => void,

@@ -1,8 +1,9 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { ToolBoxProps } from "./Types";
+import { useDefaultColors } from "./DefaultColors";
 import ToolBoxItem from "./ToolBoxItem";
 import { SketchPicker } from "react-color";
-import Modal from "./Components/Modal"; // Import the Modal component
+import Modal from "./Components/Modal";
 
 // ToolBox Component
 const ToolBox: FunctionComponent<ToolBoxProps> = ({
@@ -10,10 +11,8 @@ const ToolBox: FunctionComponent<ToolBoxProps> = ({
   onTakeItem,
   onRemoveItem,
 }) => {
+  const { defaultColors, setColorType } = useDefaultColors();
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [primaryColor, setPrimaryColor] = useState("#000000");
-  const [secondaryColor, setSecondaryColor] = useState("#ffffff");
-  const [accentColor, setAccentColor] = useState("#ff0000");
   const [activePicker, setActivePicker] = useState<string | null>(null); // Tracks which picker is open
 
   const handleToggleCollapse = () => {
@@ -47,36 +46,36 @@ const ToolBox: FunctionComponent<ToolBoxProps> = ({
             <div className="color-picker-section">
               <h5>Set Colors</h5>
               <div className="color-picker">
-                <button onClick={() => openPicker("primary")}>Set Primary Color</button>
-                <button onClick={() => openPicker("secondary")}>Set Secondary Color</button>
-                <button onClick={() => openPicker("accent")}>Set Accent Color</button>
+                <button onClick={() => openPicker("primaryColor")}>Set Primary Color</button>
+                <button onClick={() => openPicker("secondaryColor")}>Set Secondary Color</button>
+                <button onClick={() => openPicker("accentColor")}>Set Accent Color</button>
               </div>
             </div>
           </div>
         )}
       </div>
 
-      <Modal isOpen={activePicker === "primary"} onClose={closePicker}>
+      <Modal isOpen={activePicker === "primaryColor"} onClose={closePicker}>
         <h5>Pick Primary Color</h5>
         <SketchPicker
-          color={primaryColor}
-          onChangeComplete={(color) => setPrimaryColor(color.hex)}
+          color={defaultColors.primaryColor}
+          onChange={(color) => setColorType("primaryColor", color.hex)}
         />
       </Modal>
 
-      <Modal isOpen={activePicker === "secondary"} onClose={closePicker}>
+      <Modal isOpen={activePicker === "secondaryColor"} onClose={closePicker}>
         <h5>Pick Secondary Color</h5>
         <SketchPicker
-          color={secondaryColor}
-          onChangeComplete={(color) => setSecondaryColor(color.hex)}
+          color={defaultColors.secondaryColor}
+          onChange={(color) => setColorType("secondaryColor", color.hex)}
         />
       </Modal>
 
-      <Modal isOpen={activePicker === "accent"} onClose={closePicker}>
+      <Modal isOpen={activePicker === "accentColor"} onClose={closePicker}>
         <h5>Pick Accent Color</h5>
         <SketchPicker
-          color={accentColor}
-          onChangeComplete={(color) => setAccentColor(color.hex)}
+          color={defaultColors.accentColor}
+          onChange={(color) => setColorType("accentColor", color.hex)}
         />
       </Modal>
     </>

@@ -1,5 +1,5 @@
 import { JSX } from "react";
-import { LayoutItem } from "./Types";
+import { ColorItems, LayoutItem } from "./Types";
 
 // Utility functions for localStorage
 export function getFromLS(key: string): LayoutItem[] {
@@ -14,6 +14,18 @@ export function getFromLS(key: string): LayoutItem[] {
   return ls[key] || [];
 }
 
+export function getColorsFromLS(): ColorItems {
+  let ls: { [key: string]: ColorItems } = {};
+  if (global.localStorage) {
+    try {
+      ls = JSON.parse(global.localStorage.getItem("appData") || "{}");
+    } catch (e) {
+      console.error("Failed to parse localStorage data:", e);
+    }
+  }
+  return ls["defaultColors"] || { primaryColor: "#333333", secondaryColor: "#555555", accentColor: "#dddddd" };
+}
+
 export function saveToLS(key: string, value: LayoutItem[]): void {
   if (global.localStorage) {
     try {
@@ -22,6 +34,18 @@ export function saveToLS(key: string, value: LayoutItem[]): void {
       global.localStorage.setItem("appData", JSON.stringify(existingData));
     } catch (e) {
       console.error("Failed to save to localStorage:", e);
+    }
+  }
+}
+
+export function saveColorsToLS(colors: ColorItems): void {
+  if (global.localStorage) {
+    try {
+      const existingData = JSON.parse(global.localStorage.getItem("appData") || "{}");
+      existingData["defaultColors"] = colors;
+      global.localStorage.setItem("appData", JSON.stringify(existingData));
+    } catch (e) {
+      console.error("Failed to save colors to localStorage:", e);
     }
   }
 }
