@@ -1,8 +1,8 @@
 #title-card {
   border: hidden;
   border-radius: 0px;
-  border-bottom: 3px ridge;
-  border-color: var(--accent-background);
+  border-bottom: 3px solid;
+  border-color: lch(from var(--accent-background) calc(l - 5) c h / 1) !important;
   background: none;
 }
 

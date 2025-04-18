@@ -31,13 +31,11 @@
   border: 1px ridge;
   border-color: var(--accent-background);
   border-width: 1px 1px 0 0;
-  background-color: var(--item-background);
-  filter: brightness(0.95);
+  background-color: lch(from var(--item-background) calc(l - 4) c h);
 }
 
 #text-table-header {
-  background-color: var(--item-background);
-  filter: brightness(0.90);
+  background-color: lch(from var(--item-background) calc(l - 8) c h);
 }
 
 #text-table-body .react-resizable-handle {

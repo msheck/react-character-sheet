@@ -65,8 +65,8 @@ export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, 
           />
           <hr />
           <input
-            id="math-formula-input"
-            style={{ fontSize: fontSize(layoutItem), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15), fontStyle: "italic" }}
+            id="math-formula-result"
+            style={{ fontSize: fontSize(layoutItem), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15)}}
             disabled={true}
             type="text"
             value={y}

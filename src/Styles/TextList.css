@@ -41,9 +41,7 @@
 
 #text-list-item-data {
   text-align: left;
-  background-color: var(--item-background);
-  filter: brightness(0.95);
-  box-shadow: inset -2px 2px 5px 0px rgba(0, 0, 0, 0.05);
+  background-color: lch(from var(--item-background) calc(l - 4) c h);
   border-radius: 2px;
   min-height: 1.2rem;
   border-width: 0 0 1px 1px;

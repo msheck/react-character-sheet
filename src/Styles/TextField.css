@@ -32,8 +32,5 @@
 
 #text-field-input {
   border: hidden;
-  border-radius: 0px;
-  border-bottom: 1px ridge;
-  border-color: var(--accent-background);
   background: none;
 }

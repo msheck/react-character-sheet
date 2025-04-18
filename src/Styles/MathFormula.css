@@ -25,11 +25,13 @@
   grid-template-columns: 49.5% 1% 49.5%;
 }
 
-#math-formula-input {
+#math-formula-input,
+#math-formula-result {
   border: 0;
   background: none;
 }
 
-  #math-formula-input:disabled {
-    color: initial;
-  }
+#math-formula-result {
+  font-style: italic;
+  color: var(--secondary-color);
+}
