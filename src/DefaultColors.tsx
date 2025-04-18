@@ -23,5 +23,29 @@ export const useDefaultColors = () => {
     saveColorsToLS(defaultColors);
   }, [defaultColors]);
 
+  useEffect(() => {
+    document.documentElement.style.setProperty('--primary-color', defaultColors.primaryColor);
+  }, [defaultColors.primaryColor]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--secondary-color', defaultColors.secondaryColor);
+  }, [defaultColors.secondaryColor]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--accent-color', defaultColors.accentColor);
+  }, [defaultColors.accentColor]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--sheet-background', defaultColors.sheetBackground);
+  }, [defaultColors.sheetBackground]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--item-background', defaultColors.itemBackground);
+  }, [defaultColors.itemBackground]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--accent-background', defaultColors.accentBackground);
+  }, [defaultColors.accentBackground]);
+
   return { defaultColors, setDefaultColors, setColorType };
 }

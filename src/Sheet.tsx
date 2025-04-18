@@ -37,6 +37,7 @@ const DropDrag: FunctionComponent<Props> = ({
     setLayouts,
   } = useSheetFunctions();
 
+  // Ensure that colors are loaded from localStorage before opening the Toolbox
   const { defaultColors } = useDefaultColors();
 
   const [mounted, setMounted] = useState(false);
@@ -64,30 +65,6 @@ const DropDrag: FunctionComponent<Props> = ({
       })),
     }));
   }, [editMode]);
-
-  useEffect(() => {
-    document.documentElement.style.setProperty('--primary-color', defaultColors.primaryColor);
-  }, [defaultColors.primaryColor]);
-
-  useEffect(() => {
-    document.documentElement.style.setProperty('--secondary-color', defaultColors.secondaryColor);
-  }, [defaultColors.secondaryColor]);
-
-  useEffect(() => {
-    document.documentElement.style.setProperty('--accent-color', defaultColors.accentColor);
-  }, [defaultColors.accentColor]);
-
-  useEffect(() => {
-    document.documentElement.style.setProperty('--sheet-background', defaultColors.sheetBackground);
-  }, [defaultColors.sheetBackground]);
-
-  useEffect(() => {
-    document.documentElement.style.setProperty('--item-background', defaultColors.itemBackground);
-  }, [defaultColors.itemBackground]);
-
-  useEffect(() => {
-    document.documentElement.style.setProperty('--accent-background', defaultColors.accentBackground);
-  }, [defaultColors.accentBackground]);
 
   // Function to handle layout changes and preserve custom fields
   const handleLayoutChange = (_layout: LayoutItem[], updatedLayouts: Layouts) => {
