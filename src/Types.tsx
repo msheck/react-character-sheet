@@ -3,9 +3,9 @@ export interface ColorItems {
   primaryColor: string;
   secondaryColor: string;
   accentColor: string;
+  borderColor: string;
   sheetBackground: string;
   itemBackground: string;
-  accentBackground: string;
 }
 
 // Define layout items
@@ -65,6 +65,7 @@ export interface Props {
   cols?: { [key: string]: number };
   breakpoints?: { [key: string]: number };
   containerPadding?: [number, number] | { [key: string]: [number, number] };
+  containerMargin?: [number, number] | { [key: string]: [number, number] };
   verticalCompact?: boolean;
   onLayoutChange?: (layout: LayoutItem[], layouts: Layouts) => void;
 }

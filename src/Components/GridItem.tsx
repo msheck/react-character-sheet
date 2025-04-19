@@ -20,7 +20,11 @@ function GridItem(
   updateColSize: (id: string, colIndex: number, size: number) => void
 ) {
   return (
-    <div key={layoutItem.i} className="grid-item" id={layoutItem.type}>
+    <div
+      key={layoutItem.i}
+      id={layoutItem.type}
+      className="grid-item"
+    >
       {editMode && (
         <>
           <span id="remove-grid-item" className="remove-button" onMouseDown={(e) => { e.stopPropagation(); onPutItem(layoutItem) }}>

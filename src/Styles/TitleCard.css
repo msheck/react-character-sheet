@@ -2,12 +2,11 @@
   border: hidden;
   border-radius: 0px;
   border-bottom: 3px solid;
-  border-color: lch(from var(--accent-background) calc(l - 5) c h / 1) !important;
+  border-color: lch(from var(--border-color) calc(l - 5) c h / 1) !important;
   background: none;
 }
 
 #title-card-content {
-  margin: 0;
   align-self: center;
   grid-template-rows: auto;
 }

@@ -1,9 +1,5 @@
 import { LayoutItem } from "../Types";
-import { getPaddingValue, hasTitle, itemSumSize } from "../Utils";
-
-function fontSize(layoutItem: LayoutItem) {
-  return Math.min((12 * itemSumSize(layoutItem, 0.4, 0.9, -0.5)), 24 * layoutItem.h);
-}
+import { defaultFontSize, getPaddingValue, hasTitle, itemSumSize } from "../Utils";
 
 function calculateMathFormula(layoutItem: LayoutItem): string {
   const formula = layoutItem.data?.at(0)?.at(0);
@@ -30,13 +26,23 @@ function calculateMathFormula(layoutItem: LayoutItem): string {
 export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
   const y = calculateMathFormula(layoutItem);
 
+  const fontSize = (): number => {
+    return defaultFontSize();
+    //return Math.min((12 * itemSumSize(layoutItem, 0.4, 0.9, -0.5)), 24 * layoutItem.h);
+  }
+
   return (
     <>
       <div className="item-content" id={hasTitle(layoutItem) || !layoutItem.static ? "math-formula-content" : "math-formula-content-notitle"}>
         {
           layoutItem.static ?
             (hasTitle(layoutItem) &&
-              <h4 id="math-formula-title">{layoutItem.title}</h4>
+              <h4
+                id="math-formula-title"
+                style={{ fontSize: fontSize() }}
+              >
+                {layoutItem.title}
+              </h4>
             ) : (
               <div id="math-formula-header">
                 <input
@@ -44,12 +50,14 @@ export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, 
                   value={layoutItem.title}
                   onChange={(e) => updateItem(layoutItem.i, "title", e.target.value)}
                   placeholder="Title"
+                  style={{ fontSize: fontSize() }}
                 />
                 <input
                   type="text"
                   value={layoutItem.data?.at(0)?.at(0) || ""}
                   onChange={(e) => updateItem(layoutItem.i, "data-0", e.target.value)}
                   placeholder="Formula (e.g., 2*x+3)"
+                  style={{ fontSize: fontSize() }}
                 />
               </div>
             )
@@ -57,7 +65,7 @@ export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, 
         <div className="item-content" id="math-formula-div">
           <input
             id="math-formula-input"
-            style={{ fontSize: fontSize(layoutItem), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
+            style={{ fontSize: fontSize(), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
             type="number"
             value={layoutItem.data?.at(0)?.at(1) || ""}
             placeholder="x"
@@ -66,7 +74,7 @@ export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, 
           <hr />
           <input
             id="math-formula-result"
-            style={{ fontSize: fontSize(layoutItem), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15)}}
+            style={{ fontSize: fontSize(), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15)}}
             disabled={true}
             type="text"
             value={y}

@@ -1,10 +1,11 @@
 import { LayoutItem } from "../Types";
-import { hasTitle, useCheckbox } from "../Utils";
+import { defaultFontSize, getItemTitle, hasTitle, useCheckbox } from "../Utils";
 import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
 
 function defaultColSize(layoutItem: LayoutItem) {
-  return Math.floor(((74.75 * layoutItem.w) - 35 + layoutItem.w * 5) / (layoutItem.data?.at(0)?.length ?? 1));
+  //return defaultFontSize();
+  return Math.floor(((4.9 * layoutItem.w) - 25 + layoutItem.w) / (layoutItem.data?.at(0)?.length ?? 1));
 }
 
 function tableHeaderCell(
@@ -13,6 +14,7 @@ function tableHeaderCell(
   removeItem: (id: string, rowIndex: number, colIndex: number) => void,
   updateColSize: (id: string, colIndex: number, size: number) => void,
   addColumn: () => void,
+  fontSize: () => number,
   header: string,
   colIndex: number
 ) {
@@ -34,6 +36,7 @@ function tableHeaderCell(
             type="text"
             value={header}
             onChange={(e) => updateItem(layoutItem.i, "data-" + 0 + "-" + colIndex, e.target.value)}
+            style={{ fontSize: fontSize() }}
           />
           {
             !layoutItem.static && ( // Only show add/remove buttons if not static
@@ -77,7 +80,8 @@ function tableHeader(
   updateItem: (id: string, field: string, value: string) => void,
   removeItem: (id: string, rowIndex: number, colIndex: number) => void,
   updateColSize: (id: string, colIndex: number, size: number) => void,
-  addColumn: () => void
+  addColumn: () => void,
+  fontSize: () => number
 ) {
   return (
     !(layoutItem.static && layoutItem.data?.at(0)?.every(d => d == "")) && ( // Only show header if not static and not empty
@@ -85,7 +89,7 @@ function tableHeader(
         <tr>
           {
             layoutItem.data?.at(0)?.map((header: string, colIndex: number) => ( // Header row
-              tableHeaderCell(layoutItem, updateItem, removeItem, updateColSize, addColumn, header, colIndex)
+              tableHeaderCell(layoutItem, updateItem, removeItem, updateColSize, addColumn, fontSize, header, colIndex)
             ))
           }
         </tr>
@@ -100,6 +104,7 @@ function tableBodyCell(
   removeItem: (id: string, rowIndex: number, colIndex: number) => void,
   updateColSize: (id: string, colIndex: number, size: number) => void,
   addRow: () => void,
+  fontSize: () => number,
   rowIndex: number,
   colIndex: number,
   cell: string
@@ -118,7 +123,7 @@ function tableBodyCell(
       >
         <div id={layoutItem.static ? "text-table-cell-content" : "text-table-cell-content-on-edit"}>
           { // Renders a Checkbox or Textarea
-            useCheckbox(layoutItem, cell, rowIndex, colIndex, updateItem, "text-table-cell-data")
+            useCheckbox(layoutItem, cell, rowIndex, colIndex, updateItem, fontSize, "text-table-cell-data")
           }
           {
             !layoutItem.static && layoutItem.data?.at(rowIndex)?.length === colIndex + 1 && ( // Only show add/remove buttons if not static and is the last cell in the row
@@ -163,6 +168,7 @@ function tableBody(
   removeItem: (id: string, rowIndex: number, colIndex: number) => void,
   updateColSize: (id: string, colIndex: number, size: number) => void,
   addRow: () => void,
+  fontSize: () => number
 ) {
   return (
     <tbody id="text-table-body">
@@ -172,7 +178,7 @@ function tableBody(
             <tr key={rowIndex}>
               {
                 row.map((cell: string, colIndex: number) => ( // Body cells
-                  tableBodyCell(layoutItem, updateItem, removeItem, updateColSize, addRow, rowIndex, colIndex, cell)
+                  tableBodyCell(layoutItem, updateItem, removeItem, updateColSize, addRow, fontSize, rowIndex, colIndex, cell)
                 ))
               }
             </tr>
@@ -200,28 +206,20 @@ export function getTextTable(
     });
   };
 
+  const fontSize = (): number => {
+    return defaultFontSize();
+    //return Math.min((12 * itemSumSize(layoutItem, 0.4, 0.9, -0.5)), 24 * layoutItem.h);
+  }
+
   return (
     <>
       <div className="item-content" id={(hasTitle(layoutItem) || !layoutItem.static) ? "text-table-content" : "text-table-content-notitle"}>
-        {
-          layoutItem.static ?
-            (hasTitle(layoutItem) &&
-              <h4 id="text-table-title">{layoutItem.title}</h4>
-            ) : (
-              <input
-                id="text-table-title"
-                type="text"
-                value={layoutItem.title}
-                onChange={(e) => updateItem(layoutItem.i, "title", e.target.value)}
-                placeholder="Title"
-              />
-            )
-        }
+        {getItemTitle(layoutItem, updateItem, fontSize, "text-table-title")}
         <div id="text-table-table-div">
           <table id="text-table-table">
             <>
-              {tableHeader(layoutItem, updateItem, removeItem, updateColSize, addColumn)}
-              {tableBody(layoutItem, updateItem, removeItem, updateColSize, addRow)}
+              {tableHeader(layoutItem, updateItem, removeItem, updateColSize, addColumn, fontSize)}
+              {tableBody(layoutItem, updateItem, removeItem, updateColSize, addRow, fontSize)}
             </>
           </table>
         </div>

@@ -70,21 +70,21 @@ const Toolbox: FunctionComponent<ToolboxProps> = ({
                 <button onClick={() => openPicker("primaryColor")}>Primary Color<div className="color-preview" style={{ backgroundColor: defaultColors.primaryColor }} /></button>
                 <button onClick={() => openPicker("secondaryColor")}>Secondary Color<div className="color-preview" style={{ backgroundColor: defaultColors.secondaryColor }} /></button>
                 <button onClick={() => openPicker("accentColor")}>Accent Color<div className="color-preview" style={{ backgroundColor: defaultColors.accentColor }} /></button>
+                <button onClick={() => openPicker("borderColor")}>Border Color<div className="color-preview" style={{ backgroundColor: defaultColors.borderColor }} /></button>
                 <button onClick={() => openPicker("sheetBackground")}>Sheet Background Color<div className="color-preview" style={{ backgroundColor: defaultColors.sheetBackground }} /></button>
                 <button onClick={() => openPicker("itemBackground")}>Item Background Color<div className="color-preview" style={{ backgroundColor: defaultColors.itemBackground }} /></button>
-                <button onClick={() => openPicker("accentBackground")}>Accent Background Color<div className="color-preview" style={{ backgroundColor: defaultColors.accentBackground }} /></button>
               </div>
             </div>
           )}
         </div>
       </div>
 
-      {modalTemplate("Pick Primary Color", defaultColors, "primaryColor")}
-      {modalTemplate("Pick Secondary Color", defaultColors, "secondaryColor")}
-      {modalTemplate("Pick Accent Color", defaultColors, "accentColor")}
-      {modalTemplate("Pick Sheet Background Color", defaultColors, "sheetBackground")}
-      {modalTemplate("Pick Item Background Color", defaultColors, "itemBackground")}
-      {modalTemplate("Pick Accent Background Color", defaultColors, "accentBackground")}
+      {modalTemplate("Pick a Primary Color", defaultColors, "primaryColor")}
+      {modalTemplate("Pick a Secondary Color", defaultColors, "secondaryColor")}
+      {modalTemplate("Pick an Accent Color", defaultColors, "accentColor")}
+      {modalTemplate("Pick a Border Color", defaultColors, "borderColor")}
+      {modalTemplate("Pick a Sheet Background Color", defaultColors, "sheetBackground")}
+      {modalTemplate("Pick an Item Background Color", defaultColors, "itemBackground")}
     </>
   );
 };

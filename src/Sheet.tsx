@@ -14,11 +14,12 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 const DropDrag: FunctionComponent<Props> = ({
   className = "layout",
-  rowHeight = 30,
+  rowHeight = 2,
   onLayoutChange = () => { },
-  cols = { lg: 24, md: 20, sm: 16, xs: 8, xxs: 4 },
+  cols = { lg: 240, md: 240, sm: 240, xs: 240, xxs: 240 },
   breakpoints = { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
-  containerPadding = [0, 0],
+  containerPadding = { lg: [0, 0], md: [0, 0], sm: [0, 0], xs: [0, 0], xss: [0, 0] },
+  containerMargin = { lg: [5, 5], md: [4, 4], sm: [3, 3], xs: [2, 2], xss: [1, 1] },
   verticalCompact = false,
 }) => {
   const {
@@ -60,11 +61,29 @@ const DropDrag: FunctionComponent<Props> = ({
       lg: prevLayouts.lg.map((item) => ({
         ...item,
         isLocked: item.isLocked,
-        static: !editMode || item.isLocked, // Set static to true in view mode, false in edit mode
-        isDraggable: editMode && !item.isLocked, // Set isDraggable to the inverse of static
+        static: !editMode || item.isLocked, // Set static to true in view mode, false in edit mode if item is not locked
+        isDraggable: editMode && !item.isLocked, // Set isDraggable to the inverse of static logic
       })),
     }));
   }, [editMode]);
+
+  // Set --layout-width on app mount based on initial page width
+  useEffect(() => {
+    const initialWidth = window.innerWidth;
+
+    let initialBreakpoint: "lg" | "md" | "sm" | "xs" | "xxs" = "xxs";
+    if (initialWidth >= 1200) {
+      initialBreakpoint = "lg";
+    } else if (initialWidth >= 996) {
+      initialBreakpoint = "md";
+    } else if (initialWidth >= 768) {
+      initialBreakpoint = "sm";
+    } else if (initialWidth >= 480) {
+      initialBreakpoint = "xs";
+    }
+
+    handleBreakpointChange(initialBreakpoint);
+  }, []);
 
   // Function to handle layout changes and preserve custom fields
   const handleLayoutChange = (_layout: LayoutItem[], updatedLayouts: Layouts) => {
@@ -84,6 +103,18 @@ const DropDrag: FunctionComponent<Props> = ({
 
     setLayouts({ lg: mergedLayout });
     onLayoutChange(_layout, updatedLayouts);
+  };
+
+  const handleBreakpointChange = (newBreakpoint: "lg" | "md" | "sm" | "xs" | "xxs") => {
+    const breakpointPercentages = {
+      lg: "75%",
+      md: "80%",
+      sm: "90%",
+      xs: "100%",
+      xxs: "100%",
+    };
+    const newWidth = breakpointPercentages[newBreakpoint];
+    document.documentElement.style.setProperty("--layout-width", newWidth);
   };
 
   return (
@@ -108,8 +139,10 @@ const DropDrag: FunctionComponent<Props> = ({
         cols={cols}
         breakpoints={breakpoints}
         containerPadding={containerPadding}
+        margin={containerMargin}
         verticalCompact={verticalCompact}
         onLayoutChange={handleLayoutChange}
+        onBreakpointChange={handleBreakpointChange}
         layouts={layouts}
         measureBeforeMount={false}
         useCSSTransforms={mounted}
