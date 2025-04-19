@@ -74,7 +74,7 @@ export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, 
           <input
             id="math-formula-result"
             style={{ fontSize: fontSize() * 2, paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
-            disabled={layoutItem.isLocked}
+            readOnly={true}
             type="text"
             value={y}
             placeholder="y"

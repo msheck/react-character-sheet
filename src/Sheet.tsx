@@ -16,10 +16,10 @@ const DropDrag: FunctionComponent<Props> = ({
   className = "layout",
   rowHeight = 2,
   onLayoutChange = () => { },
-  cols = { lg: 240, md: 240, sm: 240, xs: 240, xxs: 240 },
-  breakpoints = { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
-  containerPadding = { lg: [0, 0], md: [0, 0], sm: [0, 0], xs: [0, 0], xss: [0, 0] },
-  containerMargin = { lg: [5, 5], md: [4, 4], sm: [3, 3], xs: [2, 2], xss: [1, 1] },
+  cols = { lg: 240, md: 240, sm: 240, xs: 240 },
+  breakpoints = { lg: 1200, md: 996, sm: 768, xs: 480 },
+  containerPadding = { lg: [0, 0], md: [0, 0], sm: [0, 0], xs: [0, 0] },
+  containerMargin = { lg: [5, 5], md: [4, 4], sm: [3, 3], xs: [2, 2] },
   verticalCompact = false,
 }) => {
   const {
@@ -40,8 +40,8 @@ const DropDrag: FunctionComponent<Props> = ({
 
   // Ensure that colors are loaded from localStorage before opening the Toolbox
   const { defaultColors } = useDefaultColors();
-
   const [mounted, setMounted] = useState(false);
+  const [currentBreakpoint, setCurrentBreakpoint] = useState<"lg" | "md" | "sm" | "xs">("lg");
 
   useEffect(() => setMounted(true), []);
 
@@ -67,23 +67,52 @@ const DropDrag: FunctionComponent<Props> = ({
     }));
   }, [editMode]);
 
-  // Set --layout-width on app mount based on initial page width
+  // Effect listener to manage breakpoints
   useEffect(() => {
+    const resizeBuffer = 128;
+
+    const getStableBreakpoint = (width: number): "lg" | "md" | "sm" | "xs" => {
+      if (width >= breakpoints.lg + resizeBuffer) return "lg";
+      else if (width >= breakpoints.md + resizeBuffer) return "md";
+      else if (width >= breakpoints.sm + resizeBuffer) return "sm";
+      else return "xs";
+    };
+
+    const applyBreakpointStyles = (breakpoint: "lg" | "md" | "sm" | "xs") => {
+      const breakpointPercentages = {
+        lg: ["75%", 10],
+        md: ["80%", 8],
+        sm: ["90%", 6],
+        xs: ["100%", 5],
+      };
+
+      const newWidth = breakpointPercentages[breakpoint];
+      document.documentElement.style.setProperty("--layout-width", newWidth[0] as string);
+      setDefaultFontSize(newWidth[1] as number);
+    };
+
+    const handleResize = () => {
+      const width = window.innerWidth;
+      const stableBreakpoint = getStableBreakpoint(width);
+
+      if (stableBreakpoint !== currentBreakpoint) {
+        setCurrentBreakpoint(stableBreakpoint);
+        applyBreakpointStyles(stableBreakpoint);
+      }
+    };
+
+    // Apply styles immediately on mount
     const initialWidth = window.innerWidth;
+    const initialBreakpoint = getStableBreakpoint(initialWidth);
+    setCurrentBreakpoint(initialBreakpoint);
+    applyBreakpointStyles(initialBreakpoint);
 
-    let initialBreakpoint: "lg" | "md" | "sm" | "xs" | "xxs" = "xxs";
-    if (initialWidth >= 1200) {
-      initialBreakpoint = "lg";
-    } else if (initialWidth >= 996) {
-      initialBreakpoint = "md";
-    } else if (initialWidth >= 768) {
-      initialBreakpoint = "sm";
-    } else if (initialWidth >= 480) {
-      initialBreakpoint = "xs";
-    }
+    window.addEventListener("resize", handleResize);
 
-    handleBreakpointChange(initialBreakpoint);
-  }, []);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [currentBreakpoint]);
 
   // Function to handle layout changes and preserve custom fields
   const handleLayoutChange = (_layout: LayoutItem[], updatedLayouts: Layouts) => {
@@ -103,19 +132,6 @@ const DropDrag: FunctionComponent<Props> = ({
 
     setLayouts({ lg: mergedLayout });
     onLayoutChange(_layout, updatedLayouts);
-  };
-
-  const handleBreakpointChange = (newBreakpoint: "lg" | "md" | "sm" | "xs" | "xxs") => {
-    const breakpointPercentages = {
-      lg: ["75%", 10],
-      md: ["80%", 9],
-      sm: ["90%", 8],
-      xs: ["100%", 7],
-      xxs: ["100%", 6]
-    };
-    const newWidth = breakpointPercentages[newBreakpoint];
-    document.documentElement.style.setProperty("--layout-width", newWidth[0] as string);
-    setDefaultFontSize(newWidth[1] as number);
   };
 
   return (
@@ -143,7 +159,6 @@ const DropDrag: FunctionComponent<Props> = ({
         margin={containerMargin}
         verticalCompact={verticalCompact}
         onLayoutChange={handleLayoutChange}
-        onBreakpointChange={handleBreakpointChange}
         layouts={layouts}
         measureBeforeMount={false}
         useCSSTransforms={mounted}

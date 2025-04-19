@@ -8,8 +8,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Character Name",
     "data": [
       []
@@ -28,8 +28,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "data": [
       []
     ],
@@ -47,8 +47,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Class & Level:",
     "data": [
       []
@@ -67,8 +67,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Race:",
     "data": [
       []
@@ -87,8 +87,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Background:",
     "data": [
       [
@@ -109,8 +109,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Alignment:",
     "data": [
       []
@@ -129,8 +129,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Player Name:",
     "data": [
       []
@@ -149,8 +149,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Experience:",
     "data": [
       []
@@ -169,8 +169,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Attributes",
     "data": [
       []
@@ -189,8 +189,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Strength",
     "data": [
       [
@@ -212,8 +212,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Dexterity",
     "data": [
       [
@@ -235,8 +235,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Constitution",
     "data": [
       [
@@ -258,8 +258,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Intelligence",
     "data": [
       [
@@ -281,8 +281,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Wisdom",
     "data": [
       [
@@ -304,8 +304,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Charisma",
     "data": [
       [
@@ -385,8 +385,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Inspiration",
     "data": [
       []
@@ -405,8 +405,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "data": [
       [
         "2"
@@ -426,8 +426,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Proficiency Bonus",
     "data": [
       []
@@ -564,8 +564,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Passive Perception",
     "data": [
       [
@@ -586,8 +586,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Other Proficiencies & Languages",
     "data": [
       [
@@ -610,8 +610,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Armor Class",
     "data": [
       [
@@ -632,8 +632,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Initiative",
     "data": [
       [
@@ -654,8 +654,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Speed",
     "data": [
       [
@@ -676,8 +676,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Current Hit Points",
     "data": [
       [
@@ -699,8 +699,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Hit Points Max:",
     "data": [
       []
@@ -719,8 +719,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Hit Dice",
     "data": [
       []
@@ -739,8 +739,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Total",
     "data": [
       []
@@ -759,8 +759,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Death Saves",
     "data": [
       []
@@ -819,16 +819,16 @@
     "colSizes": []
   },
   {
-    "w": 60,
+    "w": 70,
     "h": 3,
-    "x": 111,
+    "x": 103,
     "y": 76,
     "i": "6d2a7b3a-2e4d-49d6-bfa4-9e000bfc69ec",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "data": [
       []
     ],
@@ -838,16 +838,16 @@
     "colSizes": []
   },
   {
-    "w": 60,
+    "w": 70,
     "h": 40,
-    "x": 111,
+    "x": 103,
     "y": 79,
     "i": "619a6f1b-6677-4647-bcae-16c6181b2309",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Attacks & Spellcasting",
     "data": [
       [
@@ -880,22 +880,22 @@
     "type": "text-table",
     "isLocked": false,
     "colSizes": [
-      112,
+      155,
       99,
-      127
+      144
     ]
   },
   {
-    "w": 60,
+    "w": 70,
     "h": 22,
-    "x": 111,
+    "x": 103,
     "y": 119,
     "i": "9d39a511-92c0-480b-a797-af2788ac939e",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "data": [
       []
     ],
@@ -905,16 +905,16 @@
     "colSizes": []
   },
   {
-    "w": 60,
+    "w": 70,
     "h": 3,
-    "x": 111,
+    "x": 103,
     "y": 141,
     "i": "31e62f8f-b513-4aa5-aec3-5f43877673bd",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Equipment",
     "data": [
       []
@@ -925,16 +925,16 @@
     "colSizes": []
   },
   {
-    "w": 47,
+    "w": 56,
     "h": 76,
-    "x": 124,
+    "x": 117,
     "y": 144,
     "i": "7675d220-6ffd-4954-8f4a-9aced05816b0",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "data": [
       [
         "Backpack",
@@ -949,14 +949,14 @@
   {
     "w": 13,
     "h": 11,
-    "x": 111,
+    "x": 103,
     "y": 144,
     "i": "534b2b3c-0f98-4692-acf0-b3a10a76904a",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Copper Piece",
     "data": [
       []
@@ -969,14 +969,14 @@
   {
     "w": 13,
     "h": 11,
-    "x": 111,
+    "x": 103,
     "y": 155,
     "i": "45f29855-1302-4f81-8ea6-f24a8591ab59",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Silver Piece",
     "data": [
       []
@@ -989,17 +989,19 @@
   {
     "w": 13,
     "h": 11,
-    "x": 111,
+    "x": 103,
     "y": 166,
     "i": "976e602a-d322-4a8d-b97e-f27a22fae5c7",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Electrum Piece",
     "data": [
-      []
+      [
+        ""
+      ]
     ],
     "label": "Attribute Counter",
     "type": "attribute-counter",
@@ -1009,14 +1011,14 @@
   {
     "w": 13,
     "h": 11,
-    "x": 111,
+    "x": 103,
     "y": 177,
     "i": "d78875dc-9b27-420d-bb19-eaea4879066f",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Gold Piece",
     "data": [
       []
@@ -1029,14 +1031,14 @@
   {
     "w": 13,
     "h": 11,
-    "x": 111,
+    "x": 103,
     "y": 188,
     "i": "2b34a522-5789-417d-be7b-f6a52fd84c0d",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Platinum Piece",
     "data": [
       [
@@ -1049,16 +1051,16 @@
     "colSizes": []
   },
   {
-    "w": 69,
+    "w": 67,
     "h": 21,
-    "x": 171,
+    "x": 173,
     "y": 10,
     "i": "e97b1441-3eba-431d-94e6-3c95522ef6c5",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Personality Traits",
     "data": [
       []
@@ -1069,16 +1071,16 @@
     "colSizes": []
   },
   {
-    "w": 69,
+    "w": 67,
     "h": 21,
-    "x": 171,
+    "x": 173,
     "y": 31,
     "i": "7acefdec-0379-4cc1-a115-65fa92df7b07",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Ideals",
     "data": [
       []
@@ -1089,16 +1091,16 @@
     "colSizes": []
   },
   {
-    "w": 69,
+    "w": 67,
     "h": 21,
-    "x": 171,
+    "x": 173,
     "y": 52,
     "i": "93a82b68-7fa8-4eac-bfbd-f2959f5422fd",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Bonds",
     "data": [
       []
@@ -1109,36 +1111,36 @@
     "colSizes": []
   },
   {
-    "w": 69,
+    "w": 67,
     "h": 21,
-    "x": 171,
+    "x": 173,
     "y": 73,
     "i": "25c4296c-3a67-44a6-b231-688b7a66732c",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Flaws",
     "data": [
       []
     ],
     "label": "Text Box",
     "type": "text-box",
-    "isLocked": true,
+    "isLocked": false,
     "colSizes": []
   },
   {
-    "w": 69,
+    "w": 67,
     "h": 122,
-    "x": 171,
+    "x": 173,
     "y": 98,
     "i": "1831dac8-5839-4a8b-8af6-13b8c3f7c390",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "data": [
       []
     ],
@@ -1148,16 +1150,16 @@
     "colSizes": []
   },
   {
-    "w": 69,
+    "w": 67,
     "h": 4,
-    "x": 171,
+    "x": 173,
     "y": 94,
     "i": "c5588a05-1355-4714-841d-d256ffe2ac4d",
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Features & Traits",
     "data": [
       []
@@ -1176,8 +1178,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "data": [
       [
         "/checkbox"
@@ -1197,8 +1199,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "title": "Temporary Hit Points",
     "data": [
       []
@@ -1217,8 +1219,8 @@
     "minW": 8,
     "minH": 3,
     "moved": false,
-    "static": true,
-    "isDraggable": false,
+    "static": false,
+    "isDraggable": true,
     "data": [
       []
     ],
