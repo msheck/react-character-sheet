@@ -143,7 +143,7 @@ button {
     border-color: var(--border-color);
     border-width: 1px;
     border-style: solid;
-    box-shadow: 1px 1px 0px 1px lch(from var(--accent-color) calc(l - 50) c h / 0.5);
+    box-shadow: 1px 1px 0px 1px lch(from var(--accent-color) calc(l - 24) calc(c - 50 ) h / 0.5);
   }
 
 textarea {

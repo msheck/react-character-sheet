@@ -1,10 +1,9 @@
 import { LayoutItem } from "../Types";
-import { defaultFontSize, getItemTitle, hasTitle, useCheckbox } from "../Utils";
+import { getDefaultFontSize, getItemTitle, hasTitle, itemSumSize, useCheckbox } from "../Utils";
 import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
 
 function defaultColSize(layoutItem: LayoutItem) {
-  //return defaultFontSize();
   return Math.floor(((4.9 * layoutItem.w) - 25 + layoutItem.w) / (layoutItem.data?.at(0)?.length ?? 1));
 }
 
@@ -14,7 +13,7 @@ function tableHeaderCell(
   removeItem: (id: string, rowIndex: number, colIndex: number) => void,
   updateColSize: (id: string, colIndex: number, size: number) => void,
   addColumn: () => void,
-  fontSize: () => number,
+  fontSize: (offset: number) => number,
   header: string,
   colIndex: number
 ) {
@@ -36,7 +35,7 @@ function tableHeaderCell(
             type="text"
             value={header}
             onChange={(e) => updateItem(layoutItem.i, "data-" + 0 + "-" + colIndex, e.target.value)}
-            style={{ fontSize: fontSize() }}
+            style={{ fontSize: fontSize(0) }}
           />
           {
             !layoutItem.static && ( // Only show add/remove buttons if not static
@@ -81,7 +80,7 @@ function tableHeader(
   removeItem: (id: string, rowIndex: number, colIndex: number) => void,
   updateColSize: (id: string, colIndex: number, size: number) => void,
   addColumn: () => void,
-  fontSize: () => number
+  fontSize: (offset: number) => number
 ) {
   return (
     !(layoutItem.static && layoutItem.data?.at(0)?.every(d => d == "")) && ( // Only show header if not static and not empty
@@ -104,7 +103,7 @@ function tableBodyCell(
   removeItem: (id: string, rowIndex: number, colIndex: number) => void,
   updateColSize: (id: string, colIndex: number, size: number) => void,
   addRow: () => void,
-  fontSize: () => number,
+  fontSize: (offset: number) => number,
   rowIndex: number,
   colIndex: number,
   cell: string
@@ -123,7 +122,7 @@ function tableBodyCell(
       >
         <div id={layoutItem.static ? "text-table-cell-content" : "text-table-cell-content-on-edit"}>
           { // Renders a Checkbox or Textarea
-            useCheckbox(layoutItem, cell, rowIndex, colIndex, updateItem, fontSize, "text-table-cell-data")
+            useCheckbox(layoutItem, cell, rowIndex, colIndex, updateItem, fontSize(-2), "text-table-cell-data")
           }
           {
             !layoutItem.static && layoutItem.data?.at(rowIndex)?.length === colIndex + 1 && ( // Only show add/remove buttons if not static and is the last cell in the row
@@ -168,7 +167,7 @@ function tableBody(
   removeItem: (id: string, rowIndex: number, colIndex: number) => void,
   updateColSize: (id: string, colIndex: number, size: number) => void,
   addRow: () => void,
-  fontSize: () => number
+  fontSize: (offset: number) => number
 ) {
   return (
     <tbody id="text-table-body">
@@ -206,15 +205,14 @@ export function getTextTable(
     });
   };
 
-  const fontSize = (): number => {
-    return defaultFontSize();
-    //return Math.min((12 * itemSumSize(layoutItem, 0.4, 0.9, -0.5)), 24 * layoutItem.h);
+  const fontSize = (offset: number = 0): number => {
+    return Math.min((getDefaultFontSize() * itemSumSize(layoutItem, 0.1, 0.4, 0.8)), getDefaultFontSize() + 4) + offset;
   }
 
   return (
     <>
       <div className="item-content" id={(hasTitle(layoutItem) || !layoutItem.static) ? "text-table-content" : "text-table-content-notitle"}>
-        {getItemTitle(layoutItem, updateItem, fontSize, "text-table-title")}
+        {getItemTitle(layoutItem, updateItem, fontSize(), "text-table-title")}
         <div id="text-table-table-div">
           <table id="text-table-table">
             <>

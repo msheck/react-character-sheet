@@ -568,7 +568,9 @@
     "isDraggable": false,
     "title": "Passive Perception",
     "data": [
-      []
+      [
+        "10"
+      ]
     ],
     "label": "Attribute Counter",
     "type": "attribute-counter",
@@ -878,9 +880,9 @@
     "type": "text-table",
     "isLocked": false,
     "colSizes": [
-      123,
-      76,
-      137
+      112,
+      99,
+      127
     ]
   },
   {

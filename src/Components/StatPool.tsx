@@ -1,16 +1,15 @@
 import { LayoutItem } from "../Types";
-import { hasTitle, itemSumSize, getPaddingValue, defaultFontSize, getItemTitle } from "../Utils";
+import { hasTitle, itemSumSize, getPaddingValue, getDefaultFontSize, getItemTitle } from "../Utils";
 
 export function getStatPool(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
   const fontSize = (): number => {
-    return defaultFontSize();
-    //return Math.min((12 * itemSumSize(layoutItem, 0.4, 0.9, -0.5)), 24 * layoutItem.h);
+    return Math.min((getDefaultFontSize() * itemSumSize(layoutItem, 0.1, 0.4, 0.7)), getDefaultFontSize() + 4);
   }
 
   return (
     <>
       <div className="item-content" id={(hasTitle(layoutItem) || !layoutItem.static) ? "stat-pool-content" : "stat-pool-content-notitle"}>
-        {getItemTitle(layoutItem, updateItem, fontSize, "stat-pool-title")}
+        {getItemTitle(layoutItem, updateItem, fontSize(), "stat-pool-title")}
         <div className="item-content" id="stat-pool-comparer">
           <input
             id="stat-pool-count"

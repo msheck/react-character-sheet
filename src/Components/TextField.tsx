@@ -1,16 +1,15 @@
 import { LayoutItem } from "../Types";
-import { defaultFontSize, getItemTitle, hasTitle, itemSumSize } from "../Utils";
+import { getDefaultFontSize, getItemTitle, hasTitle, itemSumSize } from "../Utils";
 
 export function getTextField(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
   const fontSize = (): number => {
-    return defaultFontSize();
-    //return Math.min((12 * itemSumSize(layoutItem, 0, 0.75, 0.25)), 20);
+    return Math.min((getDefaultFontSize() * itemSumSize(layoutItem, 0, 1, 0.8)), getDefaultFontSize() + 6);
   }
 
   return (
     <>
       <div className="item-content" id={(hasTitle(layoutItem) || !layoutItem.static) ? "text-field-content" : "text-field-content-notitle"}>
-        {getItemTitle(layoutItem, updateItem, fontSize, "text-field-title")}
+        {getItemTitle(layoutItem, updateItem, fontSize(), "text-field-title")}
         <input
           id="text-field-input"
           type="text"

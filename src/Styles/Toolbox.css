@@ -11,7 +11,7 @@
 .toolbox {
   position: fixed;
   border-radius: 10px;
-  background-color: lch(from var(--item-background) calc(l - 10) calc(c - 18) h);
+  background-color: lch(from var(--item-background) calc(l - 10) calc(c - 18) h / 1);
   box-shadow: 0px 8px 20px 15px rgba(0, 0, 0, 0.4);
   margin: 0 var(--dist-medium) 0 var(--dist-large);
   padding-left: var(--dist-small);

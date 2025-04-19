@@ -1,7 +1,7 @@
 #text-box {
 }
 
-#text-box-content ,
+#text-box-content,
 #text-box-content-notitle {
   overflow: auto;
 }

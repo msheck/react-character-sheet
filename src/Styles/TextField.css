@@ -2,11 +2,11 @@
 }
 
 #text-field-content,
-#text-field-content-notitle{
+#text-field-content-notitle {
   margin: 0;
   align-content: center;
   grid-template-rows: auto;
-  grid-template-columns: minmax(2.2rem,25%) 1fr;
+  grid-template-columns: minmax(2.2rem,28%) 1fr;
   grid-template-rows: 1fr;
 }
 

@@ -1,6 +1,8 @@
 import { JSX } from "react";
 import { ColorItems, LayoutItem } from "./Types";
 
+let defaultFontSizeValue = 10;
+
 // Utility functions for localStorage
 export function getFromLS(key: string): LayoutItem[] {
   let ls: { [key: string]: LayoutItem[] } = {};
@@ -50,8 +52,12 @@ export function saveColorsToLS(colors: ColorItems): void {
   }
 }
 
-export function defaultFontSize(): number {
-  return 10;
+export function setDefaultFontSize(size: number): void {
+  defaultFontSizeValue = size;
+}
+
+export function getDefaultFontSize(): number {
+  return defaultFontSizeValue;
 }
 
 export function hasTitle(layoutItem: LayoutItem): boolean {
@@ -59,7 +65,7 @@ export function hasTitle(layoutItem: LayoutItem): boolean {
 }
 
 export function itemSumSize(layoutItem: LayoutItem, widthMod: number = 1, heightMod: number = 1, offset: number = 0): number {
-  return (widthMod * layoutItem.w) + (heightMod * layoutItem.h) + offset;
+  return (widthMod * layoutItem.w / 10) + (heightMod * layoutItem.h / 10) + offset;
 }
 
 export function getPaddingValue(layoutItem: LayoutItem, mod: number = 1, offset: number = 1, maxValue: number = Number.MAX_VALUE) {
@@ -70,7 +76,7 @@ export function getPaddingValue(layoutItem: LayoutItem, mod: number = 1, offset:
 export function getItemTitle(
   layoutItem: LayoutItem,
   updateItem: (id: string, field: string, value: string) => void,
-  fontSize: () => number = defaultFontSize,
+  fontSize: number = defaultFontSizeValue,
   idHtml: string | "" = "",
   classHtlm: string | "" = ""
 ) {
@@ -81,7 +87,7 @@ export function getItemTitle(
         <h4
           id={idHtml}
           className={classHtlm}
-          style={{ fontSize: fontSize() }}
+          style={{ fontSize: fontSize }}
         >
           {layoutItem.title}
         </h4>
@@ -91,7 +97,7 @@ export function getItemTitle(
         id={idHtml}
         className={classHtlm}
         type="text"
-        style={{ fontSize: fontSize() }}
+        style={{ fontSize: fontSize }}
         value={layoutItem.title}
         onChange={(e) => updateItem(layoutItem.i, "title", e.target.value)}
         placeholder="Title"
@@ -106,7 +112,7 @@ export function useCheckbox(
   rowIndex: number,
   colIndex: number | undefined,
   updateItem: (id: string, field: string, value: string) => void,
-  fontSize: () => number = defaultFontSize,
+  fontSize: number = defaultFontSizeValue,
   idHtml: string | "" = "",
   classHtlm: string | "" = "",
   customElement: JSX.Element | null = null
@@ -119,7 +125,7 @@ export function useCheckbox(
         type="checkbox"
         checked={data === "/checkbox-checked"}
         onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), e.target.checked ? "/checkbox-checked" : "/checkbox")}
-        style={{ fontSize: fontSize() }}
+        style={{ fontSize: fontSize }}
       />
     ) : (
       customElement ?
@@ -129,7 +135,7 @@ export function useCheckbox(
           className={classHtlm}
           value={data}
           onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), e.target.value)}
-          style={{ fontSize: fontSize() }}
+          style={{ fontSize: fontSize }}
         />
     )
 }

@@ -1,5 +1,5 @@
 import { LayoutItem } from "../Types";
-import { defaultFontSize, getPaddingValue, hasTitle, itemSumSize } from "../Utils";
+import { getDefaultFontSize, getPaddingValue, hasTitle, itemSumSize } from "../Utils";
 
 function calculateMathFormula(layoutItem: LayoutItem): string {
   const formula = layoutItem.data?.at(0)?.at(0);
@@ -27,8 +27,7 @@ export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, 
   const y = calculateMathFormula(layoutItem);
 
   const fontSize = (): number => {
-    return defaultFontSize();
-    //return Math.min((12 * itemSumSize(layoutItem, 0.4, 0.9, -0.5)), 24 * layoutItem.h);
+    return Math.min((getDefaultFontSize() * itemSumSize(layoutItem, 0.1, 0.4, 0.7)), getDefaultFontSize() + 4);
   }
 
   return (
@@ -65,7 +64,7 @@ export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, 
         <div className="item-content" id="math-formula-div">
           <input
             id="math-formula-input"
-            style={{ fontSize: fontSize(), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
+            style={{ fontSize: fontSize() * 2, paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
             type="number"
             value={layoutItem.data?.at(0)?.at(1) || ""}
             placeholder="x"
@@ -74,8 +73,8 @@ export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, 
           <hr />
           <input
             id="math-formula-result"
-            style={{ fontSize: fontSize(), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15)}}
-            disabled={true}
+            style={{ fontSize: fontSize() * 2, paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
+            disabled={layoutItem.isLocked}
             type="text"
             value={y}
             placeholder="y"

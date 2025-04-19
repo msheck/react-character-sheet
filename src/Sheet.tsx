@@ -3,7 +3,7 @@ import { Responsive, WidthProvider } from "react-grid-layout";
 import { LayoutItem, Layouts, Props } from "./Types";
 import { useSheetFunctions } from "./SheetFunctions";
 import { useDefaultColors } from "./DefaultColors";
-import { saveToLS } from "./Utils";
+import { saveToLS, setDefaultFontSize } from "./Utils";
 import Toolbox from "./Toolbox";
 import GridItem from "./Components/GridItem";
 import "react-grid-layout/css/styles.css";
@@ -107,14 +107,15 @@ const DropDrag: FunctionComponent<Props> = ({
 
   const handleBreakpointChange = (newBreakpoint: "lg" | "md" | "sm" | "xs" | "xxs") => {
     const breakpointPercentages = {
-      lg: "75%",
-      md: "80%",
-      sm: "90%",
-      xs: "100%",
-      xxs: "100%",
+      lg: ["75%", 10],
+      md: ["80%", 9],
+      sm: ["90%", 8],
+      xs: ["100%", 7],
+      xxs: ["100%", 6]
     };
     const newWidth = breakpointPercentages[newBreakpoint];
-    document.documentElement.style.setProperty("--layout-width", newWidth);
+    document.documentElement.style.setProperty("--layout-width", newWidth[0] as string);
+    setDefaultFontSize(newWidth[1] as number);
   };
 
   return (
