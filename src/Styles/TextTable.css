@@ -58,6 +58,10 @@
   padding: 0;
 }
 
+  #text-table-cell .checkbox-custom {
+    border-radius: 0px;
+  }
+
 #text-table-cell-headcontent,
 #text-table-cell-content,
 #text-table-cell-content-on-edit {
