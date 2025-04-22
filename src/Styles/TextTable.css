@@ -39,10 +39,9 @@
 }
 
 #text-table-body .react-resizable-handle {
-  height: 140%;
+  height: stretch;
   width: 10%;
   padding: 0;
-  top: 10% !important;
   opacity: 0;
   transform: rotate(0);
 }

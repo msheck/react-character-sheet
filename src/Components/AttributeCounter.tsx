@@ -1,5 +1,5 @@
 import { LayoutItem } from "../Types";
-import { getDefaultFontSize, getItemTitle, hasTitle, itemSumSize } from "../Utils";
+import { getDefaultFontSize, getItemTitle, hasTitle, itemSumSize, useNumberInput } from "../Utils";
 
 export function getAttributeCounter(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
   const fontSize = (): number => {
@@ -10,13 +10,7 @@ export function getAttributeCounter(layoutItem: LayoutItem, updateItem: (id: str
     <>
       <div className="item-content" id={(hasTitle(layoutItem) || !layoutItem.static) ? "attribute-counter-content" : "attribute-counter-content-notitle"}>
         {getItemTitle(layoutItem, updateItem, fontSize(), "attribute-counter-title")}
-        <input
-          id="attribute-counter-count"
-          style={{ fontSize: fontSize() * 2 }}
-          type="number"
-          value={layoutItem.data?.at(0)?.at(0)}
-          onChange={(e) => updateItem(layoutItem.i, "data-0", e.target.value)}
-        />
+        {useNumberInput(layoutItem, layoutItem.data?.at(0)?.at(0), 0, undefined, updateItem, fontSize(), layoutItem.isLocked, "attribute-counter-count")}
       </div>
     </>
   );

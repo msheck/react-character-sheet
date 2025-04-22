@@ -1,0 +1,59 @@
+﻿/* Customize label*/
+.checkbox-label {
+  display: flow;
+  cursor: pointer;
+  height: stretch;
+  width: stretch;
+  user-select: none;
+}
+
+  /* Hide the browser's default checkbox */
+  .checkbox-label input {
+    position: relative;
+    display: none;
+  }
+
+/* Create a custom checkbox */
+.checkbox-custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: inherit;
+  width: inherit;
+  background-color: var(--item-background);
+}
+
+/* Style the checkbox-custom/indicator */
+.checkbox-label .checkbox-custom:after {
+  position: absolute !important;
+  text-align: center;
+  align-content: center;
+  width: inherit;
+  height: inherit;
+  content: "✔";
+  font-weight: bold;
+}
+
+.checkbox-label:hover input ~ .checkbox-custom {
+  background-color: lch(from var(--item-background) calc(l - 4) c h);
+}
+
+.checkbox-label input:checked ~ .checkbox-custom {
+  background-color: var(--accent-color);
+}
+
+.checkbox-label:hover input:checked ~ .checkbox-custom {
+  background-color: lch(from var(--accent-color) calc(l - 4) c h);
+}
+
+/* Create the checkbox-custom/indicator (hidden when not checked) */
+.checkbox-custom:after {
+  content: "";
+  display: none;
+}
+
+/* Show the checkbox-custom when checked */
+.checkbox-label input:checked ~ .checkbox-custom:after {
+  position: relative;
+  display: flow;
+}

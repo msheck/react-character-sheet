@@ -1,5 +1,5 @@
 import { LayoutItem } from "../Types";
-import { hasTitle, itemSumSize, getPaddingValue, getDefaultFontSize, getItemTitle } from "../Utils";
+import { hasTitle, itemSumSize, getDefaultFontSize, getItemTitle, useNumberInput } from "../Utils";
 
 export function getStatPool(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
   const fontSize = (): number => {
@@ -11,22 +11,9 @@ export function getStatPool(layoutItem: LayoutItem, updateItem: (id: string, fie
       <div className="item-content" id={(hasTitle(layoutItem) || !layoutItem.static) ? "stat-pool-content" : "stat-pool-content-notitle"}>
         {getItemTitle(layoutItem, updateItem, fontSize(), "stat-pool-title")}
         <div className="item-content" id="stat-pool-comparer">
-          <input
-            id="stat-pool-count"
-            style={{ fontSize: fontSize(), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
-            type="number"
-            value={layoutItem.data?.at(0)?.at(0)}
-            onChange={(e) => updateItem(layoutItem.i, "data-0", e.target.value)}
-          />
+          {useNumberInput(layoutItem, layoutItem.data?.at(0)?.at(0), 0, undefined, updateItem, fontSize(), layoutItem.isLocked, "stat-pool-count")}
           <hr />
-          <input
-            id="stat-pool-count"
-            style={{ fontSize: fontSize(), paddingLeft: getPaddingValue(layoutItem, 2, 0.25, 15) }}
-            type="number"
-            value={layoutItem.data?.at(0)?.at(1)}
-            onChange={(e) => updateItem(layoutItem.i, "data-1", e.target.value)}
-            disabled={layoutItem.static}
-          />
+          {useNumberInput(layoutItem, layoutItem.data?.at(0)?.at(1), 1, undefined, updateItem, fontSize(), layoutItem.static, "stat-pool-count")}
         </div>
       </div>
     </>

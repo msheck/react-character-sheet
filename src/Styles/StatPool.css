@@ -18,7 +18,8 @@
   grid-template-columns: 49.5% 1% 49.5%;
 }
 
-#stat-pool-title, #stat-pool-count {
+#stat-pool-title,
+#stat-pool-count {
   margin: 0;
   padding: 0;
 }
@@ -32,7 +33,3 @@
   border: 0;
   background: none;
 }
-
-  #stat-pool-count:disabled {
-    color: initial;
-  }

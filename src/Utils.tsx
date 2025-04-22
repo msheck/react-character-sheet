@@ -119,14 +119,21 @@ export function useCheckbox(
 ) {
   return data.startsWith("/checkbox") && layoutItem.static ?
     (
-      <input
-        id={idHtml + "-checkbox"}
-        className={classHtlm + "-checkbox"}
-        type="checkbox"
-        checked={data === "/checkbox-checked"}
-        onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), e.target.checked ? "/checkbox-checked" : "/checkbox")}
-        style={{ fontSize: fontSize }}
-      />
+      <label
+        className="checkbox-label"
+      >
+        <input
+          id={idHtml + "-checkbox"}
+          className={classHtlm + "-checkbox"}
+          type="checkbox"
+          checked={data === "/checkbox-checked"}
+          onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), e.target.checked ? "/checkbox-checked" : "/checkbox")}
+        />
+        <span
+          className="checkbox-custom"
+          style={{ fontSize: fontSize * 2.5 }}
+        />
+      </label>
     ) : (
       customElement ?
         customElement :
@@ -138,4 +145,53 @@ export function useCheckbox(
           style={{ fontSize: fontSize }}
         />
     )
+}
+
+export function useNumberInput(
+  layoutItem: LayoutItem,
+  data: string | undefined,
+  rowIndex: number,
+  colIndex: number | undefined,
+  updateItem: (id: string, field: string, value: string) => void,
+  fontSize: number = defaultFontSizeValue,
+  readonly: boolean = false,
+  idHtml: string | "" = "",
+  classHtlm: string | "" = ""
+) {
+  const handleStep = (step: number) => {
+    const currentValue = parseInt(data || "0", 10);
+    const newValue = currentValue + step;
+    updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), newValue.toString());
+  };
+  return (
+    <div className="custom-number-input">
+      {readonly ? null :
+        <span
+          className="value-control value-control-up"
+          onMouseDown={() => handleStep(1)}
+          style={{ fontSize: fontSize * 0.75 }}
+        >
+          &#10148;
+        </span>
+      }
+      <input
+        id={idHtml}
+        className={classHtlm}
+        style={{ fontSize: fontSize * 2 }}
+        type="number"
+        value={data}
+        readOnly={readonly}
+        onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), e.target.value)}
+      />
+      {readonly ? null :
+        <span
+          className="value-control value-control-down"
+          onMouseDown={() => handleStep(-1)}
+          style={{ fontSize: fontSize * 0.75 }}
+        >
+          &#10148;
+        </span>
+      }
+    </div>
+  )
 }

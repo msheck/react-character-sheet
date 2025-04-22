@@ -8,7 +8,7 @@
 body {
   font-family: var(--main-font);
   background-color: var(--sheet-background);
-  color: var(--primary-color) !important;
+  color: var(--primary-color);
 }
 
 input {
@@ -146,6 +146,10 @@ button {
     box-shadow: 1px 1px 0px 1px lch(from var(--accent-color) calc(l - 24) calc(c - 50 ) h / 0.5);
   }
 
+.react-resizable{
+  height: stretch;
+}
+
 textarea {
   font-family: var(--main-font);
   resize: none;
@@ -189,6 +193,8 @@ html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {
 }
 
 @import "./Toolbox.css";
+@import "./Checkbox.css";
+@import "./InputNumber.css";
 @import "./TitleCard.css";
 @import "./TextField.css";
 @import "./TextBox.css";

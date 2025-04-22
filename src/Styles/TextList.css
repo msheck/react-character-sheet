@@ -33,11 +33,26 @@
 }
 
 #text-list-item {
+  position: relative;
   min-width: 0;
   min-height: 1.8rem;
   display: grid;
   grid-template-columns: 1fr 0.1rem;
 }
+
+  #text-list-item .checkbox-label {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+  }
+
+  #text-list-item .checkbox-custom,
+  #text-list-item .checkbox-custom:after {
+    position: relative;
+    margin: var(--dist-small);
+    width: unset !important;
+    aspect-ratio: 1 / 1;
+  }
 
 #text-list-item-data {
   text-align: left;
