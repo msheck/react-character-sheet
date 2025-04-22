@@ -16,11 +16,16 @@ input[type="number"] {
   grid-template-rows: 1fr;
 }
 
+  .custom-number-input input[type="number"] {
+    margin: 0;
+    padding: 0;
+  }
+
 /*Settings for both arrows*/
 .value-control {
   opacity: 0;
   position: absolute;
-  justify-self: flex-end;
+  right: 0.8%;
   text-align: center;
   color: var(--secondary-color);
   padding: var(--dist-small);
@@ -34,12 +39,12 @@ input[type="number"] {
 
 /*Individual settings*/
 .value-control-up {
-  top: 30%;
+  top: 32%;
   transform: rotate(-90deg) scale(1, -1);
 }
 
 .value-control-down {
-  top: 50%;
+  top: 52%;
   transform: rotate(90deg);
 }
 

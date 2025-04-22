@@ -1,4 +1,5 @@
 import { LayoutItem } from "../Types";
+import { getDefaultFontSize } from "../Utils";
 import { getTitleCard } from "./TitleCard";
 import { getTextField } from "./TextField";
 import { getTextBox } from "./TextBox";
@@ -27,12 +28,12 @@ function GridItem(
     >
       {editMode && (
         <>
-          <span id="remove-grid-item" className="remove-button" onMouseDown={(e) => { e.stopPropagation(); onPutItem(layoutItem) }}>
-            &times;
-          </span>
-          <span id="edit-grid-item" className="edit-button" onMouseDown={(e) => { e.stopPropagation(); lockItem(layoutItem.i) }}>
-            <small>&#9998;</small>
-          </span>
+          <div id="remove-grid-item" className="remove-button" onMouseDown={(e) => { e.stopPropagation(); onPutItem(layoutItem) }}>
+            <span className="button-text">&times;</span>
+          </div>
+          <div id="edit-grid-item" className="edit-button" onMouseDown={(e) => { e.stopPropagation(); lockItem(layoutItem.i) }}>
+            <span className="button-text">&#9998;</span>
+          </div>
         </>
       )}
       {getItemContent(layoutItem, updateItem, removeItem, addItem, updateColSize)}

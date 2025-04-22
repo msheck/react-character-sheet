@@ -1,5 +1,5 @@
 import { LayoutItem } from "../Types";
-import { getDefaultFontSize, getItemTitle, hasTitle, itemSumSize, useCheckbox } from "../Utils";
+import { getDefaultFontSize, getItemTitle, hasTitle, itemSumSize, useCommandCall } from "../Utils";
 import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
 
@@ -26,13 +26,14 @@ function tableHeaderCell(
       <div id="text-table-cell-headcontent">
         <ResizableBox
           width={layoutItem.colSizes?.[colIndex] || defaultColSize(layoutItem)}
-          axis="x"
+          axis={layoutItem.isLocked ? "none" : "x"}
           resizeHandles={['e']}
           onResizeStop={(e, data) => updateColSize(layoutItem.i, colIndex, data.size.width)}
         >
           <input
             id="text-table-header-input" // Header input
             type="text"
+            readOnly={layoutItem.isLocked}
             value={header}
             onChange={(e) => updateItem(layoutItem.i, "data-" + 0 + "-" + colIndex, e.target.value)}
             style={{ fontSize: fontSize(0) }}
@@ -42,18 +43,18 @@ function tableHeaderCell(
               <div id="buttons-case">
                 {
                   layoutItem.data?.at(0)?.length === colIndex + 1 && (
-                    <span
+                    <div
                       id="text-table-add-column"
                       className="add-button"
                       onMouseDown={addColumn}
                     >
-                      &#43;
-                    </span>
+                      <span className="button-text">&#43;</span>
+                    </div>
                   )
                 }
                 {
                   layoutItem.data?.at(0)?.length !== 1 && ( // Only show remove button if more than one column
-                    <span
+                    <div
                       id="text-table-remove-col"
                       className="remove-button"
                       onMouseDown={(e) => {
@@ -61,8 +62,8 @@ function tableHeaderCell(
                         layoutItem.data?.forEach((_, rowIndex) => removeItem(layoutItem.i, rowIndex, colIndex))
                       }}
                     >
-                      &times;
-                    </span>
+                      <span className="button-text">&times;</span>
+                    </div>
                   )
                 }
               </div>
@@ -116,31 +117,31 @@ function tableBodyCell(
     >
       <ResizableBox
         width={layoutItem.colSizes?.[colIndex] || defaultColSize(layoutItem)}
-        axis="x"
+        axis={layoutItem.isLocked ? "none" : "x"}
         resizeHandles={['e']}
         onResizeStop={(e, data) => updateColSize(layoutItem.i, colIndex, data.size.width)}
       >
-        <div id={layoutItem.static ? "text-table-cell-content" : "text-table-cell-content-on-edit"}>
+        <div id={layoutItem.static || layoutItem.data?.at(rowIndex)?.length !== colIndex + 1 ? "text-table-cell-content" : "text-table-cell-content-on-edit"}>
           { // Renders a Checkbox or Textarea
-            useCheckbox(layoutItem, cell, rowIndex, colIndex, updateItem, fontSize(-2), "text-table-cell-data")
+            useCommandCall(layoutItem, cell, rowIndex, colIndex, updateItem, fontSize(-2), layoutItem.isLocked, "text-table-cell-data")
           }
           {
             !layoutItem.static && layoutItem.data?.at(rowIndex)?.length === colIndex + 1 && ( // Only show add/remove buttons if not static and is the last cell in the row
               <div id="buttons-case">
                 {
                   layoutItem.data?.length === rowIndex + 1 && (
-                    <span
+                    <div
                       id="text-table-add-row"
                       className="add-button"
                       onMouseDown={addRow}
                     >
-                      &#43;
-                    </span>
+                      <span className="button-text">&#43;</span>
+                    </div>
                   )
                 }
                 {
                   layoutItem.data?.length > 2 && ( // Only show remove button if more than one row
-                    <span
+                    <div
                       id="text-table-remove-row"
                       className="remove-button"
                       onMouseDown={(e) => {
@@ -148,8 +149,8 @@ function tableBodyCell(
                         removeItem(layoutItem.i, rowIndex, -1)
                       }}
                     >
-                      &times;
-                    </span>
+                      <span className="button-text">&times;</span>
+                    </div>
                   )
                 }
               </div>

@@ -106,6 +106,44 @@ export function getItemTitle(
   )
 }
 
+export function useCommandCall(
+  layoutItem: LayoutItem,
+  data: string,
+  rowIndex: number,
+  colIndex: number | undefined,
+  updateItem: (id: string, field: string, value: string) => void,
+  fontSize: number = defaultFontSizeValue,
+  readonly: boolean = false,
+  idHtml: string | "" = "",
+  classHtlm: string | "" = "",
+  customElement: JSX.Element | null = null
+) {
+  const element = () => {
+    return (customElement ?
+      customElement :
+      <textarea
+        id={idHtml}
+        className={classHtlm}
+        readOnly={readonly}
+        value={data}
+        onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), e.target.value)}
+        style={{ fontSize: fontSize }}
+      />)
+  }
+
+  if (layoutItem.static) {
+    if (data.startsWith("/checkbox"))
+      return useCheckbox(layoutItem, data, rowIndex, colIndex, updateItem, fontSize, idHtml, classHtlm);
+    else if (data.startsWith("/number"))
+      return useNumberInput(layoutItem, data, rowIndex, colIndex, updateItem, fontSize - 2, data.includes(":lock"), idHtml, classHtlm, true);
+    else
+      return element();
+  }
+  else {
+    return element();
+  }
+}
+
 export function useCheckbox(
   layoutItem: LayoutItem,
   data: string,
@@ -114,37 +152,25 @@ export function useCheckbox(
   updateItem: (id: string, field: string, value: string) => void,
   fontSize: number = defaultFontSizeValue,
   idHtml: string | "" = "",
-  classHtlm: string | "" = "",
-  customElement: JSX.Element | null = null
+  classHtlm: string | "" = ""
 ) {
-  return data.startsWith("/checkbox") && layoutItem.static ?
-    (
-      <label
-        className="checkbox-label"
-      >
-        <input
-          id={idHtml + "-checkbox"}
-          className={classHtlm + "-checkbox"}
-          type="checkbox"
-          checked={data === "/checkbox-checked"}
-          onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), e.target.checked ? "/checkbox-checked" : "/checkbox")}
-        />
-        <span
-          className="checkbox-custom"
-          style={{ fontSize: fontSize * 2.5 }}
-        />
-      </label>
-    ) : (
-      customElement ?
-        customElement :
-        <textarea
-          id={idHtml}
-          className={classHtlm}
-          value={data}
-          onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), e.target.value)}
-          style={{ fontSize: fontSize }}
-        />
-    )
+  return (
+    <label
+      className="checkbox-label"
+    >
+      <input
+        id={idHtml + "-checkbox"}
+        className={classHtlm + "-checkbox"}
+        type="checkbox"
+        checked={data === "/checkbox-checked"}
+        onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), e.target.checked ? "/checkbox-checked" : "/checkbox")}
+      />
+      <span
+        className="checkbox-custom"
+        style={{ fontSize: fontSize * 2.5 }}
+      />
+    </label>
+  )
 }
 
 export function useNumberInput(
@@ -156,19 +182,20 @@ export function useNumberInput(
   fontSize: number = defaultFontSizeValue,
   readonly: boolean = false,
   idHtml: string | "" = "",
-  classHtlm: string | "" = ""
+  classHtlm: string | "" = "",
+  commandCall: boolean = false
 ) {
   const handleStep = (step: number) => {
-    const currentValue = parseInt(data || "0", 10);
+    const currentValue = parseInt((commandCall ? data?.split('#')[1] : data) || "0", 10);
     const newValue = currentValue + step;
-    updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), newValue.toString());
+    updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), commandCall ? (data?.split('#')[0] + '#' + newValue.toString()) : newValue.toString());
   };
   return (
     <div className="custom-number-input">
       {readonly ? null :
         <span
           className="value-control value-control-up"
-          onMouseDown={() => handleStep(1)}
+          onMouseDown={(e) => handleStep(e.shiftKey ? 10 : e.ctrlKey ? 5 : 1)}
           style={{ fontSize: fontSize * 0.75 }}
         >
           &#10148;
@@ -179,14 +206,14 @@ export function useNumberInput(
         className={classHtlm}
         style={{ fontSize: fontSize * 2 }}
         type="number"
-        value={data}
+        value={commandCall ? data?.split('#')[1] : data}
         readOnly={readonly}
-        onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), e.target.value)}
+        onChange={(e) => updateItem(layoutItem.i, "data-" + rowIndex + (colIndex != undefined ? "-" + colIndex : ""), commandCall ? (data?.split('#')[0] + '#' + e.target.value) : e.target.value)}
       />
       {readonly ? null :
         <span
           className="value-control value-control-down"
-          onMouseDown={() => handleStep(-1)}
+          onMouseDown={(e) => handleStep(e.shiftKey ? -10 : e.ctrlKey ? -5 : -1)}
           style={{ fontSize: fontSize * 0.75 }}
         >
           &#10148;

@@ -1,5 +1,5 @@
 import { LayoutItem } from "../Types";
-import { getDefaultFontSize, getItemTitle, hasTitle, itemSumSize, useCheckbox } from "../Utils";
+import { getDefaultFontSize, getItemTitle, hasTitle, itemSumSize, useCommandCall } from "../Utils";
 
 function renderAddItem(
   layoutItem: LayoutItem,
@@ -42,20 +42,21 @@ function renderListItem(
           layoutItem.data?.at(0)?.map((value, index) => (
             <li key={index} id="text-list-item">
               { // Renders a Checkbox or Textarea
-                useCheckbox(layoutItem, value, index, undefined, updateItem, fontSize(-2), "text-list-item-data", (layoutItem.data?.at(0)?.length === index + 1 ? "focus-item-" + layoutItem.i : ""))
+                useCommandCall(layoutItem, value, index, undefined, updateItem, fontSize(-2), false, "text-list-item-data", (layoutItem.data?.at(0)?.length === index + 1 ? "focus-item-" + layoutItem.i : ""))
               }
-              <span
-                id="text-list-item-remove"
-                className="remove-button"
-                hidden={layoutItem.isLocked}
-                onMouseDown={
-                  (e) => {
-                    e.stopPropagation();
-                    removeItem(layoutItem.i, 0, index);
-                  }}
-              >
-                &times;
-              </span>
+              {!layoutItem.isLocked &&
+                <div
+                  id="text-list-item-remove"
+                  className="remove-button"
+                  onMouseDown={
+                    (e) => {
+                      e.stopPropagation();
+                      removeItem(layoutItem.i, 0, index);
+                    }}
+                >
+                  <span>&times;</span>
+                </div>
+              }
             </li>
           ))
         }

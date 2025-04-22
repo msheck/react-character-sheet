@@ -43,30 +43,6 @@
     "minH": 3,
     "minW": 8,
     "template": true,
-    "i": "attribute-counter",
-    "type": "attribute-counter",
-    "label": "Attribute Counter"
-  },
-  {
-    "x": 0,
-    "y": 0,
-    "w": 25,
-    "h": 12,
-    "minH": 3,
-    "minW": 8,
-    "template": true,
-    "i": "stat-pool",
-    "type": "stat-pool",
-    "label": "Stat Pool"
-  },
-  {
-    "x": 0,
-    "y": 0,
-    "w": 25,
-    "h": 12,
-    "minH": 3,
-    "minW": 8,
-    "template": true,
     "i": "text-list",
     "type": "text-list",
     "label": "Text List"
@@ -86,6 +62,30 @@
       [ "" ],
       [ "" ]
     ]
+  },
+  {
+    "x": 0,
+    "y": 0,
+    "w": 25,
+    "h": 12,
+    "minH": 3,
+    "minW": 8,
+    "template": true,
+    "i": "attribute-counter",
+    "type": "attribute-counter",
+    "label": "Attribute Counter"
+  },
+  {
+    "x": 0,
+    "y": 0,
+    "w": 25,
+    "h": 12,
+    "minH": 3,
+    "minW": 8,
+    "template": true,
+    "i": "stat-pool",
+    "type": "stat-pool",
+    "label": "Stat Pool"
   },
   {
     "x": 0,

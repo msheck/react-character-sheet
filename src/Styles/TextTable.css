@@ -40,7 +40,9 @@
 
 #text-table-body .react-resizable-handle {
   height: stretch;
-  width: 10%;
+  width: 0.5rem;
+  top: initial !important;
+  margin-top: initial !important;
   padding: 0;
   opacity: 0;
   transform: rotate(0);
@@ -63,6 +65,7 @@
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
   width: stretch;
+  height: stretch;
 }
 
 #text-table-cell-content-on-edit {
@@ -76,6 +79,7 @@
   padding-left: var(--border-color);
   min-width: 0;
   width: stretch;
+  height: stretch;
   border: none;
   background: none;
   align-content: center;

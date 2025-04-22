@@ -6,11 +6,14 @@
   overflow: auto;
 }
 
-#text-box-data:disabled {
-  background: none;
-  border: hidden;
-}
+  #text-box-content input[type=number],
+  #text-box-content-notitle input[type=number],
+  #text-box-data:disabled,
+  .text-box-unlocked {
+    background: none;
+    border: hidden;
+  }
 
-#text-box-content-notitle {
-  grid-template-rows: 1fr;
-}
+  #text-box-content-notitle {
+    grid-template-rows: 1fr;
+  }

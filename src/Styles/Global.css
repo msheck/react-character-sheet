@@ -66,20 +66,30 @@ button {
 
 .add-button, .remove-button, .edit-button {
   position: absolute;
-  width: 0.8rem !important;
-  height: 0.8rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1rem !important;
+  height: 1rem !important;
   border-radius: 50%;
   cursor: pointer;
-  font-weight: bold;
-  text-align: center;
-  opacity: 0.75;
+  opacity: 0.5;
+  transform: scale(0.8);
   transition: opacity 0.2s, transform 0.2s;
+  z-index: 1000;
 }
 
   .add-button:hover, .edit-button:hover, .remove-button:hover, .toolbox-remove:hover {
-    opacity: 1;
+    opacity: 0.95;
     transform: scale(1.05);
   }
+
+.button-text {
+  position: relative;
+  font-weight: normal;
+  font-size: 18px;
+  font-variant-caps: all-petite-caps;
+}
 
 .add-button {
   color: #337733;
@@ -98,12 +108,12 @@ button {
 
 #remove-grid-item {
   top: -5px;
-  right: -7px;
+  right: -6px;
 }
 
 #edit-grid-item {
   top: -5px;
-  right: 8px;
+  right: 10px;
 }
 
 .grid-item {
@@ -146,7 +156,7 @@ button {
     box-shadow: 1px 1px 0px 1px lch(from var(--accent-color) calc(l - 24) calc(c - 50 ) h / 0.5);
   }
 
-.react-resizable{
+.react-resizable {
   height: stretch;
 }
 
