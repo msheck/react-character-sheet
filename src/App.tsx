@@ -1,7 +1,8 @@
 import { FunctionComponent, useState, useEffect, useRef } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { v4 as uuidv4 } from "uuid";
-import Selecto from "react-selecto";
+import Moveable from "react-moveable";
+import Selecto from "react-selecto"
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import "./styles.css";
@@ -48,11 +49,11 @@ const DropDrag: FunctionComponent<Props> = ({
   });
   const [mounted, setMounted] = useState(false);
   const [editMode, setEditMode] = useState(false);
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const moveableRef = useRef<Moveable>(null);
   const selectoRef = useRef<Selecto>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const gridLayoutRef = useRef<any>(null);
-  const isDragging = useRef(false);
 
   useEffect(() => setMounted(true), []);
 
@@ -72,8 +73,6 @@ const DropDrag: FunctionComponent<Props> = ({
   }, [editMode]);
 
   const handleLayoutChange = (_layout: LayoutItem[], updatedLayouts: Layouts) => {
-    if (isDragging.current) return;
-
     const mergedLayout = _layout.map((newItem) => {
       const existingItem = layouts.lg.find((item) => item.i === newItem.i);
       return {
@@ -122,24 +121,21 @@ const DropDrag: FunctionComponent<Props> = ({
 
   const toggleEditMode = () => {
     setEditMode((prevEditMode) => !prevEditMode);
-    setSelectedItems([]);
+    setSelectedIds([]);
   };
 
-  const moveSelectedItems = (dx: number, dy: number) => {
-    if (selectedItems.length === 0) return;
+  const getSelectedElements = () => {
+    return selectedIds.map(id => document.querySelector(`[data-id="${id}"]`)).filter(Boolean) as HTMLElement[];
+  };
 
-    setLayouts((prevLayouts) => {
-      const newLayout = prevLayouts.lg.map((item) => {
-        if (selectedItems.includes(item.i)) {
-          const newX = item.x + dx;
-          const newY = item.y + dy;
+  const calculateNewPosition = (item: LayoutItem, dx: number, dy: number) => {
+    const containerWidth = gridRef.current?.offsetWidth || 1;
+    const colWidth = containerWidth / cols.lg;
 
-          return { ...item, x: newX, y: newY };
-        }
-        return item;
-      });
-      return { lg: newLayout };
-    });
+    return {
+      x: item.x + dx / colWidth,
+      y: item.y + dy / rowHeight
+    };
   };
 
   return (
@@ -154,7 +150,7 @@ const DropDrag: FunctionComponent<Props> = ({
             Add Element
           </button>
           <div className="selection-info">
-            {selectedItems.length} item{selectedItems.length !== 1 ? 's' : ''} selected
+            {selectedIds.length} item{selectedIds.length !== 1 ? 's' : ''} selected
           </div>
         </>
       )}
@@ -173,14 +169,14 @@ const DropDrag: FunctionComponent<Props> = ({
           measureBeforeMount={false}
           useCSSTransforms={mounted}
           onLayoutChange={handleLayoutChange}
-          isDraggable={false} // Disable react-grid-layout's dragging since we're using Selecto
+          isDraggable={false}
           isResizable={editMode}
           preventCollision={true}
         >
           {layouts.lg.map((layoutItem) => (
             <div
               key={layoutItem.i}
-              className={`grid-item ${selectedItems.includes(layoutItem.i) ? "selected" : ""}`}
+              className={`grid-item ${selectedIds.includes(layoutItem.i) ? "selected" : ""}`}
               data-id={layoutItem.i}
             >
               {editMode && (
@@ -225,65 +221,86 @@ const DropDrag: FunctionComponent<Props> = ({
       </div>
 
       {editMode && (
-        <Selecto
-          ref={selectoRef}
-          dragContainer={".grid-container"}
-          selectableTargets={[".react-grid-item"]}
-          hitRate={10}
-          selectByClick={true}
-          selectFromInside={true}
-          toggleContinueSelect={["shift"]}
-          ratio={0}
-          onSelect={(e) => {
-            setSelectedItems(e.selected.map(el => el.getAttribute("data-id") || ""));
-          }}
-          onDragStart={(e) => {
-            const target = e.inputEvent.target;
-
-            // Prevent dragging if the target is an interactive element
-            if (
-              target.tagName === "BUTTON" ||
-              target.tagName === "INPUT" ||
-              target.tagName === "TEXTAREA" ||
-              target.tagName === "SPAN"
-            ) {
-              return false;
-            }
-
-            // Check if the drag starts on an already selected item
-            const itemId = target.getAttribute("data-id");
-            if (itemId && selectedItems.includes(itemId)) {
-              isDragging.current = true; // Allow dragging of selected items
-              return true;
-            }
-
-            isDragging.current = false; // Prevent moving items during selection
-            return true; // Allow Selecto to proceed
-          }}
-          onDrag={(e) => {
-            if (isDragging.current && selectedItems.length > 0) {
-              const containerWidth = gridRef.current?.offsetWidth || 1;
-              const dx = e.deltaX / containerWidth * cols.lg; // Round to nearest integer
-              const dy = e.deltaY / rowHeight; // Round to nearest integer
-
-              console.log("Moving items:", selectedItems, "dx:", dx, "dy:", dy);
-
-              moveSelectedItems(dx, dy);
-            }
-          }}
-          onDragEnd={() => {
-            isDragging.current = false;
-            setLayouts((prevLayouts) => {
-              const newLayout = prevLayouts.lg.map((item) => {
-                if (selectedItems.includes(item.i)) {
-                  return { ...item, x: Math.floor(item.x), y: Math.floor(item.y) };
-                }
-                return item;
+        <>
+          <Moveable
+            ref={moveableRef}
+            target={getSelectedElements()}
+            draggable={true}
+            resizable={false}
+            keepRatio={false}
+            throttleDrag={0}
+            onClickGroup={(e) => {
+              selectoRef.current?.clickTarget(e.inputEvent, e.inputTarget);
+            }}
+            onDrag={(e) => {
+              e.target.style.transform = e.transform;
+            }}
+            onDragGroup={(e) => {
+              e.events.forEach((ev) => {
+                ev.target.style.transform = ev.transform;
               });
-              return { lg: newLayout };
-            });
-          }}
-        />
+            }}
+            onDragGroupEnd={(e) => {
+              setLayouts((prevLayouts) => {
+                const containerWidth = gridRef.current?.offsetWidth || 1;
+
+                return {
+                  lg: prevLayouts.lg.map((item) => {
+                    if (!selectedIds.includes(item.i)) return item;
+
+                    const element = document.querySelector(`[data-id="${item.i}"]`) as HTMLElement;
+                    if (!element) return item;
+
+                    // Calculate delta from transform
+                    const transform = element.style.transform;
+                    const matrix = new DOMMatrix(transform);
+                    const dx = matrix.m41;
+                    const dy = matrix.m42;
+
+                    // Calculate new grid position
+                    const newPos = calculateNewPosition(item, dx, dy);
+
+                    // Reset transform for grid layout
+                    element.style.transform = '';
+
+                    return { ...item, x: Math.floor(newPos.x), y: Math.floor(newPos.y) };
+                  })
+                };
+              });
+            }}
+          />
+          <Selecto
+            ref={selectoRef}
+            dragContainer={".grid-container"}
+            selectableTargets={[".react-grid-item"]}
+            hitRate={0}
+            selectByClick={true}
+            selectFromInside={false}
+            toggleContinueSelect={["shift"]}
+            ratio={0}
+            onDragStart={(e) => {
+              const target = e.inputEvent.target;
+              if (
+                moveableRef.current?.isMoveableElement(target) ||
+                getSelectedElements().some(t => t === target || t.contains(target))
+              ) {
+                e.stop();
+              }
+            }}
+            onSelect={(e) => {
+              setSelectedIds(e.selected.map(el => el.getAttribute("data-id") || ""));
+            }}
+            onSelectEnd={(e) => {
+              if (e.isDragStartEnd) {
+                e.inputEvent.preventDefault();
+                moveableRef.current?.waitToChangeTarget().then(() => {
+                  moveableRef.current?.dragStart(e.inputEvent);
+                });
+              }
+              setSelectedIds(e.selected.map(el => el.getAttribute("data-id") || ""));
+            }}
+          />
+        </>
       )}
     </div>
   );
