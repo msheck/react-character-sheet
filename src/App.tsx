@@ -1,11 +1,11 @@
-import { FunctionComponent, useState, useEffect } from "react";
+import { FunctionComponent, useState, useEffect, useRef } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
-import { v4 as uuidv4 } from "uuid"; // Unique ID generator
+import { v4 as uuidv4 } from "uuid";
+import Selecto from "react-selecto";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import "./styles.css";
 
-// Define types for layout items
 interface LayoutItem {
   x: number;
   y: number;
@@ -14,77 +14,13 @@ interface LayoutItem {
   i: string;
   static?: boolean;
   isDraggable?: boolean;
-  title?: string; // Add title field
-  description?: string; // Add description field
+  title?: string;
+  description?: string;
 }
 
 interface Layouts {
   [key: string]: LayoutItem[];
 }
-
-// Props for ToolBoxItem
-interface ToolBoxItemProps {
-  item: LayoutItem;
-  onTakeItem: (item: LayoutItem) => void;
-  onRemoveItem: (item: LayoutItem) => void;
-}
-
-// ToolBoxItem Component
-const ToolBoxItem: FunctionComponent<ToolBoxItemProps> = ({
-  item,
-  onTakeItem,
-  onRemoveItem,
-}) => {
-  return (
-    <div className="toolbox__items__item">
-      <div
-        className="toolbox-label"
-        onClick={() => onTakeItem(item)}
-      >
-        <span>{item.title}</span>
-      </div>
-      <div
-        className="toolbox-remove"
-        onClick={(e) => {
-          e.stopPropagation(); // Prevent triggering the onTakeItem event
-          onRemoveItem(item);
-        }}
-      >
-        <span>&times;</span>
-      </div>
-    </div>
-  );
-};
-
-// Props for ToolBox
-interface ToolBoxProps {
-  items: LayoutItem[];
-  onTakeItem: (item: LayoutItem) => void;
-  onRemoveItem: (item: LayoutItem) => void;
-}
-
-// ToolBox Component
-const ToolBox: FunctionComponent<ToolBoxProps> = ({
-  items,
-  onTakeItem,
-  onRemoveItem,
-}) => {
-  return (
-    <div className="toolbox">
-      <h4 className="toolbox__title">Toolbox</h4>
-      <div className="toolbox__items">
-        {items.map((item) => (
-          <ToolBoxItem
-            key={item.i}
-            item={item}
-            onTakeItem={onTakeItem}
-            onRemoveItem={onRemoveItem}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
 
 // Props for DropDrag
 interface Props {
@@ -101,55 +37,43 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 const DropDrag: FunctionComponent<Props> = ({
   className = "layout",
-  rowHeight = 50,
+  rowHeight = 2,
   onLayoutChange = () => { },
-  cols = { lg: 14, md: 12, sm: 8, xs: 6, xxs: 4 },
-  breakpoints = { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
-  containerPadding = [0, 0],
-  verticalCompact = false,
+  cols = { lg: 240, md: 240, sm: 240, xs: 240 },
+  breakpoints = { lg: 1200, md: 996, sm: 768, xs: 480 },
+  containerPadding = { lg: [0, 0], md: [0, 0], sm: [0, 0], xs: [0, 0] },
 }) => {
   const [layouts, setLayouts] = useState<Layouts>({
     lg: getFromLS("layout") || [],
   });
-
-  const [toolbox, setToolbox] = useState<Layouts>({
-    lg: getFromLS("toolbox").length === 0
-      ? [
-        { x: 0, y: 0, w: 2, h: 2, i: "toolbox-item-1", title: "Toolbox Item 1" },
-        { x: 0, y: 0, w: 2, h: 2, i: "toolbox-item-2", title: "title" },
-      ]
-      : getFromLS("toolbox"),
-  });
-
   const [mounted, setMounted] = useState(false);
   const [editMode, setEditMode] = useState(false);
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const selectoRef = useRef<Selecto>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const gridLayoutRef = useRef<any>(null);
+  const isDragging = useRef(false);
 
   useEffect(() => setMounted(true), []);
 
-  // Save both layouts and toolbox items to localStorage whenever they change
   useEffect(() => {
     saveToLS("layout", layouts.lg);
   }, [layouts]);
 
   useEffect(() => {
-    saveToLS("toolbox", toolbox.lg);
-  }, [toolbox]);
-
-  // Update the static and isDraggable properties of layout items based on editMode
-  useEffect(() => {
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
       lg: prevLayouts.lg.map((item) => ({
         ...item,
-        static: !editMode, // Set static to true in view mode, false in edit mode
-        isDraggable: editMode, // Set isDraggable to the inverse of static
+        static: !editMode,
+        isDraggable: editMode,
       })),
     }));
   }, [editMode]);
 
-  // Function to handle layout changes and preserve custom fields
   const handleLayoutChange = (_layout: LayoutItem[], updatedLayouts: Layouts) => {
-    // Merge the new layout with the existing layout data to preserve custom fields
+    if (isDragging.current) return;
+
     const mergedLayout = _layout.map((newItem) => {
       const existingItem = layouts.lg.find((item) => item.i === newItem.i);
       return {
@@ -158,18 +82,16 @@ const DropDrag: FunctionComponent<Props> = ({
         description: existingItem?.description,
       };
     });
-
     setLayouts({ lg: mergedLayout });
     onLayoutChange(_layout, updatedLayouts);
   };
 
-  // Function to add a new element with a unique ID
   const addItem = () => {
     const newItem: LayoutItem = {
       x: 0,
       y: 0,
-      w: 2,
-      h: 2,
+      w: 20,
+      h: 12,
       i: uuidv4(),
       static: !editMode,
       isDraggable: editMode,
@@ -180,47 +102,6 @@ const DropDrag: FunctionComponent<Props> = ({
     }));
   };
 
-  // Function to remove an element from the grid
-  const removeItem = (id: string) => {
-    setLayouts((prevLayouts) => {
-      const updatedLayout = prevLayouts.lg.filter((item) => item.i !== id);
-      return { ...prevLayouts, lg: updatedLayout };
-    });
-  };
-
-  // Function to move an item from the toolbox to the grid
-  const onTakeItem = (item: LayoutItem) => {
-    setToolbox((prevToolbox) => ({
-      ...prevToolbox,
-      lg: prevToolbox.lg.filter(({ i }) => i !== item.i),
-    }));
-    setLayouts((prevLayouts) => ({
-      ...prevLayouts,
-      lg: [...prevLayouts.lg, { ...item, static: !editMode, isDraggable: editMode }], // Set static and isDraggable based on editMode
-    }));
-  };
-
-  // Function to move an item from the grid back to the toolbox
-  const onPutItem = (item: LayoutItem) => {
-    setLayouts((prevLayouts) => ({
-      ...prevLayouts,
-      lg: prevLayouts.lg.filter(({ i }) => i !== item.i),
-    }));
-    setToolbox((prevToolbox) => ({
-      ...prevToolbox,
-      lg: [...prevToolbox.lg, item],
-    }));
-  };
-
-  // Function to remove an item from the toolbox
-  const onRemoveToolboxItem = (item: LayoutItem) => {
-    setToolbox((prevToolbox) => ({
-      ...prevToolbox,
-      lg: prevToolbox.lg.filter(({ i }) => i !== item.i),
-    }));
-  };
-
-  // Function to update the title or description of a grid item
   const updateItem = (id: string, field: "title" | "description", value: string) => {
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
@@ -237,11 +118,28 @@ const DropDrag: FunctionComponent<Props> = ({
         item.i === id ? { ...item, static: !item.static, isDraggable: !item.isDraggable } : item
       ),
     }));
-  }
+  };
 
-  // Function to toggle edit mode
   const toggleEditMode = () => {
     setEditMode((prevEditMode) => !prevEditMode);
+    setSelectedItems([]);
+  };
+
+  const moveSelectedItems = (dx: number, dy: number) => {
+    if (selectedItems.length === 0) return;
+
+    setLayouts((prevLayouts) => {
+      const newLayout = prevLayouts.lg.map((item) => {
+        if (selectedItems.includes(item.i)) {
+          const newX = item.x + dx;
+          const newY = item.y + dy;
+
+          return { ...item, x: newX, y: newY };
+        }
+        return item;
+      });
+      return { lg: newLayout };
+    });
   };
 
   return (
@@ -250,83 +148,147 @@ const DropDrag: FunctionComponent<Props> = ({
         {editMode ? "Save" : "Edit"}
       </button>
 
-      {editMode && ( // Show Add Element button and Toolbox only in edit mode
+      {editMode && (
         <>
           <button className="add-button" onClick={addItem}>
             Add Element
           </button>
-          <ToolBox
-            items={toolbox.lg}
-            onTakeItem={onTakeItem}
-            onRemoveItem={onRemoveToolboxItem}
-          />
+          <div className="selection-info">
+            {selectedItems.length} item{selectedItems.length !== 1 ? 's' : ''} selected
+          </div>
         </>
       )}
 
-      <ResponsiveReactGridLayout
-        className={className}
-        rowHeight={rowHeight}
-        cols={cols}
-        breakpoints={breakpoints}
-        containerPadding={containerPadding}
-        verticalCompact={verticalCompact}
-        layouts={layouts}
-        measureBeforeMount={false}
-        useCSSTransforms={mounted}
-        onLayoutChange={handleLayoutChange}
-      >
-        {layouts.lg.map((layoutItem) => (
-          <div key={layoutItem.i} className="grid-item">
-            {editMode && ( // Only show remove button in edit mode
-              <>
-                <span
-                  className="remove-button"
-                  onClick={() => onPutItem(layoutItem)}
-                >
-                  &times;
-                </span>
-                <span
-                  className="edit-button"
-                  onClick={() => allowEditItem(layoutItem.i)}
-                >
-                  <small>&#9998;</small>
-                </span>
-              </>
-            )}
-            <div className="item-content">
-              {layoutItem.static ? (
+      <div ref={gridRef} className="grid-container">
+        <ResponsiveReactGridLayout
+          ref={gridLayoutRef}
+          className={className}
+          rowHeight={rowHeight}
+          cols={cols}
+          breakpoints={breakpoints}
+          containerPadding={containerPadding}
+          margin={{ lg: [5, 5], md: [4, 4], sm: [3, 3], xs: [2, 2] }}
+          compactType={null}
+          layouts={layouts}
+          measureBeforeMount={false}
+          useCSSTransforms={mounted}
+          onLayoutChange={handleLayoutChange}
+          isDraggable={false} // Disable react-grid-layout's dragging since we're using Selecto
+          isResizable={editMode}
+          preventCollision={true}
+        >
+          {layouts.lg.map((layoutItem) => (
+            <div
+              key={layoutItem.i}
+              className={`grid-item ${selectedItems.includes(layoutItem.i) ? "selected" : ""}`}
+              data-id={layoutItem.i}
+            >
+              {editMode && (
                 <>
-                  <h4>{layoutItem.title}</h4>
-                  <p>{layoutItem.description}</p>
-                </>
-              ) : (
-                <>
-                  <input
-                    type="text"
-                    value={layoutItem.title || ""}
-                    onChange={(e) =>
-                      updateItem(layoutItem.i, "title", e.target.value)
-                    }
-                    placeholder="Title"
-                  />
-                  <textarea
-                    value={layoutItem.description || ""}
-                    onChange={(e) =>
-                      updateItem(layoutItem.i, "description", e.target.value)
-                    }
-                    placeholder="Description"
-                  />
+                  <span
+                    className="edit-button"
+                    onClick={() => allowEditItem(layoutItem.i)}
+                  >
+                    <small>&#9998;</small>
+                  </span>
                 </>
               )}
+              <div className="item-content">
+                {layoutItem.static ? (
+                  <>
+                    <h4>{layoutItem.title}</h4>
+                    <p>{layoutItem.description}</p>
+                  </>
+                ) : (
+                  <>
+                    <input
+                      type="text"
+                      value={layoutItem.title || ""}
+                      onChange={(e) =>
+                        updateItem(layoutItem.i, "title", e.target.value)
+                      }
+                      placeholder="Title"
+                    />
+                    <textarea
+                      value={layoutItem.description || ""}
+                      onChange={(e) =>
+                        updateItem(layoutItem.i, "description", e.target.value)
+                      }
+                      placeholder="Description"
+                    />
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
-      </ResponsiveReactGridLayout>
+          ))}
+        </ResponsiveReactGridLayout>
+      </div>
+
+      {editMode && (
+        <Selecto
+          ref={selectoRef}
+          dragContainer={".grid-container"}
+          selectableTargets={[".react-grid-item"]}
+          hitRate={10}
+          selectByClick={true}
+          selectFromInside={true}
+          toggleContinueSelect={["shift"]}
+          ratio={0}
+          onSelect={(e) => {
+            setSelectedItems(e.selected.map(el => el.getAttribute("data-id") || ""));
+          }}
+          onDragStart={(e) => {
+            const target = e.inputEvent.target;
+
+            // Prevent dragging if the target is an interactive element
+            if (
+              target.tagName === "BUTTON" ||
+              target.tagName === "INPUT" ||
+              target.tagName === "TEXTAREA" ||
+              target.tagName === "SPAN"
+            ) {
+              return false;
+            }
+
+            // Check if the drag starts on an already selected item
+            const itemId = target.getAttribute("data-id");
+            if (itemId && selectedItems.includes(itemId)) {
+              isDragging.current = true; // Allow dragging of selected items
+              return true;
+            }
+
+            isDragging.current = false; // Prevent moving items during selection
+            return true; // Allow Selecto to proceed
+          }}
+          onDrag={(e) => {
+            if (isDragging.current && selectedItems.length > 0) {
+              const containerWidth = gridRef.current?.offsetWidth || 1;
+              const dx = e.deltaX / containerWidth * cols.lg; // Round to nearest integer
+              const dy = e.deltaY / rowHeight; // Round to nearest integer
+
+              console.log("Moving items:", selectedItems, "dx:", dx, "dy:", dy);
+
+              moveSelectedItems(dx, dy);
+            }
+          }}
+          onDragEnd={() => {
+            isDragging.current = false;
+            setLayouts((prevLayouts) => {
+              const newLayout = prevLayouts.lg.map((item) => {
+                if (selectedItems.includes(item.i)) {
+                  return { ...item, x: Math.floor(item.x), y: Math.floor(item.y) };
+                }
+                return item;
+              });
+              return { lg: newLayout };
+            });
+          }}
+        />
+      )}
     </div>
   );
 };
 
-// Utility functions for localStorage
 function getFromLS(key: string): LayoutItem[] {
   let ls: { [key: string]: LayoutItem[] } = {};
   if (global.localStorage) {

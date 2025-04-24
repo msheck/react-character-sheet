@@ -3,12 +3,20 @@
   text-align: center;
 }
 
-.layout {
-  height: fit-content;
-}
-
 .add-button {
   margin-bottom: 1em;
+}
+
+#root,
+.mb-4,
+.grid-container,
+.layout {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  height: 1000px !important;
+  width: stretch !important;
+  justify-self: center;
 }
 
 .remove-button {
@@ -90,4 +98,18 @@
   align-self: center;
   cursor: pointer;
   font-weight: bold;
+}
+
+.selecto-area .selected {
+  outline: 2px dashed #4af;
+}
+
+.grid-item.selected {
+  background-color: rgba(68, 170, 255, 0.1);
+  outline: 2px solid #4af;
+  z-index: 100;
+}
+
+.react-grid-item {
+  transition: none !important;
 }
