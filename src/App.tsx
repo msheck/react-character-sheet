@@ -1,8 +1,8 @@
-import { FunctionComponent, useState, useEffect, useRef } from "react";
+﻿import { FunctionComponent, useState, useEffect, useRef, useCallback } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { v4 as uuidv4 } from "uuid";
 import Moveable from "react-moveable";
-import Selecto from "react-selecto"
+import Selecto from "react-selecto";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import "./styles.css";
@@ -49,22 +49,25 @@ const DropDrag: FunctionComponent<Props> = ({
   });
   const [mounted, setMounted] = useState(false);
   const [editMode, setEditMode] = useState(false);
-  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);  
   const moveableRef = useRef<Moveable>(null);
   const selectoRef = useRef<Selecto>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const gridLayoutRef = useRef<any>(null);
+  
+  const dragState = useRef<{
+    initialPositions: Record<string, { x: number; y: number }>;
+    containerRect?: DOMRect;
+    colWidth: number;
+  } | null>(null);
 
   useEffect(() => setMounted(true), []);
-
+  useEffect(() => saveToLS("layout", layouts.lg), [layouts]);
+  
   useEffect(() => {
-    saveToLS("layout", layouts.lg);
-  }, [layouts]);
-
-  useEffect(() => {
-    setLayouts((prevLayouts) => ({
-      ...prevLayouts,
-      lg: prevLayouts.lg.map((item) => ({
+    setLayouts(prev => ({
+      ...prev,
+      lg: prev.lg.map(item => ({
         ...item,
         static: !editMode,
         isDraggable: editMode,
@@ -72,17 +75,36 @@ const DropDrag: FunctionComponent<Props> = ({
     }));
   }, [editMode]);
 
-  const handleLayoutChange = (_layout: LayoutItem[], updatedLayouts: Layouts) => {
-    const mergedLayout = _layout.map((newItem) => {
-      const existingItem = layouts.lg.find((item) => item.i === newItem.i);
-      return {
-        ...newItem,
-        title: existingItem?.title,
-        description: existingItem?.description,
-      };
-    });
-    setLayouts({ lg: mergedLayout });
-    onLayoutChange(_layout, updatedLayouts);
+  const calculateGridMetrics = useCallback(() => {
+    const containerWidth = gridRef.current?.offsetWidth || 0;
+    return {
+      colWidth: containerWidth / cols.lg,
+      containerRect: gridRef.current?.getBoundingClientRect(),
+    };
+  }, [cols.lg]);
+
+  const handleDrag = useCallback((dx: number, dy: number) => {
+    if (!dragState.current) return;
+
+    const { colWidth, initialPositions } = dragState.current;
+    const deltaX = dx / colWidth;
+    const deltaY = dy / rowHeight;
+
+    setLayouts(prev => ({
+      lg: prev.lg.map(item => {
+        if (!initialPositions[item.i]) return item;
+        return {
+          ...item,
+          x: Math.ceil(initialPositions[item.i].x + deltaX),
+          y: Math.ceil(initialPositions[item.i].y + deltaY),
+        };
+      })
+    }));
+  }, [rowHeight]);
+
+  const handleLayoutChange = (layout: LayoutItem[]) => {
+    setLayouts(prev => ({ ...prev, lg: layout }));
+    onLayoutChange(layout, layouts);
   };
 
   const addItem = () => {
@@ -124,19 +146,12 @@ const DropDrag: FunctionComponent<Props> = ({
     setSelectedIds([]);
   };
 
-  const getSelectedElements = () => {
-    return selectedIds.map(id => document.querySelector(`[data-id="${id}"]`)).filter(Boolean) as HTMLElement[];
-  };
-
-  const calculateNewPosition = (item: LayoutItem, dx: number, dy: number) => {
-    const containerWidth = gridRef.current?.offsetWidth || 1;
-    const colWidth = containerWidth / cols.lg;
-
-    return {
-      x: item.x + dx / colWidth,
-      y: item.y + dy / rowHeight
-    };
-  };
+  const getSelectedElements = useCallback(() => 
+    selectedIds
+      .map(id => document.querySelector(`[data-id="${id}"]`))
+      .filter(Boolean) as HTMLElement[],
+    [selectedIds]
+  );
 
   return (
     <div className="mb-4">
@@ -150,7 +165,7 @@ const DropDrag: FunctionComponent<Props> = ({
             Add Element
           </button>
           <div className="selection-info">
-            {selectedIds.length} item{selectedIds.length !== 1 ? 's' : ''} selected
+            {selectedIds.length} selected
           </div>
         </>
       )}
@@ -184,7 +199,7 @@ const DropDrag: FunctionComponent<Props> = ({
                   <span
                     className="edit-button"
                     onClick={() => allowEditItem(layoutItem.i)}
-                  >
+                >
                     <small>&#9998;</small>
                   </span>
                 </>
@@ -227,77 +242,62 @@ const DropDrag: FunctionComponent<Props> = ({
             target={getSelectedElements()}
             draggable={true}
             resizable={false}
-            keepRatio={false}
-            throttleDrag={0}
-            onClickGroup={(e) => {
-              selectoRef.current?.clickTarget(e.inputEvent, e.inputTarget);
-            }}
-            onDrag={(e) => {
-              e.target.style.transform = e.transform;
-            }}
-            onDragGroup={(e) => {
-              e.events.forEach((ev) => {
-                ev.target.style.transform = ev.transform;
-              });
-            }}
-            onDragGroupEnd={(e) => {
-              setLayouts((prevLayouts) => {
-                const containerWidth = gridRef.current?.offsetWidth || 1;
-
-                return {
-                  lg: prevLayouts.lg.map((item) => {
-                    if (!selectedIds.includes(item.i)) return item;
-
-                    const element = document.querySelector(`[data-id="${item.i}"]`) as HTMLElement;
-                    if (!element) return item;
-
-                    // Calculate delta from transform
-                    const transform = element.style.transform;
-                    const matrix = new DOMMatrix(transform);
-                    const dx = matrix.m41;
-                    const dy = matrix.m42;
-
-                    // Calculate new grid position
-                    const newPos = calculateNewPosition(item, dx, dy);
-
-                    // Reset transform for grid layout
-                    element.style.transform = '';
-
-                    return { ...item, x: Math.floor(newPos.x), y: Math.floor(newPos.y) };
+            throttleDrag={1}
+            onDragStart={e => {
+              dragState.current = {
+                initialPositions: Object.fromEntries(
+                  selectedIds.map(id => {
+                    const item = layouts.lg.find(i => i.i === id)!;
+                    return [id, { x: item.x, y: item.y }];
                   })
-                };
-              });
+                ),
+                ...calculateGridMetrics()
+              };
+            }}
+            onDrag={e => {
+              e.target.style.transform = e.transform;
+              handleDrag(e.translate[0], e.translate[1]);
+            }}
+            onDragEnd={e => {
+              e.target.style.transform = "";
+              dragState.current = null;
+            }}
+            onDragGroupStart={e => {
+              dragState.current = {
+                initialPositions: Object.fromEntries(
+                  selectedIds.map(id => {
+                    const item = layouts.lg.find(i => i.i === id)!;
+                    return [id, { x: item.x, y: item.y }];
+                  })
+                ),
+                ...calculateGridMetrics()
+              };
+            }}
+            onDragGroup={e => {
+              e.events.forEach(ev => ev.target.style.transform = ev.transform);
+              handleDrag(e.translate[0], e.translate[1]);
+            }}
+            onDragGroupEnd={e => {
+              e.events.forEach(ev => ev.target.style.transform = "");
+              dragState.current = null;
             }}
           />
+
           <Selecto
             ref={selectoRef}
-            dragContainer={".grid-container"}
-            selectableTargets={[".react-grid-item"]}
-            hitRate={0}
-            selectByClick={true}
-            selectFromInside={false}
+            dragContainer=".grid-container"
+            selectableTargets={[".grid-item"]}
+            hitRate={80}
+            selectByClick
             toggleContinueSelect={["shift"]}
-            ratio={0}
-            onDragStart={(e) => {
-              const target = e.inputEvent.target;
-              if (
-                moveableRef.current?.isMoveableElement(target) ||
-                getSelectedElements().some(t => t === target || t.contains(target))
-              ) {
-                e.stop();
-              }
+            onSelect={e => {
+              setSelectedIds(e.selected.map(el => el.getAttribute("data-id")!));
             }}
-            onSelect={(e) => {
-              setSelectedIds(e.selected.map(el => el.getAttribute("data-id") || ""));
-            }}
-            onSelectEnd={(e) => {
+            onSelectEnd={e => {
               if (e.isDragStartEnd) {
                 e.inputEvent.preventDefault();
-                moveableRef.current?.waitToChangeTarget().then(() => {
-                  moveableRef.current?.dragStart(e.inputEvent);
-                });
+                moveableRef.current?.dragStart(e.inputEvent);
               }
-              setSelectedIds(e.selected.map(el => el.getAttribute("data-id") || ""));
             }}
           />
         </>
@@ -309,9 +309,9 @@ const DropDrag: FunctionComponent<Props> = ({
 function getFromLS(key: string): LayoutItem[] {
   let ls: { [key: string]: LayoutItem[] } = {};
   if (global.localStorage) {
-    try {
+  try {
       ls = JSON.parse(global.localStorage.getItem("rgl-7") || "{}");
-    } catch (e) {
+  } catch (e) {
       console.error("Failed to parse localStorage data:", e);
     }
   }
