@@ -49,13 +49,13 @@ const DropDrag: FunctionComponent<Props> = ({
     lg: getFromLS("layout") || [],
   });
   const [mounted, setMounted] = useState(false);
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(true);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setMounted(true), []);
   useEffect(() => saveToLS("layout", layouts.lg), [layouts]);
-  
+
   useEffect(() => {
     setLayouts(prev => ({
       ...prev,
@@ -111,17 +111,24 @@ const DropDrag: FunctionComponent<Props> = ({
     setSelectedIds([]);
   };
 
-  const getSelectedElements = useCallback(() => 
+  const getSelectedElements = useCallback(() =>
     selectedIds
       .map(id => document.querySelector(`[data-id="${id}"]`))
       .filter(Boolean) as HTMLElement[],
     [selectedIds]
   );
 
-  // --- Selecto: handle selection ---
+  // Handle for Selecto
   const handleSelect = (e: any) => {
-    const ids = e.selected.map((el: HTMLElement) => el.getAttribute("data-id"));
-    setSelectedIds(ids.filter(Boolean));
+    const ids = e.selected
+      .map((el: HTMLElement) => el.getAttribute("data-id"))
+      .filter(Boolean) as string[];
+    // Filter out ids that are static
+    const selectableIds = ids.filter(id => {
+      const item = layouts.lg.find(item => item.i === id);
+      return item && !item.static;
+    });
+    setSelectedIds(selectableIds);
   };
 
   // Helper to get grid width and col count
@@ -210,7 +217,7 @@ const DropDrag: FunctionComponent<Props> = ({
                   <span
                     className="edit-button"
                     onClick={() => allowEditItem(layoutItem.i)}
-                >
+                  >
                     <small>&#9998;</small>
                   </span>
                 </>
@@ -274,9 +281,9 @@ const DropDrag: FunctionComponent<Props> = ({
 function getFromLS(key: string): LayoutItem[] {
   let ls: { [key: string]: LayoutItem[] } = {};
   if (global.localStorage) {
-  try {
+    try {
       ls = JSON.parse(global.localStorage.getItem("rgl-7") || "{}");
-  } catch (e) {
+    } catch (e) {
       console.error("Failed to parse localStorage data:", e);
     }
   }
