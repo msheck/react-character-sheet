@@ -12,6 +12,8 @@ interface LayoutItem {
   y: number;
   w: number;
   h: number;
+  minW?: number;
+  minH?: number;
   i: string;
   static?: boolean;
   isDraggable?: boolean;
@@ -113,6 +115,8 @@ const DropDrag: FunctionComponent<Props> = ({
       y: 0,
       w: 20,
       h: 12,
+      minW: 20,
+      minH: 12,
       i: uuidv4(),
       static: !editMode,
       isDraggable: editMode,
