@@ -271,6 +271,8 @@ const DropDrag: FunctionComponent<Props> = ({
             selectByClick
             toggleContinueSelect={["shift"]}
             onSelect={handleSelect}
+            preventDefault={true}
+            selectFromInside={false}
           />
         </>
       )}
