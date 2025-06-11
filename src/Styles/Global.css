@@ -7,7 +7,7 @@
 
 body {
   font-family: var(--main-font);
-  background-color: var(--sheet-background);
+  background-color: lch(from var(--sheet-background) calc(l - 2) calc(c - 2 ) h);
   color: var(--primary-color);
 }
 
@@ -21,10 +21,10 @@ textarea {
 }
 
 .layout {
-  background-color: white;
+  background-color: var(--sheet-background);
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  height: stretch !important;
+  min-height: 960px !important;
   width: var(--layout-width);
   justify-self: center;
 }
@@ -107,12 +107,12 @@ button {
 }
 
 #remove-grid-item {
-  top: -5px;
+  top: -7px;
   right: -6px;
 }
 
 #edit-grid-item {
-  top: -5px;
+  top: -7px;
   right: 10px;
 }
 
@@ -170,6 +170,24 @@ html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
 
+.selecto-area .selected {
+  outline: 2px dashed var(--accent-color);
+}
+
+.moveable-line {
+  background: var(--accent-color) !important;
+}
+
+.grid-item.selected {
+  background-color: lch(from var(--accent-color) l c h / 0.05);
+  outline: 2px solid var(--accent-color);
+  z-index: 10;
+}
+
+.react-grid-item {
+  transition: none !important;
+}
+
 /* React Grid Layout specific styles */
 .react-grid-item.react-grid-placeholder {
   background: var(--accent-color);
@@ -188,19 +206,6 @@ html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {
   .react-grid-item > .react-resizable-handle:hover {
     opacity: 1;
   }
-
-/* Animation for item appearance */
-.react-grid-item.cssTransforms {
-  transition-property: transform, opacity !important;
-}
-
-.react-grid-item.adding {
-  opacity: 0;
-}
-
-.react-grid-item.added {
-  opacity: 1;
-}
 
 @import "./Toolbox.css";
 @import "./Checkbox.css";

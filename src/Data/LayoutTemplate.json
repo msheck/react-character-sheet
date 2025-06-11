@@ -9,7 +9,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Character Name",
     "data": [
       []
@@ -29,7 +28,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "data": [
       []
     ],
@@ -48,7 +46,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Class & Level:",
     "data": [
       []
@@ -68,7 +65,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Race:",
     "data": [
       []
@@ -88,7 +84,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Background:",
     "data": [
       [
@@ -110,7 +105,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Alignment:",
     "data": [
       []
@@ -130,7 +124,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Player Name:",
     "data": [
       []
@@ -150,7 +143,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Experience:",
     "data": [
       []
@@ -170,7 +162,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Attributes",
     "data": [
       []
@@ -190,7 +181,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Strength",
     "data": [
       [
@@ -213,7 +203,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Dexterity",
     "data": [
       [
@@ -236,7 +225,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Constitution",
     "data": [
       [
@@ -259,7 +247,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Intelligence",
     "data": [
       [
@@ -282,7 +269,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Wisdom",
     "data": [
       [
@@ -305,7 +291,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Charisma",
     "data": [
       [
@@ -386,7 +371,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Inspiration",
     "data": [
       []
@@ -406,7 +390,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "data": [
       [
         "2"
@@ -427,7 +410,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Proficiency Bonus",
     "data": [
       []
@@ -565,7 +547,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Passive Perception",
     "data": [
       [
@@ -587,7 +568,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Other Proficiencies & Languages",
     "data": [
       [
@@ -611,7 +591,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Armor Class",
     "data": [
       [
@@ -633,7 +612,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Initiative",
     "data": [
       [
@@ -655,7 +633,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Speed",
     "data": [
       [
@@ -677,7 +654,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Current Hit Points",
     "data": [
       [
@@ -700,7 +676,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Hit Points Max:",
     "data": [
       []
@@ -720,7 +695,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Hit Dice",
     "data": [
       []
@@ -740,7 +714,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Total",
     "data": [
       []
@@ -760,7 +733,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Death Saves",
     "data": [
       []
@@ -828,7 +800,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "data": [
       []
     ],
@@ -847,7 +818,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Attacks & Spellcasting",
     "data": [
       [
@@ -895,7 +865,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "data": [
       []
     ],
@@ -914,7 +883,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Equipment",
     "data": [
       []
@@ -934,7 +902,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "data": [
       [
         "Backpack",
@@ -956,7 +923,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Copper Piece",
     "data": [
       []
@@ -976,7 +942,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Silver Piece",
     "data": [
       []
@@ -996,7 +961,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Electrum Piece",
     "data": [
       [
@@ -1018,7 +982,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Gold Piece",
     "data": [
       []
@@ -1038,7 +1001,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Platinum Piece",
     "data": [
       [
@@ -1060,7 +1022,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Personality Traits",
     "data": [
       []
@@ -1080,7 +1041,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Ideals",
     "data": [
       []
@@ -1100,7 +1060,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Bonds",
     "data": [
       []
@@ -1120,7 +1079,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Flaws",
     "data": [
       []
@@ -1140,7 +1098,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "data": [
       []
     ],
@@ -1159,7 +1116,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Features & Traits",
     "data": [
       []
@@ -1179,7 +1135,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "data": [
       [
         "/checkbox"
@@ -1200,7 +1155,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "title": "Temporary Hit Points",
     "data": [
       []
@@ -1220,7 +1174,6 @@
     "minH": 3,
     "moved": false,
     "static": false,
-    "isDraggable": true,
     "data": [
       []
     ],

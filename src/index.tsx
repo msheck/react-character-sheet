@@ -8,6 +8,6 @@ const root = ReactDOMClient.createRoot(rootElement);
 
 root.render(
   <StrictMode>
-    <Sheet verticalCompact={false} />
+    <Sheet/>
   </StrictMode>
 );

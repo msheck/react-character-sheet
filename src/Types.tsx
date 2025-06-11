@@ -22,7 +22,6 @@ export interface LayoutItem {
   type?: string;
   isLocked?: boolean;
   static?: boolean;
-  isDraggable?: boolean;
   template?: boolean;
   label?: string;
   title?: string;
@@ -62,10 +61,10 @@ export interface GridItemProps {
 export interface Props {
   className?: string;
   rowHeight?: number;
+  minHeight?: number;
   cols?: { [key: string]: number };
   breakpoints?: { [key: string]: number };
   containerPadding?: [number, number] | { [key: string]: [number, number] };
   containerMargin?: [number, number] | { [key: string]: [number, number] };
-  verticalCompact?: boolean;
   onLayoutChange?: (layout: LayoutItem[], layouts: Layouts) => void;
 }

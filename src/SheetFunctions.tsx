@@ -2,7 +2,7 @@ import { LayoutItem, Layouts } from "./Types";
 import { getFromLS } from "./Utils";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
-import LayoutTemplate from "./Data/LayoutTemplate.json";
+import LayoutTemplate from "./Data/BlankTemplate.json";
 import ToolboxTemplates from "./Data/ToolboxTemplates.json";
 
 export const useSheetFunctions = () => {
@@ -33,7 +33,6 @@ export const useSheetFunctions = () => {
       type: item.type,
       isLocked: item.isLocked,
       static: !editMode,
-      isDraggable: editMode,
       label: item.label,
       data: item.data,
       colSizes: item.colSizes || [],
@@ -56,7 +55,7 @@ export const useSheetFunctions = () => {
       }));
       setLayouts((prevLayouts) => ({
         ...prevLayouts,
-        lg: [...prevLayouts.lg, { ...item, static: item.static, isDraggable: item.isDraggable }],
+        lg: [...prevLayouts.lg, { ...item, static: item.static }],
       }));
     }
   };
@@ -182,7 +181,7 @@ export const useSheetFunctions = () => {
     setLayouts((prevLayouts) => ({
       ...prevLayouts,
       lg: prevLayouts.lg.map((item) =>
-        item.i === id ? { ...item, isLocked: !item.isLocked, static: (!editMode || !item.isLocked), isDraggable: (editMode && item.isLocked) } : item
+        item.i === id ? { ...item, isLocked: !item.isLocked, static: (!editMode || !item.isLocked) } : item
       ),
     }));
   };

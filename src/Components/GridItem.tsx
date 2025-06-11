@@ -12,6 +12,7 @@ import { getMathFormula } from "./MathFormula";
 // Basic GridItem component, renders the remove and edit buttons, gets content by type
 function GridItem(
   layoutItem: LayoutItem,
+  selectedIds: string[],
   editMode: boolean,
   onPutItem: (item: LayoutItem) => void,
   lockItem: (id: string) => void,
@@ -24,7 +25,8 @@ function GridItem(
     <div
       key={layoutItem.i}
       id={layoutItem.type}
-      className="grid-item"
+      className={`grid-item ${selectedIds.includes(layoutItem.i) ? "selected" : ""}`}
+      data-id={layoutItem.i}
     >
       {editMode && (
         <>
