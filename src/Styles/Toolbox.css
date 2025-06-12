@@ -12,11 +12,12 @@
   position: fixed;
   border-radius: 10px;
   background-color: lch(from var(--item-background) calc(l - 10) calc(c - 18) h / 1);
-  box-shadow: 0px 8px 20px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.4);
   margin: 0 var(--dist-medium) 0 var(--dist-large);
   padding-left: var(--dist-small);
   z-index: 800;
   opacity: 0.4;
+  transform: translateY(-2.5rem);
   transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
@@ -25,7 +26,7 @@
   }
 
 .collapsedToolbox {
-  transform: translateY(-1.4rem);
+  transform: translateY(-3.4rem);
   border-radius: 4px;
   width: 6rem;
   height: 2rem;

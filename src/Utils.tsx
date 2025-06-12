@@ -1,5 +1,5 @@
 import { JSX } from "react";
-import { ColorItems, LayoutItem } from "./Types";
+import { ColorItems, LayoutItem, Tab } from "./Types";
 
 let defaultFontSizeValue = 10;
 
@@ -28,6 +28,18 @@ export function getColorsFromLS(): ColorItems {
   return ls["defaultColors"];
 }
 
+export function getTabsFromLS(): Tab[] {
+  let ls: { [key: string]: any } = {};
+  if (global.localStorage) {
+    try {
+      ls = JSON.parse(global.localStorage.getItem("appData") || "{}");
+    } catch (e) {
+      console.error("Failed to parse localStorage data:", e);
+    }
+  }
+  return ls["tabs"] || [];
+}
+
 export function saveToLS(key: string, value: LayoutItem[]): void {
   if (global.localStorage) {
     try {
@@ -48,6 +60,32 @@ export function saveColorsToLS(colors: ColorItems): void {
       global.localStorage.setItem("appData", JSON.stringify(existingData));
     } catch (e) {
       console.error("Failed to save colors to localStorage:", e);
+    }
+  }
+}
+
+export function saveTabsToLS(tabs: Tab[]): void {
+  if (global.localStorage) {
+    try {
+      const existingData = JSON.parse(global.localStorage.getItem("appData") || "{}");
+      existingData["tabs"] = tabs;
+      global.localStorage.setItem("appData", JSON.stringify(existingData));
+    } catch (e) {
+      console.error("Failed to save tabs to localStorage:", e);
+    }
+  }
+}
+
+export function deleteLayoutFromLS(key: string): void {
+  if (global.localStorage) {
+    try {
+      const existingData = JSON.parse(global.localStorage.getItem("appData") || "{}");
+      if (existingData[key]) {
+        delete existingData[key];
+        global.localStorage.setItem("appData", JSON.stringify(existingData));
+      }
+    } catch (e) {
+      console.error("Failed to delete layout from localStorage:", e);
     }
   }
 }

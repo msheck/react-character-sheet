@@ -1,4 +1,4 @@
-// Props for ColorItems
+// Define Color Items
 export interface ColorItems {
   primaryColor: string;
   secondaryColor: string;
@@ -8,7 +8,7 @@ export interface ColorItems {
   itemBackground: string;
 }
 
-// Define layout items
+// Define Layout Items
 export interface LayoutItem {
   x: number;
   y: number;
@@ -29,9 +29,15 @@ export interface LayoutItem {
   colSizes?: (number | null)[];
 }
 
-// Define layouts
+// Define Layouts
 export interface Layouts {
   [key: string]: LayoutItem[];
+}
+
+// Define Tabs
+export interface Tab {
+  id: string;
+  label: string
 }
 
 // Props for ToolboxItem
