@@ -66,12 +66,13 @@ export interface GridItemProps {
 // Props for DropDrag
 export interface SheetProps {
   tabId: string;
+  editMode: boolean;
   className?: string;
   rowHeight?: number;
-  minHeight?: number;
   cols?: { [key: string]: number };
   breakpoints?: { [key: string]: number };
   containerPadding?: [number, number] | { [key: string]: [number, number] };
   containerMargin?: [number, number] | { [key: string]: [number, number] };
   onLayoutChange?: (layout: LayoutItem[], layouts: Layouts) => void;
+  toggleEditMode?: () => void;
 }

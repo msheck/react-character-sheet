@@ -12,7 +12,7 @@ const Toolbox: FunctionComponent<ToolboxProps> = ({
   onRemoveItem,
 }) => {
   const { defaultColors, setColorType } = useDefaultColors();
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const [activePicker, setActivePicker] = useState<string | null>(null); // Tracks which picker is open
 
   const handleToggleCollapse = () => {

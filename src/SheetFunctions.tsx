@@ -5,7 +5,7 @@ import { useState } from "react";
 import LayoutTemplate from "./Data/BlankTemplate.json";
 import ToolboxTemplates from "./Data/ToolboxTemplates.json";
 
-export const useSheetFunctions = (tabId: string) => {
+export const useSheetFunctions = (tabId: string, editMode: boolean) => {
   const [layouts, setLayouts] = useState<Layouts>({
     lg: getFromLS(tabId).length === 0
       ? LayoutTemplate : getFromLS(tabId) || []
@@ -15,8 +15,6 @@ export const useSheetFunctions = (tabId: string) => {
     lg: getFromLS("toolbox").length === 0
       ? ToolboxTemplates : getFromLS("toolbox")
   });
-
-  const [editMode, setEditMode] = useState(false);
 
   // Function to add a new element with a unique ID
   const addGridItem = (item: LayoutItem) => {
@@ -186,15 +184,9 @@ export const useSheetFunctions = (tabId: string) => {
     }));
   };
 
-  // Function to toggle edit mode
-  const toggleEditMode = () => {
-    setEditMode((prevEditMode) => !prevEditMode);
-  };
-
   return {
     layouts,
     toolbox,
-    editMode,
     addGridItem,
     onTakeItem,
     onPutItem,
@@ -204,7 +196,6 @@ export const useSheetFunctions = (tabId: string) => {
     addItem,
     updateColSize,
     lockItem,
-    toggleEditMode,
     setLayouts,
   };
 };

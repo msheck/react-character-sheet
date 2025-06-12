@@ -16,18 +16,19 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 const Sheet: FunctionComponent<SheetProps> = ({
   tabId = "",
+  editMode = false,
   className = "layout",
   rowHeight = 2,
-  onLayoutChange = () => { },
   cols = { lg: 240, md: 240, sm: 240, xs: 240 },
   breakpoints = { lg: 1200, md: 996, sm: 768, xs: 480 },
   containerPadding = { lg: [0, 0], md: [0, 0], sm: [0, 0], xs: [0, 0] },
   containerMargin = { lg: [5, 5], md: [4, 4], sm: [3, 3], xs: [2, 2] },
+  onLayoutChange = () => { },
+  toggleEditMode = () => { },
 }) => {
   const {
     layouts,
     toolbox,
-    editMode,
     onTakeItem,
     onPutItem,
     onRemoveToolboxItem,
@@ -36,9 +37,8 @@ const Sheet: FunctionComponent<SheetProps> = ({
     addItem,
     updateColSize,
     lockItem,
-    toggleEditMode,
     setLayouts,
-  } = useSheetFunctions(tabId);
+  } = useSheetFunctions(tabId, editMode);
 
   const { defaultColors } = useDefaultColors(); // Ensure that colors are loaded from localStorage before opening the Toolbox
   const [mounted, setMounted] = useState(false);
@@ -145,7 +145,7 @@ const Sheet: FunctionComponent<SheetProps> = ({
     // Filter out ids that are static
     const selectableIds = ids.filter(id => {
       const item = layouts.lg.find(item => item.i === id);
-      return item && !item.static;
+      return item && (!item.static || !item.isLocked);
     });
     setSelectedIds(selectableIds);
   };
@@ -199,7 +199,7 @@ const Sheet: FunctionComponent<SheetProps> = ({
         {editMode ? "Save" : "Edit"}
       </button>
 
-      {editMode && ( // Show Add Element button and Toolbox only in edit mode
+      {editMode && ( // Show Toolbox only in edit mode
         <Toolbox
           items={toolbox.lg}
           onTakeItem={onTakeItem}
@@ -242,7 +242,7 @@ const Sheet: FunctionComponent<SheetProps> = ({
           <Selecto
             dragContainer=".grid-container"
             selectableTargets={[".grid-item"]}
-            hitRate={75}
+            hitRate={60}
             selectByClick={false}
             toggleContinueSelect={["shift"]}
             onSelect={handleSelect}

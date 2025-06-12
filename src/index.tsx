@@ -11,6 +11,8 @@ function App() {
     { id: "tab-main", label: "Main" }
   ];
 
+  const [editMode, setEditMode] = useState(false);
+
   const [tabs, setTabs] = useState<Tab[]>(() => {
     const loaded = getTabsFromLS();
     return loaded.length ? loaded : defaultTabs;
@@ -28,6 +30,11 @@ function App() {
       setActiveTab(tabs[0]?.id || "");
     }
   }, [tabs, activeTab]);
+
+  // Function to toggle edit mode
+  const toggleEditMode = () => {
+    setEditMode((prevEditMode) => !prevEditMode);
+  };
 
   // Add a new tab
   const handleAddTab = () => {
@@ -63,7 +70,12 @@ function App() {
 
   return (
     <div className="sheet-group">
-      <Sheet key={activeTab} tabId={activeTab} />
+      <Sheet
+        key={activeTab}
+        tabId={activeTab}
+        editMode={editMode}
+        toggleEditMode={toggleEditMode}
+      />
       <div className="tab-group">
         {tabs.map(tab => (
           <div key={tab.id}>

@@ -313,7 +313,6 @@
     "minH": 3,
     "moved": false,
     "static": true,
-    "isDraggable": false,
     "title": "Saving Throws",
     "data": [
       [
@@ -429,7 +428,6 @@
     "minH": 3,
     "moved": false,
     "static": true,
-    "isDraggable": false,
     "title": "Skills",
     "data": [
       [
@@ -752,7 +750,6 @@
     "minH": 3,
     "moved": false,
     "static": true,
-    "isDraggable": false,
     "title": "Successes",
     "data": [
       [
@@ -776,7 +773,6 @@
     "minH": 3,
     "moved": false,
     "static": true,
-    "isDraggable": false,
     "title": "Failures",
     "data": [
       [
