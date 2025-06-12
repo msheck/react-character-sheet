@@ -32,7 +32,7 @@ function App() {
   // Add a new tab
   const handleAddTab = () => {
     let base = "tab-";
-    const newTab = { id: `${base}${uuidv4()}`, label: `New Tab ${tabs.length + 1}` };
+    const newTab = { id: `${base}${uuidv4()}`, label: `Tab ${tabs.length + 1}` };
     setTabs([...tabs, newTab]);
     setActiveTab(newTab.id);
   };
@@ -62,7 +62,8 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="sheet-group">
+      <Sheet key={activeTab} tabId={activeTab} />
       <div className="tab-group">
         {tabs.map(tab => (
           <div key={tab.id}>
@@ -71,7 +72,6 @@ function App() {
               onClick={() => setActiveTab(tab.id)}
               onDoubleClick={() => handleRenameTab(tab.id)}
             >
-              {tab.label}
               <span
                 id={`tab-close${activeTab !== tab.id ? "-hidden" : ""}`}
                 className="remove-button"
@@ -80,6 +80,7 @@ function App() {
               >
                 &times;
               </span>
+              <span className="tab-button-content">{tab.label}</span>
             </button>
           </div>
         ))}
@@ -87,7 +88,6 @@ function App() {
           +
         </button>
       </div>
-      <Sheet key={activeTab} tabId={activeTab} />
     </div>
   );
 }

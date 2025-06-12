@@ -11,37 +11,62 @@ body {
   color: var(--primary-color);
 }
 
+.sheet-group {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 0 !important;
+}
+
 .tab-group {
+  position: fixed;
+  top: 5rem;
+  left: -7.25rem;
   display: flex;
-  justify-content: center;
-}
-
-.tab-button {
-  padding: 8px 16px;
-  margin: 0;
-  margin-right: 4px;
-  background: var(--sheet-background);
-  color: var(--secondary-color);
-  border: none;
-  border-radius: 4px 4px 0 0;
-  cursor: pointer;
+  flex-direction: column;
   opacity: 0.7;
-  transition: opacity 0.2s;
+  transition: transform 0.7s, opacity 0.2s;
 }
 
-  .tab-button:hover {
+  .tab-group:hover {
+    transform: translateX(7.25rem);
     opacity: 1;
   }
 
+.tab-button {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns:  1fr;
+  grid-template-rows: 1fr;
+  padding: 0;
+  width: 8rem;
+  min-height: 2rem;
+  margin: 0;
+  margin-bottom: var(--dist-small);
+  background: var(--sheet-background);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
   .tab-button.selected {
+    grid-template-columns: 12% 1fr;
     background: var(--accent-color);
     color: var(--primary-color);
     font-weight: bold;
   }
 
+.tab-button-content {
+  margin-left: 12%;
+}
+
+.tab-button.selected > .tab-button-content {
+  margin-left: 0;
+}
+
 #tab-close {
-  display: inline-flex;
-  top: 5px;
+  position: relative;
 }
 
 #tab-close-hidden {
@@ -77,7 +102,7 @@ button {
 .edit-mode {
   position: fixed;
   z-index: 1000;
-  left: -2.8rem;
+  left: -2.4rem;
   top: 2rem;
   background-color: rgba(35,55,220,0.7);
   height: 2rem;
@@ -93,7 +118,7 @@ button {
 
   .edit-mode:hover {
     background-color: rgba(35,55,220,1);
-    transform: translateX(2.8rem);
+    transform: translateX(2.4rem);
     opacity: 1;
   }
 
