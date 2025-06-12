@@ -5,10 +5,10 @@ import { useState } from "react";
 import LayoutTemplate from "./Data/BlankTemplate.json";
 import ToolboxTemplates from "./Data/ToolboxTemplates.json";
 
-export const useSheetFunctions = () => {
+export const useSheetFunctions = (tabId: string) => {
   const [layouts, setLayouts] = useState<Layouts>({
-    lg: getFromLS("layout").length === 0
-      ? LayoutTemplate : getFromLS("layout") || []
+    lg: getFromLS(tabId).length === 0
+      ? LayoutTemplate : getFromLS(tabId) || []
   });
 
   const [toolbox, setToolbox] = useState<Layouts>({

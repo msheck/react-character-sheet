@@ -1,5 +1,4 @@
 import { LayoutItem } from "../Types";
-import { getDefaultFontSize } from "../Utils";
 import { getTitleCard } from "./TitleCard";
 import { getTextField } from "./TextField";
 import { getTextBox } from "./TextBox";

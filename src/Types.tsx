@@ -58,7 +58,8 @@ export interface GridItemProps {
 }
 
 // Props for DropDrag
-export interface Props {
+export interface SheetProps {
+  tabId: string;
   className?: string;
   rowHeight?: number;
   minHeight?: number;

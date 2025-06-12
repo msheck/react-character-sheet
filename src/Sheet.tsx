@@ -2,7 +2,7 @@ import { FunctionComponent, useState, useEffect, useRef, useCallback } from "rea
 import { Responsive, WidthProvider } from "react-grid-layout";
 import Moveable, { OnDrag, OnDragGroup } from "react-moveable";
 import Selecto from "react-selecto";
-import { LayoutItem, Layouts, Props } from "./Types";
+import { LayoutItem, Layouts, SheetProps } from "./Types";
 import { useSheetFunctions } from "./SheetFunctions";
 import { useDefaultColors } from "./DefaultColors";
 import { saveToLS, setDefaultFontSize } from "./Utils";
@@ -14,7 +14,8 @@ import "./Styles/Global.css";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-const DropDrag: FunctionComponent<Props> = ({
+const Sheet: FunctionComponent<SheetProps> = ({
+  tabId = "",
   className = "layout",
   rowHeight = 2,
   onLayoutChange = () => { },
@@ -37,7 +38,7 @@ const DropDrag: FunctionComponent<Props> = ({
     lockItem,
     toggleEditMode,
     setLayouts,
-  } = useSheetFunctions();
+  } = useSheetFunctions(tabId);
 
   const { defaultColors } = useDefaultColors(); // Ensure that colors are loaded from localStorage before opening the Toolbox
   const [mounted, setMounted] = useState(false);
@@ -55,7 +56,7 @@ const DropDrag: FunctionComponent<Props> = ({
 
   // Save both layouts and toolbox items to localStorage whenever they change
   useEffect(() => {
-    saveToLS("layout", layouts.lg);
+    saveToLS(tabId, layouts.lg);
   }, [layouts]);
 
   useEffect(() => {
@@ -254,4 +255,4 @@ const DropDrag: FunctionComponent<Props> = ({
   );
 };
 
-export default DropDrag;
+export default Sheet;
