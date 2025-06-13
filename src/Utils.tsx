@@ -5,39 +5,39 @@ import Dnd5eTemplate from "./Data/TemplateDnd5e.json";
 let defaultFontSizeValue = 10;
 
 // Utility functions for localStorage
-export function getLayoutFromLS(key: string): LayoutItem[] {
-  let ls: { [key: string]: LayoutItem[] } = {};
+function getAppDataFromLS(): { [key: string]: any } {
   if (global.localStorage) {
     try {
-      ls = JSON.parse(global.localStorage.getItem("appData") || "{}");
+      return JSON.parse(global.localStorage.getItem("appData") || "{}");
     } catch (e) {
       console.error("Failed to parse localStorage data:", e);
     }
   }
+  return {};
+}
+
+function saveAppDataToLS(data: { [key: string]: any }): void {
+  if (global.localStorage) {
+    try {
+      global.localStorage.setItem("appData", JSON.stringify(data));
+    } catch (e) {
+      console.error("Failed to save to localStorage:", e);
+    }
+  }
+}
+
+export function getLayoutFromLS(key: string): LayoutItem[] {
+  const ls = getAppDataFromLS();
   return ls[key] || [];
 }
 
 export function getColorsFromLS(): ColorItems {
-  let ls: { [key: string]: ColorItems } = {};
-  if (global.localStorage) {
-    try {
-      ls = JSON.parse(global.localStorage.getItem("appData") || "{}");
-    } catch (e) {
-      console.error("Failed to parse localStorage data:", e);
-    }
-  }
+  const ls = getAppDataFromLS();
   return ls["defaultColors"];
 }
 
 export function getTabsFromLS(): Tab[] {
-  let ls: { [key: string]: any } = {};
-  if (global.localStorage) {
-    try {
-      ls = JSON.parse(global.localStorage.getItem("appData") || "{}");
-    } catch (e) {
-      console.error("Failed to parse localStorage data:", e);
-    }
-  }
+  const ls = getAppDataFromLS();
   return ls["tabs"] || [];
 }
 
@@ -55,52 +55,28 @@ export function saveTemplateToLS(): void {
 }
 
 export function saveLayoutToLS(key: string, value: LayoutItem[]): void {
-  if (global.localStorage) {
-    try {
-      const existingData = JSON.parse(global.localStorage.getItem("appData") || "{}");
-      existingData[key] = value;
-      global.localStorage.setItem("appData", JSON.stringify(existingData));
-    } catch (e) {
-      console.error("Failed to save to localStorage:", e);
-    }
-  }
+  const data = getAppDataFromLS();
+  data[key] = value;
+  saveAppDataToLS(data);
 }
 
 export function saveColorsToLS(colors: ColorItems): void {
-  if (global.localStorage) {
-    try {
-      const existingData = JSON.parse(global.localStorage.getItem("appData") || "{}");
-      existingData["defaultColors"] = colors;
-      global.localStorage.setItem("appData", JSON.stringify(existingData));
-    } catch (e) {
-      console.error("Failed to save colors to localStorage:", e);
-    }
-  }
+  const data = getAppDataFromLS();
+  data["defaultColors"] = colors;
+  saveAppDataToLS(data);
 }
 
 export function saveTabsToLS(tabs: Tab[]): void {
-  if (global.localStorage) {
-    try {
-      const existingData = JSON.parse(global.localStorage.getItem("appData") || "{}");
-      existingData["tabs"] = tabs;
-      global.localStorage.setItem("appData", JSON.stringify(existingData));
-    } catch (e) {
-      console.error("Failed to save tabs to localStorage:", e);
-    }
-  }
+  const data = getAppDataFromLS();
+  data["tabs"] = tabs;
+  saveAppDataToLS(data);
 }
 
 export function deleteLayoutFromLS(key: string): void {
-  if (global.localStorage) {
-    try {
-      const existingData = JSON.parse(global.localStorage.getItem("appData") || "{}");
-      if (existingData[key]) {
-        delete existingData[key];
-        global.localStorage.setItem("appData", JSON.stringify(existingData));
-      }
-    } catch (e) {
-      console.error("Failed to delete layout from localStorage:", e);
-    }
+  const data = getAppDataFromLS();
+  if (data[key]) {
+    delete data[key];
+    saveAppDataToLS(data);
   }
 }
 
