@@ -1,0 +1,2771 @@
+{
+  "defaultColors": {
+    "primaryColor": "rgba(50,50,50,1)",
+    "secondaryColor": "rgba(80,80,80,1)",
+    "accentColor": "rgba(100,150,255,0.8)",
+    "borderColor": "rgba(165,165,130,0.8)",
+    "sheetBackground": "rgba(245,245,250,1)",
+    "itemBackground": "rgba(230,230,230,1)"
+  },
+  "toolbox": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 25,
+      "h": 3,
+      "minH": 3,
+      "minW": 8,
+      "template": true,
+      "i": "title-card",
+      "type": "title-card",
+      "label": "Title Card"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 25,
+      "h": 12,
+      "minH": 3,
+      "minW": 8,
+      "template": true,
+      "i": "text-field",
+      "type": "text-field",
+      "label": "Text Field"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 25,
+      "h": 12,
+      "minH": 3,
+      "minW": 8,
+      "template": true,
+      "i": "text-box",
+      "type": "text-box",
+      "label": "Text Box"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 25,
+      "h": 12,
+      "minH": 3,
+      "minW": 8,
+      "template": true,
+      "i": "text-list",
+      "type": "text-list",
+      "label": "Text List"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 25,
+      "h": 12,
+      "minH": 3,
+      "minW": 8,
+      "template": true,
+      "i": "text-table",
+      "type": "text-table",
+      "label": "Text Table",
+      "data": [
+        [
+          ""
+        ],
+        [
+          ""
+        ]
+      ]
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 25,
+      "h": 12,
+      "minH": 3,
+      "minW": 8,
+      "template": true,
+      "i": "attribute-counter",
+      "type": "attribute-counter",
+      "label": "Attribute Counter"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 25,
+      "h": 12,
+      "minH": 3,
+      "minW": 8,
+      "template": true,
+      "i": "stat-pool",
+      "type": "stat-pool",
+      "label": "Stat Pool"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "w": 25,
+      "h": 12,
+      "minH": 3,
+      "minW": 8,
+      "template": true,
+      "i": "math-formula",
+      "type": "math-formula",
+      "label": "Math Formula"
+    }
+  ],
+  "tabs": [
+    {
+      "id": "tab-main",
+      "label": "Main"
+    },
+    {
+      "id": "tab-bio",
+      "label": "Bio"
+    },
+    {
+      "id": "tab-spells",
+      "label": "Spells"
+    }
+  ],
+  "tab-main": [
+    {
+      "w": 90,
+      "h": 3,
+      "x": 0,
+      "y": 0,
+      "i": "9e4a933e-b593-4df4-9e08-fc37c921a7b6",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Character Name",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 90,
+      "h": 5,
+      "x": 0,
+      "y": 3,
+      "i": "306c4cb0-5080-4e59-bbbd-dd8591cc5a3a",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 50,
+      "h": 4,
+      "x": 90,
+      "y": 0,
+      "i": "d72e212f-3249-4cc2-a04c-0eca995e81d4",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Class & Level:",
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 50,
+      "h": 4,
+      "x": 90,
+      "y": 4,
+      "i": "6688c64b-682b-4b7a-a08e-ef01d42a90a4",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Race:",
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 50,
+      "h": 4,
+      "x": 140,
+      "y": 0,
+      "i": "cc54608b-ff1a-4769-8f76-4d4d0d2ab7ea",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Background:",
+      "data": [
+        [
+          ""
+        ]
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 50,
+      "h": 4,
+      "x": 140,
+      "y": 4,
+      "i": "ea8088f1-1811-46ce-a438-c9d692cdd483",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Alignment:",
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 50,
+      "h": 4,
+      "x": 190,
+      "y": 0,
+      "i": "1f72922e-6073-46bc-9f01-e8fc37f13e3d",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Player Name:",
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 50,
+      "h": 4,
+      "x": 190,
+      "y": 4,
+      "i": "2da8dcd3-39bd-4d33-a6e8-324ba036a4a5",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Experience:",
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 39,
+      "h": 4,
+      "x": 0,
+      "y": 11,
+      "i": "731aabaf-33e7-45b7-bca7-b42f46b6b841",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Attributes",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 39,
+      "h": 12,
+      "x": 0,
+      "y": 15,
+      "i": "07f6315c-f67e-4dd1-afde-c8e6f164bfbc",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Strength",
+      "data": [
+        [
+          "floor(x/2-5)",
+          "10"
+        ]
+      ],
+      "label": "Math Formula",
+      "type": "math-formula",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 39,
+      "h": 12,
+      "x": 0,
+      "y": 27,
+      "i": "a9005ea7-9cd6-4799-80f2-cd10c8cc228b",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Dexterity",
+      "data": [
+        [
+          "floor(x/2-5)",
+          "10"
+        ]
+      ],
+      "label": "Math Formula",
+      "type": "math-formula",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 39,
+      "h": 12,
+      "x": 0,
+      "y": 39,
+      "i": "55590688-5c16-4e77-99b5-5d8f6a2b8c5d",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Constitution",
+      "data": [
+        [
+          "floor(x/2-5)",
+          "10"
+        ]
+      ],
+      "label": "Math Formula",
+      "type": "math-formula",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 39,
+      "h": 12,
+      "x": 0,
+      "y": 51,
+      "i": "c149e80d-a96c-4ce4-a9ab-aa665278123a",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Intelligence",
+      "data": [
+        [
+          "floor(x/2-5)",
+          "10"
+        ]
+      ],
+      "label": "Math Formula",
+      "type": "math-formula",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 39,
+      "h": 12,
+      "x": 0,
+      "y": 63,
+      "i": "9c22d8af-5f80-4c4b-b8b7-5fbe86bbc288",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Wisdom",
+      "data": [
+        [
+          "floor(x/2-5)",
+          "10"
+        ]
+      ],
+      "label": "Math Formula",
+      "type": "math-formula",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 39,
+      "h": 12,
+      "x": 0,
+      "y": 75,
+      "i": "efc9a1c5-70a5-453e-af8a-2d8d166fdf1c",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Charisma",
+      "data": [
+        [
+          "floor(x/2-5)",
+          "10"
+        ]
+      ],
+      "label": "Math Formula",
+      "type": "math-formula",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 63,
+      "h": 47,
+      "x": 40,
+      "y": 39,
+      "i": "d71946a5-77cc-4951-b484-eedb2b8af304",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Saving Throws",
+      "data": [
+        [
+          "",
+          "",
+          ""
+        ],
+        [
+          "/checkbox",
+          "",
+          "Strength"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Dexterity"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Constitution"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Intelligence"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Wisdom"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Charisma"
+        ]
+      ],
+      "label": "Text Table",
+      "type": "text-table",
+      "isLocked": true,
+      "colSizes": [
+        35,
+        76,
+        240
+      ]
+    },
+    {
+      "w": 39,
+      "h": 7,
+      "x": 55,
+      "y": 11,
+      "i": "93703eea-2f61-4a3a-b2eb-a4f5a94903f7",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Inspiration",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 14,
+      "h": 12,
+      "x": 41,
+      "y": 26,
+      "i": "7821e90f-021c-4ed3-a33a-98337cc77bb5",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        [
+          "2"
+        ]
+      ],
+      "label": "Attribute Counter",
+      "type": "attribute-counter",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 39,
+      "h": 7,
+      "x": 55,
+      "y": 26,
+      "i": "9f39e8d3-489f-495c-8cd1-8a53db6523c5",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Proficiency Bonus",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 63,
+      "h": 133,
+      "x": 40,
+      "y": 86,
+      "i": "e301ebbf-9cf8-431d-a672-c810ff005f7f",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Skills",
+      "data": [
+        [
+          "",
+          "",
+          ""
+        ],
+        [
+          "/checkbox",
+          "",
+          "Acrobatics (Dex)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Animal Handling (Wis)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Arcana (Int)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Athletics (Str)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Deception (Cha)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "History (Int)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Insight (Wis)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Intimidation (Cha)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Investigation (Int)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Medicine (Wis)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Nature (Int)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Perception (Wis)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Performance (Cha)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Persuasion (Cha)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Religion (Int)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Sleight of Hand (Dex)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Stealth (Dex)"
+        ],
+        [
+          "/checkbox",
+          "",
+          "Survival (Wis)"
+        ]
+      ],
+      "label": "Text Table",
+      "type": "text-table",
+      "isLocked": true,
+      "colSizes": [
+        34,
+        77,
+        240
+      ]
+    },
+    {
+      "w": 39,
+      "h": 12,
+      "x": 0,
+      "y": 87,
+      "i": "89db0a0c-97ba-4aed-bac9-bae0ef36ff5c",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Passive Perception",
+      "data": [
+        [
+          "10"
+        ]
+      ],
+      "label": "Attribute Counter",
+      "type": "attribute-counter",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 40,
+      "h": 121,
+      "x": 0,
+      "y": 99,
+      "i": "42005b56-66ad-4b68-b9fd-34cd262064ec",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Other Proficiencies & Languages",
+      "data": [
+        [
+          "Common",
+          "Simple Weapons",
+          "Martial Weapons"
+        ]
+      ],
+      "label": "Text List",
+      "type": "text-list",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 18,
+      "h": 15,
+      "x": 111,
+      "y": 10,
+      "i": "6180a5ac-c37c-42f5-9ce5-43a9c2c72f68",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Armor Class",
+      "data": [
+        [
+          "10"
+        ]
+      ],
+      "label": "Attribute Counter",
+      "type": "attribute-counter",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 18,
+      "h": 15,
+      "x": 129,
+      "y": 10,
+      "i": "104236f8-b522-4152-9fa7-c32e4d26ddfa",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Initiative",
+      "data": [
+        [
+          "0"
+        ]
+      ],
+      "label": "Attribute Counter",
+      "type": "attribute-counter",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 18,
+      "h": 15,
+      "x": 147,
+      "y": 10,
+      "i": "8b1bf3a6-5712-4cfe-a1c4-b74b022cec9a",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Speed",
+      "data": [
+        [
+          "30"
+        ]
+      ],
+      "label": "Attribute Counter",
+      "type": "attribute-counter",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 54,
+      "h": 15,
+      "x": 111,
+      "y": 25,
+      "i": "17f7ebae-f050-4ddf-b8de-0a066611893b",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Current Hit Points",
+      "data": [
+        [
+          "",
+          ""
+        ]
+      ],
+      "label": "Stat Pool",
+      "type": "stat-pool",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 54,
+      "h": 4,
+      "x": 111,
+      "y": 40,
+      "i": "6559cba3-e6e9-4eac-a50c-20eef53d3dd8",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Hit Points Max:",
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 23,
+      "h": 11,
+      "x": 111,
+      "y": 60,
+      "i": "671326ca-7767-4b54-8d1a-12ca0c27c35e",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Hit Dice",
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 23,
+      "h": 5,
+      "x": 111,
+      "y": 71,
+      "i": "60b56e9a-e32b-4579-9708-df1a004f6e7a",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Total",
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 30,
+      "h": 3,
+      "x": 135,
+      "y": 45,
+      "i": "8364973b-3139-400a-bab3-ccc034a73c6d",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Death Saves",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 28,
+      "x": 134,
+      "y": 48,
+      "i": "448d5d65-e82e-42bd-8d16-826765796a61",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Successes",
+      "data": [
+        [
+          "/checkbox",
+          "/checkbox",
+          "/checkbox"
+        ]
+      ],
+      "label": "Text List",
+      "type": "text-list",
+      "isLocked": true,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 28,
+      "x": 152,
+      "y": 48,
+      "i": "bbea097c-b593-4fb2-b4b9-54e9299a2b5c",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Failures",
+      "data": [
+        [
+          "/checkbox",
+          "/checkbox",
+          "/checkbox"
+        ]
+      ],
+      "label": "Text List",
+      "type": "text-list",
+      "isLocked": true,
+      "colSizes": []
+    },
+    {
+      "w": 70,
+      "h": 3,
+      "x": 103,
+      "y": 76,
+      "i": "6d2a7b3a-2e4d-49d6-bfa4-9e000bfc69ec",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 70,
+      "h": 40,
+      "x": 103,
+      "y": 79,
+      "i": "619a6f1b-6677-4647-bcae-16c6181b2309",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Attacks & Spellcasting",
+      "data": [
+        [
+          "Name",
+          "Atack Bonus",
+          "Damage/Type"
+        ],
+        [
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          ""
+        ],
+        [
+          "",
+          "",
+          ""
+        ]
+      ],
+      "label": "Text Table",
+      "type": "text-table",
+      "isLocked": false,
+      "colSizes": [
+        155,
+        99,
+        144
+      ]
+    },
+    {
+      "w": 70,
+      "h": 22,
+      "x": 103,
+      "y": 119,
+      "i": "9d39a511-92c0-480b-a797-af2788ac939e",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        []
+      ],
+      "label": "Text Box",
+      "type": "text-box",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 70,
+      "h": 3,
+      "x": 103,
+      "y": 141,
+      "i": "31e62f8f-b513-4aa5-aec3-5f43877673bd",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Equipment",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 56,
+      "h": 76,
+      "x": 117,
+      "y": 144,
+      "i": "7675d220-6ffd-4954-8f4a-9aced05816b0",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        [
+          "Backpack",
+          "Armor"
+        ]
+      ],
+      "label": "Text List",
+      "type": "text-list",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 11,
+      "x": 103,
+      "y": 144,
+      "i": "534b2b3c-0f98-4692-acf0-b3a10a76904a",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Copper Piece",
+      "data": [
+        []
+      ],
+      "label": "Attribute Counter",
+      "type": "attribute-counter",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 11,
+      "x": 103,
+      "y": 155,
+      "i": "45f29855-1302-4f81-8ea6-f24a8591ab59",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Silver Piece",
+      "data": [
+        []
+      ],
+      "label": "Attribute Counter",
+      "type": "attribute-counter",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 11,
+      "x": 103,
+      "y": 166,
+      "i": "976e602a-d322-4a8d-b97e-f27a22fae5c7",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Electrum Piece",
+      "data": [
+        [
+          ""
+        ]
+      ],
+      "label": "Attribute Counter",
+      "type": "attribute-counter",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 11,
+      "x": 103,
+      "y": 177,
+      "i": "d78875dc-9b27-420d-bb19-eaea4879066f",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Gold Piece",
+      "data": [
+        []
+      ],
+      "label": "Attribute Counter",
+      "type": "attribute-counter",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 11,
+      "x": 103,
+      "y": 188,
+      "i": "2b34a522-5789-417d-be7b-f6a52fd84c0d",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Platinum Piece",
+      "data": [
+        [
+          ""
+        ]
+      ],
+      "label": "Attribute Counter",
+      "type": "attribute-counter",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 67,
+      "h": 21,
+      "x": 173,
+      "y": 10,
+      "i": "e97b1441-3eba-431d-94e6-3c95522ef6c5",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Personality Traits",
+      "data": [
+        []
+      ],
+      "label": "Text Box",
+      "type": "text-box",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 67,
+      "h": 21,
+      "x": 173,
+      "y": 31,
+      "i": "7acefdec-0379-4cc1-a115-65fa92df7b07",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Ideals",
+      "data": [
+        []
+      ],
+      "label": "Text Box",
+      "type": "text-box",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 67,
+      "h": 21,
+      "x": 173,
+      "y": 52,
+      "i": "93a82b68-7fa8-4eac-bfbd-f2959f5422fd",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Bonds",
+      "data": [
+        []
+      ],
+      "label": "Text Box",
+      "type": "text-box",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 67,
+      "h": 21,
+      "x": 173,
+      "y": 73,
+      "i": "25c4296c-3a67-44a6-b231-688b7a66732c",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Flaws",
+      "data": [
+        []
+      ],
+      "label": "Text Box",
+      "type": "text-box",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 67,
+      "h": 122,
+      "x": 173,
+      "y": 98,
+      "i": "1831dac8-5839-4a8b-8af6-13b8c3f7c390",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        []
+      ],
+      "label": "Text List",
+      "type": "text-list",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 67,
+      "h": 4,
+      "x": 173,
+      "y": 94,
+      "i": "c5588a05-1355-4714-841d-d256ffe2ac4d",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Features & Traits",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 14,
+      "h": 12,
+      "x": 41,
+      "y": 11,
+      "i": "4eba0b4d-b7da-435b-905a-18c9057437c5",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        [
+          "/checkbox"
+        ]
+      ],
+      "label": "Text Box",
+      "type": "text-box",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 23,
+      "h": 16,
+      "x": 111,
+      "y": 44,
+      "i": "23c94a44-31bc-4c31-8f2c-4ba24f41a527",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Temporary Hit Points",
+      "data": [
+        []
+      ],
+      "label": "Attribute Counter",
+      "type": "attribute-counter",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 240,
+      "h": 3,
+      "x": 0,
+      "y": 220,
+      "i": "039e8f91-ee64-41b4-a151-a4b1ecf5a09e",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    }
+  ],
+  "tab-bio": [
+    {
+      "w": 95,
+      "h": 5,
+      "x": 0,
+      "y": 0,
+      "i": "2644abb4-152c-4532-a40d-7a1ffa190d2a",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Character Name",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 95,
+      "h": 8,
+      "x": 0,
+      "y": 5,
+      "i": "dbd75ff5-a4ff-4ba3-b0b2-84e34929cae3",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 41,
+      "h": 5,
+      "x": 108,
+      "y": 0,
+      "i": "d4037f66-21eb-43c9-9505-61e677aab445",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Age:",
+      "data": [
+        [
+          ""
+        ]
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 41,
+      "h": 5,
+      "x": 108,
+      "y": 5,
+      "i": "0916042b-dac0-4cbb-bbdf-08ef06f1f645",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Eyes:",
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 41,
+      "h": 5,
+      "x": 149,
+      "y": 0,
+      "i": "3b50b6c3-d7f1-4abd-b3af-0dbfa504bb9b",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Height:",
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 41,
+      "h": 5,
+      "x": 149,
+      "y": 5,
+      "i": "b2fa7fae-03fd-4f18-82ae-97954464d73c",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Skin:",
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 41,
+      "h": 5,
+      "x": 190,
+      "y": 0,
+      "i": "e07d58f9-a2f0-428e-bf5d-351a11741d36",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Weight:",
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 41,
+      "h": 5,
+      "x": 190,
+      "y": 5,
+      "i": "8f929d92-9764-447c-81c7-913b3bc43e3a",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Hair:",
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 145,
+      "h": 5,
+      "x": 95,
+      "y": 13,
+      "i": "3b96a5f9-b56e-4f0c-8a0e-d966b58fbd5c",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Allies & Organizations",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 74,
+      "h": 62,
+      "x": 95,
+      "y": 18,
+      "i": "19e3b31e-6975-4dc0-badb-00a0bfd3e983",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        []
+      ],
+      "label": "Text Box",
+      "type": "text-box",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 71,
+      "h": 28,
+      "x": 169,
+      "y": 52,
+      "i": "956e559e-1582-4f5f-baea-7303cb9de23b",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        []
+      ],
+      "label": "Text List",
+      "type": "text-list",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 145,
+      "h": 6,
+      "x": 95,
+      "y": 80,
+      "i": "6201c038-371e-416e-a935-01b6f8c689c3",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Additional Features & Traits",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 145,
+      "h": 6,
+      "x": 95,
+      "y": 130,
+      "i": "ae69a3c6-58ce-4bae-a479-abbbfcb2f34b",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Treasure",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 145,
+      "h": 44,
+      "x": 95,
+      "y": 86,
+      "i": "51a4fce8-3691-49a9-9896-59333562b2ce",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ]
+      ],
+      "label": "Text Table",
+      "type": "text-table",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 145,
+      "h": 55,
+      "x": 95,
+      "y": 136,
+      "i": "3da9c5dd-4ada-4381-a16e-3ddb551ea4a4",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        []
+      ],
+      "label": "Text Box",
+      "type": "text-box",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 95,
+      "h": 6,
+      "x": 0,
+      "y": 80,
+      "i": "9dd53522-e3f5-4d05-8f11-1915085e1f4e",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Character Backstory",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 95,
+      "h": 105,
+      "x": 0,
+      "y": 86,
+      "i": "db28204a-f5ce-4e59-88d6-89e928fb2b8a",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        []
+      ],
+      "label": "Text Box",
+      "type": "text-box",
+      "isLocked": false,
+      "colSizes": []
+    }
+  ],
+  "tab-spells": [
+    {
+      "w": 88,
+      "h": 5,
+      "x": 0,
+      "y": 0,
+      "i": "52a6a377-c85f-4051-b3f4-9fc11e05966d",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Spellcasting Class",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 88,
+      "h": 9,
+      "x": 0,
+      "y": 5,
+      "i": "1d995db9-3950-4ffb-84fd-6be67d0bfc0d",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 30,
+      "h": 8,
+      "x": 109,
+      "y": 3,
+      "i": "735a1fe1-2327-40dd-8c5b-d38c4c8f2ce4",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "",
+      "data": [
+        []
+      ],
+      "label": "Text Field",
+      "type": "text-field",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 30,
+      "h": 3,
+      "x": 109,
+      "y": 0,
+      "i": "151e5cd1-7d67-41b7-b7fd-ed03ebc130c9",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Spellcasting Ability",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 30,
+      "h": 3,
+      "x": 147,
+      "y": 0,
+      "i": "b663ab77-d2ae-4ee7-bb7f-7296f741c878",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Spell Save DC",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 30,
+      "h": 3,
+      "x": 187,
+      "y": 0,
+      "i": "01aed390-74da-4792-9848-8ba13c338c0c",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Spell Attack Bonus",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 30,
+      "h": 8,
+      "x": 147,
+      "y": 3,
+      "i": "d9be6a2c-bd19-416e-80bf-b8a605d6cdfd",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        [
+          ""
+        ]
+      ],
+      "label": "Attribute Counter",
+      "type": "attribute-counter",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 30,
+      "h": 8,
+      "x": 187,
+      "y": 3,
+      "i": "90b0d85f-5838-4204-8525-a13a7905f3ee",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        []
+      ],
+      "label": "Attribute Counter",
+      "type": "attribute-counter",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 80,
+      "h": 7,
+      "x": 0,
+      "y": 17,
+      "i": "b9a0b608-bacb-42dd-8e13-516972313c1c",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Cantrips",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 80,
+      "h": 27,
+      "x": 0,
+      "y": 24,
+      "i": "557b6fc1-1117-45c0-83af-ad6fcd82d9b8",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        []
+      ],
+      "label": "Text List",
+      "type": "text-list",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 37,
+      "h": 7,
+      "x": 80,
+      "y": 16,
+      "i": "42bc7eda-2801-4d31-8964-97e18ac7ce72",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Spell Level 3",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 37,
+      "h": 7,
+      "x": 0,
+      "y": 51,
+      "i": "f5058991-a8b2-42a8-95b8-c21d12545467",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Spell Level 1",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 37,
+      "h": 7,
+      "x": 0,
+      "y": 149,
+      "i": "d2861638-209a-4b11-8829-7c664b6a2e6e",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Spell Level 2",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 80,
+      "h": 59,
+      "x": 80,
+      "y": 123,
+      "i": "30f5cdd6-e7fc-4b57-9cd9-aede846bb1cd",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        [
+          "",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ]
+      ],
+      "label": "Text Table",
+      "type": "text-table",
+      "isLocked": false,
+      "colSizes": [
+        26,
+        422
+      ]
+    },
+    {
+      "w": 40,
+      "h": 10,
+      "x": 37,
+      "y": 51,
+      "i": "aa6540c7-8dbb-4b9f-a192-8c7610a7bd84",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Slots Total / Expended",
+      "data": [
+        [
+          "0",
+          "0"
+        ]
+      ],
+      "label": "Stat Pool",
+      "type": "stat-pool",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 40,
+      "h": 10,
+      "x": 37,
+      "y": 149,
+      "i": "6d9005ba-491c-4fe8-954c-20797e7ae7a6",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Slots Total / Expended",
+      "data": [
+        [
+          "",
+          ""
+        ]
+      ],
+      "label": "Stat Pool",
+      "type": "stat-pool",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 40,
+      "h": 10,
+      "x": 117,
+      "y": 113,
+      "i": "88a42a4d-43c5-41fb-83ad-80f457d74f5d",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Slots Total / Expended",
+      "data": [
+        [
+          "",
+          ""
+        ]
+      ],
+      "label": "Stat Pool",
+      "type": "stat-pool",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 40,
+      "h": 10,
+      "x": 117,
+      "y": 16,
+      "i": "fef2c568-d72f-469d-a9ec-d2a450f1e03d",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Slots Total / Expended",
+      "data": [
+        [
+          "",
+          ""
+        ]
+      ],
+      "label": "Stat Pool",
+      "type": "stat-pool",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 40,
+      "h": 10,
+      "x": 117,
+      "y": 182,
+      "i": "9ac0973a-c23e-4dd8-af14-16f29aedd1e9",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Slots Total / Expended",
+      "data": [
+        [
+          ""
+        ]
+      ],
+      "label": "Stat Pool",
+      "type": "stat-pool",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 40,
+      "h": 10,
+      "x": 197,
+      "y": 16,
+      "i": "5d5e9ee2-8dbf-4327-b3e9-69e59b54b946",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Slots Total / Expended",
+      "data": [
+        []
+      ],
+      "label": "Stat Pool",
+      "type": "stat-pool",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 40,
+      "h": 10,
+      "x": 197,
+      "y": 81,
+      "i": "beee357a-ebd6-4103-ac7e-a87694b747d2",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Slots Total / Expended",
+      "data": [
+        [
+          ""
+        ]
+      ],
+      "label": "Stat Pool",
+      "type": "stat-pool",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 40,
+      "h": 10,
+      "x": 197,
+      "y": 132,
+      "i": "a8a83be8-514d-4bd5-bd45-cbcc7ece2626",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Slots Total / Expended",
+      "data": [
+        []
+      ],
+      "label": "Stat Pool",
+      "type": "stat-pool",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 40,
+      "h": 10,
+      "x": 197,
+      "y": 183,
+      "i": "1e8e5df1-179b-40f2-b85a-1b1207116d00",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Slots Total / Expended",
+      "data": [
+        [
+          ""
+        ]
+      ],
+      "label": "Stat Pool",
+      "type": "stat-pool",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 37,
+      "h": 7,
+      "x": 80,
+      "y": 113,
+      "i": "8fa6ba07-13fa-4291-812c-008bfbb02aed",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Spell Level 4",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 37,
+      "h": 7,
+      "x": 80,
+      "y": 182,
+      "i": "0687f3dd-5b28-43db-b414-82b7325730ac",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Spell Level 5",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 37,
+      "h": 7,
+      "x": 160,
+      "y": 16,
+      "i": "7e59a834-0caf-4cfc-abbd-21142e314d7e",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Spell Level 6",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 37,
+      "h": 7,
+      "x": 160,
+      "y": 81,
+      "i": "331ae693-7c3a-440f-a2a3-ff2b68f6dbf6",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Spell Level 7",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 37,
+      "h": 7,
+      "x": 160,
+      "y": 132,
+      "i": "265c3d29-2f1f-43f1-90b6-64ef5dbf67ec",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Spell Level 8",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 37,
+      "h": 7,
+      "x": 160,
+      "y": 183,
+      "i": "34e963cf-e10f-4b32-9ac9-453b56f214a7",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Spell Level 9",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 80,
+      "h": 74,
+      "x": 0,
+      "y": 159,
+      "i": "b26b6ab2-abc4-4b5a-be67-efe5c7c61e62",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        [
+          "",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ]
+      ],
+      "label": "Text Table",
+      "type": "text-table",
+      "isLocked": false,
+      "colSizes": [
+        26,
+        422
+      ]
+    },
+    {
+      "w": 80,
+      "h": 88,
+      "x": 0,
+      "y": 61,
+      "i": "ba9ea8cd-d3e7-421c-bce5-25bc6fba250b",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        [
+          "",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ]
+      ],
+      "label": "Text Table",
+      "type": "text-table",
+      "isLocked": false,
+      "colSizes": [
+        26,
+        421
+      ]
+    },
+    {
+      "w": 80,
+      "h": 55,
+      "x": 160,
+      "y": 26,
+      "i": "dc6540ee-af77-46eb-800e-6269121d5cf1",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        [
+          "",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ]
+      ],
+      "label": "Text Table",
+      "type": "text-table",
+      "isLocked": false,
+      "colSizes": [
+        26,
+        422
+      ]
+    },
+    {
+      "w": 80,
+      "h": 41,
+      "x": 160,
+      "y": 91,
+      "i": "fbc5547a-65f1-4433-a936-a38a3004e758",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        [
+          "",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ]
+      ],
+      "label": "Text Table",
+      "type": "text-table",
+      "isLocked": false,
+      "colSizes": [
+        27,
+        419
+      ]
+    },
+    {
+      "w": 80,
+      "h": 41,
+      "x": 160,
+      "y": 142,
+      "i": "e205e1be-85b0-4748-88b7-ebae9ce896ff",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        [
+          "",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ]
+      ],
+      "label": "Text Table",
+      "type": "text-table",
+      "isLocked": false,
+      "colSizes": [
+        26,
+        421
+      ]
+    },
+    {
+      "w": 80,
+      "h": 87,
+      "x": 80,
+      "y": 26,
+      "i": "2f69ddf6-00ad-455f-a5af-c546ce24ba34",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        [
+          "",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ]
+      ],
+      "label": "Text Table",
+      "type": "text-table",
+      "isLocked": false,
+      "colSizes": [
+        26,
+        421
+      ]
+    },
+    {
+      "w": 80,
+      "h": 40,
+      "x": 160,
+      "y": 193,
+      "i": "27f0bcd5-3a8e-4e27-9ecf-4b0706bcbe48",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        [
+          "",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ]
+      ],
+      "label": "Text Table",
+      "type": "text-table",
+      "isLocked": false,
+      "colSizes": [
+        26,
+        421
+      ]
+    },
+    {
+      "w": 80,
+      "h": 41,
+      "x": 80,
+      "y": 192,
+      "i": "275b8eea-176e-40c1-b40d-8f98cb4b63c8",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        [
+          "",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ],
+        [
+          "/checkbox",
+          ""
+        ]
+      ],
+      "label": "Text Table",
+      "type": "text-table",
+      "isLocked": false,
+      "colSizes": [
+        25,
+        423
+      ]
+    },
+    {
+      "w": 13,
+      "h": 3,
+      "x": 0,
+      "y": 58,
+      "i": "adf3cc9c-9a3f-4156-9f06-799fa0b256c9",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Prepared",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 3,
+      "x": 80,
+      "y": 23,
+      "i": "1b1256ca-7dd9-4de5-aa76-cf50078fe6e3",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Prepared",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 3,
+      "x": 160,
+      "y": 23,
+      "i": "5f752adc-a814-4f25-b12d-d820b8cd1605",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Prepared",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 152,
+      "h": 3,
+      "x": 88,
+      "y": 11,
+      "i": "cd25484f-6644-4494-8075-d5ed900fc13d",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 3,
+      "x": 0,
+      "y": 156,
+      "i": "bd1fdd65-f61d-4cff-82dc-31a5f0064ca5",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Prepared",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 3,
+      "x": 80,
+      "y": 120,
+      "i": "358d5e76-6225-4c71-98a8-984dcb16a978",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Prepared",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 3,
+      "x": 80,
+      "y": 189,
+      "i": "61767175-6979-498d-8ffd-50282907e36e",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Prepared",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 3,
+      "x": 160,
+      "y": 88,
+      "i": "f22cf1e3-d03b-4f43-81aa-378e38eb939d",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Prepared",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 3,
+      "x": 160,
+      "y": 190,
+      "i": "58e33f81-ab43-4c31-bacd-7f2187ea1c3b",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Prepared",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 13,
+      "h": 3,
+      "x": 160,
+      "y": 139,
+      "i": "764337d8-e947-441c-9986-dfa425ccde3e",
+      "minW": 8,
+      "minH": 3,
+      "static": true,
+      "title": "Prepared",
+      "data": [
+        []
+      ],
+      "label": "Title Card",
+      "type": "title-card",
+      "isLocked": false,
+      "colSizes": []
+    }
+  ]
+}

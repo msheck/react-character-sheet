@@ -5,7 +5,7 @@ import Selecto from "react-selecto";
 import { LayoutItem, Layouts, SheetProps } from "./Types";
 import { useSheetFunctions } from "./SheetFunctions";
 import { useDefaultColors } from "./DefaultColors";
-import { saveToLS, setDefaultFontSize } from "./Utils";
+import { saveLayoutToLS, setDefaultFontSize } from "./Utils";
 import Toolbox from "./Toolbox";
 import GridItem from "./Components/GridItem";
 import "react-grid-layout/css/styles.css";
@@ -56,11 +56,11 @@ const Sheet: FunctionComponent<SheetProps> = ({
 
   // Save both layouts and toolbox items to localStorage whenever they change
   useEffect(() => {
-    saveToLS(tabId, layouts.lg);
+    saveLayoutToLS(tabId, layouts.lg);
   }, [layouts]);
 
   useEffect(() => {
-    saveToLS("toolbox", toolbox.lg);
+    saveLayoutToLS("toolbox", toolbox.lg);
   }, [toolbox]);
 
   // Update the static and isDraggable properties of layout items based on editMode

@@ -3,7 +3,7 @@ import * as ReactDOMClient from "react-dom/client";
 import { v4 as uuidv4 } from "uuid";
 import Sheet from "./Sheet";
 import { Tab } from "./Types";
-import { getTabsFromLS, saveTabsToLS, deleteLayoutFromLS } from "./Utils";
+import { saveTemplateToLS, getTabsFromLS, saveTabsToLS, deleteLayoutFromLS } from "./Utils";
 import "./Styles/Global.css";
 
 function App() {
@@ -48,7 +48,7 @@ function App() {
   const handleDeleteTab = (id: string) => {
     if (tabs.length === 1) return; // Prevent deleting the last tab
     const tabLabel = tabs.find(t => t.id === id)?.label || "this tab";
-    if (!window.confirm(`Are you sure you want to delete ${id}'${tabLabel}'?`)) return;
+    if (!window.confirm(`Are you sure you want to delete '${tabLabel}'?`)) return;
     const idx = tabs.findIndex(t => t.id === id);
     const newTabs = tabs.filter(t => t.id !== id);
     deleteLayoutFromLS(id);
@@ -103,6 +103,8 @@ function App() {
     </div>
   );
 }
+
+saveTemplateToLS();
 
 const rootElement = document.getElementById("root") as HTMLElement;
 const root = ReactDOMClient.createRoot(rootElement);

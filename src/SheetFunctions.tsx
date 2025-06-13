@@ -1,19 +1,17 @@
 import { LayoutItem, Layouts } from "./Types";
-import { getFromLS } from "./Utils";
+import { getLayoutFromLS } from "./Utils";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
-import LayoutTemplate from "./Data/BlankTemplate.json";
 import ToolboxTemplates from "./Data/ToolboxTemplates.json";
 
 export const useSheetFunctions = (tabId: string, editMode: boolean) => {
   const [layouts, setLayouts] = useState<Layouts>({
-    lg: getFromLS(tabId).length === 0
-      ? LayoutTemplate : getFromLS(tabId) || []
+    lg: getLayoutFromLS(tabId) || []
   });
 
   const [toolbox, setToolbox] = useState<Layouts>({
-    lg: getFromLS("toolbox").length === 0
-      ? ToolboxTemplates : getFromLS("toolbox")
+    lg: getLayoutFromLS("toolbox").length === 0
+      ? ToolboxTemplates : getLayoutFromLS("toolbox")
   });
 
   // Function to add a new element with a unique ID

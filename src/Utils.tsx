@@ -1,10 +1,11 @@
 import { JSX } from "react";
 import { ColorItems, LayoutItem, Tab } from "./Types";
+import Dnd5eTemplate from "./Data/TemplateDnd5e.json";
 
 let defaultFontSizeValue = 10;
 
 // Utility functions for localStorage
-export function getFromLS(key: string): LayoutItem[] {
+export function getLayoutFromLS(key: string): LayoutItem[] {
   let ls: { [key: string]: LayoutItem[] } = {};
   if (global.localStorage) {
     try {
@@ -40,7 +41,20 @@ export function getTabsFromLS(): Tab[] {
   return ls["tabs"] || [];
 }
 
-export function saveToLS(key: string, value: LayoutItem[]): void {
+export function saveTemplateToLS(): void {
+  if (global.localStorage) {
+    try {
+      const existingData = global.localStorage.getItem("appData");
+      if (!existingData) {
+        global.localStorage.setItem("appData", JSON.stringify(Dnd5eTemplate));
+      }
+    } catch (e) {
+      console.error("Failed to save to localStorage:", e);
+    }
+  }
+}
+
+export function saveLayoutToLS(key: string, value: LayoutItem[]): void {
   if (global.localStorage) {
     try {
       const existingData = JSON.parse(global.localStorage.getItem("appData") || "{}");
