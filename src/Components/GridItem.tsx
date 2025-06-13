@@ -7,6 +7,7 @@ import { getStatPool } from "./StatPool";
 import { getTextList } from "./TextList";
 import { getTextTable } from "./TextTable";
 import { getMathFormula } from "./MathFormula";
+import ImageDisplay from "./ImageDisplay";
 
 // Basic GridItem component, renders the remove and edit buttons, gets content by type
 function GridItem(
@@ -67,6 +68,8 @@ function getItemContent(
       return getTextTable(layoutItem, updateItem, removeItem, addItem, updateColSize);
     case 'math-formula':
       return getMathFormula(layoutItem, updateItem);
+    case 'image-display':
+      return <ImageDisplay layoutItem={layoutItem} updateItem={updateItem} />;
     default:
       return null;
   }

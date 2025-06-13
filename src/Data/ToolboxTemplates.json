@@ -98,5 +98,17 @@
     "i": "math-formula",
     "type": "math-formula",
     "label": "Math Formula"
+  },
+  {
+    "x": 0,
+    "y": 0,
+    "w": 25,
+    "h": 16,
+    "minH": 5,
+    "minW": 10,
+    "template": true,
+    "i": "image-display",
+    "type": "image-display",
+    "label": "Image Display"
   }
 ]

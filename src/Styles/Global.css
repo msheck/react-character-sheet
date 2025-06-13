@@ -281,3 +281,4 @@ html::-webkit-scrollbar-track, html::-webkit-scrollbar-thumb {
 @import "./TextList.css";
 @import "./TextTable.css";
 @import "./MathFormula.css";
+@import "./ImageDisplay.css";

@@ -7,112 +7,6 @@
     "sheetBackground": "rgba(245,245,250,1)",
     "itemBackground": "rgba(230,230,230,1)"
   },
-  "toolbox": [
-    {
-      "x": 0,
-      "y": 0,
-      "w": 25,
-      "h": 3,
-      "minH": 3,
-      "minW": 8,
-      "template": true,
-      "i": "title-card",
-      "type": "title-card",
-      "label": "Title Card"
-    },
-    {
-      "x": 0,
-      "y": 0,
-      "w": 25,
-      "h": 12,
-      "minH": 3,
-      "minW": 8,
-      "template": true,
-      "i": "text-field",
-      "type": "text-field",
-      "label": "Text Field"
-    },
-    {
-      "x": 0,
-      "y": 0,
-      "w": 25,
-      "h": 12,
-      "minH": 3,
-      "minW": 8,
-      "template": true,
-      "i": "text-box",
-      "type": "text-box",
-      "label": "Text Box"
-    },
-    {
-      "x": 0,
-      "y": 0,
-      "w": 25,
-      "h": 12,
-      "minH": 3,
-      "minW": 8,
-      "template": true,
-      "i": "text-list",
-      "type": "text-list",
-      "label": "Text List"
-    },
-    {
-      "x": 0,
-      "y": 0,
-      "w": 25,
-      "h": 12,
-      "minH": 3,
-      "minW": 8,
-      "template": true,
-      "i": "text-table",
-      "type": "text-table",
-      "label": "Text Table",
-      "data": [
-        [
-          ""
-        ],
-        [
-          ""
-        ]
-      ]
-    },
-    {
-      "x": 0,
-      "y": 0,
-      "w": 25,
-      "h": 12,
-      "minH": 3,
-      "minW": 8,
-      "template": true,
-      "i": "attribute-counter",
-      "type": "attribute-counter",
-      "label": "Attribute Counter"
-    },
-    {
-      "x": 0,
-      "y": 0,
-      "w": 25,
-      "h": 12,
-      "minH": 3,
-      "minW": 8,
-      "template": true,
-      "i": "stat-pool",
-      "type": "stat-pool",
-      "label": "Stat Pool"
-    },
-    {
-      "x": 0,
-      "y": 0,
-      "w": 25,
-      "h": 12,
-      "minH": 3,
-      "minW": 8,
-      "template": true,
-      "i": "math-formula",
-      "type": "math-formula",
-      "label": "Math Formula"
-    }
-  ],
   "tabs": [
     {
       "id": "tab-main",
@@ -1580,6 +1474,40 @@
       ],
       "label": "Text Box",
       "type": "text-box",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 95,
+      "h": 66,
+      "x": 0,
+      "y": 13,
+      "i": "e3888ee5-ab6b-482c-a0d7-ab05ca0e8ba1",
+      "minW": 10,
+      "minH": 5,
+      "static": false,
+      "data": [
+        []
+      ],
+      "label": "Image Display",
+      "type": "image-display",
+      "isLocked": false,
+      "colSizes": []
+    },
+    {
+      "w": 71,
+      "h": 34,
+      "x": 169,
+      "y": 18,
+      "i": "fac60997-5e70-4a59-bbf3-15b629b50283",
+      "minW": 10,
+      "minH": 5,
+      "static": false,
+      "data": [
+        []
+      ],
+      "label": "Image Display",
+      "type": "image-display",
       "isLocked": false,
       "colSizes": []
     }
