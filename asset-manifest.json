@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-character-sheet/static/css/main.a79bde37.css",
+    "main.js": "/react-character-sheet/static/js/main.5edbfb5b.js",
+    "index.html": "/react-character-sheet/index.html",
+    "main.a79bde37.css.map": "/react-character-sheet/static/css/main.a79bde37.css.map",
+    "main.5edbfb5b.js.map": "/react-character-sheet/static/js/main.5edbfb5b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a79bde37.css",
+    "static/js/main.5edbfb5b.js"
+  ]
+}
