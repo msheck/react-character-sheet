@@ -46,11 +46,17 @@ export function saveTemplateToLS(): void {
     try {
       const existingData = global.localStorage.getItem("appData");
       if (!existingData) {
-        global.localStorage.setItem("appData", JSON.stringify(Dnd5eTemplate));
+        resetTemplateInLS();
       }
     } catch (e) {
       console.error("Failed to save to localStorage:", e);
     }
+  }
+}
+
+export function resetTemplateInLS(): void {
+  if (global.localStorage) {
+    global.localStorage.setItem("appData", JSON.stringify(Dnd5eTemplate));
   }
 }
 

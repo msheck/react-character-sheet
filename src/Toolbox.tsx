@@ -1,8 +1,9 @@
 import { FunctionComponent, useEffect, useState } from "react";
+import { SketchPicker } from "react-color";
 import { ColorItems, ToolboxProps } from "./Types";
 import { useDefaultColors } from "./DefaultColors";
+import { resetTemplateInLS } from "./Utils";
 import ToolboxItem from "./ToolboxItem";
-import { SketchPicker } from "react-color";
 import Modal from "./Components/Modal";
 
 // Toolbox Component
@@ -27,6 +28,13 @@ const Toolbox: FunctionComponent<ToolboxProps> = ({
     setActivePicker(null);
   };
 
+  const resetSheetTemplate = () => {
+    if (window.confirm("Are you sure you want to reset the sheet template? This will remove all customizations.")) {
+      resetTemplateInLS();
+      window.location.reload(); // Reload the page to apply changes
+    }
+  };
+
   const modalTemplate = (message: string, defaultColors: ColorItems, propertyName: keyof ColorItems) => {
     return (
       <Modal isOpen={activePicker === propertyName} onClose={closePicker}>
@@ -46,10 +54,13 @@ const Toolbox: FunctionComponent<ToolboxProps> = ({
 
   return (
     <>
-      <div className={`toolbox ${isCollapsed ? "collapsedToolbox" : ""}`} onClick={handleToggleCollapse}>
+      <div className={`toolbox ${isCollapsed ? "collapsed-toolbox" : ""}`} onClick={handleToggleCollapse}>
         <div className="toolbox-content">
           <div>
-            <h4 className="toolbox-title">Toolbox</h4>
+            <div className="toolbox-header">
+              <h4 className="toolbox-title">Toolbox</h4>
+              <button className="reset-layout-button" onClick={resetSheetTemplate} hidden={isCollapsed}>Reset Sheet Template</button>
+            </div>
             {!isCollapsed && (
               <div className="toolbox-grid">
                 {items.map((item) => (

@@ -1,5 +1,6 @@
 {
-  "name": "react-grid-layout",
+  "homepage": "https://msheck.github.io/react-character-sheet",
+  "name": "react-character-sheet",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
@@ -27,7 +28,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": [
     ">0.2%",
@@ -39,6 +42,7 @@
     "@eslint/js": "^9.28.0",
     "eslint": "^8.57.1",
     "eslint-plugin-react": "^7.37.5",
+    "gh-pages": "^6.3.0",
     "globals": "^16.2.0",
     "typescript-eslint": "^8.34.0"
   }
