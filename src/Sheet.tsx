@@ -180,7 +180,7 @@ const Sheet: FunctionComponent<SheetProps> = ({
         if (idx !== -1 && events[idx] && !item.static) {
           return {
             ...item,
-            x: Math.max(0, Math.floor((events[idx].beforeTranslate[0] / gridUnitWidth) / witdhPercentage)),
+            x: Math.max(0, Math.floor(events[idx].beforeTranslate[0] / (gridUnitWidth * witdhPercentage))),
             y: Math.max(0, Math.floor(events[idx].beforeTranslate[1] / (rowHeight * gridItemMarginOffset))),
           };
         }
