@@ -37,7 +37,7 @@ export interface Layouts {
 // Define Tabs
 export interface Tab {
   id: string;
-  label: string
+  label: string;
 }
 
 // Props for ToolboxItem
@@ -66,4 +66,21 @@ export interface SheetProps {
   containerMargin?: [number, number] | { [key: string]: [number, number] };
   onLayoutChange?: (layout: LayoutItem[], layouts: Layouts) => void;
   toggleEditMode?: () => void;
+}
+
+// Base props for components using LayoutItem and updateItem
+export interface ComponentProps {
+  layoutItem: LayoutItem;
+  updateItem: (id: string, field: string, value: string) => void;
+}
+
+// Props for TextList component
+export interface TextListProps extends ComponentProps {
+  removeItem: (id: string, rowIndex: number, colIndex: number) => void;
+  addItem: (id: string, rowIndex: number, value: string) => void;
+}
+
+// Props for TextTable component
+export interface TextTableProps extends TextListProps {
+  updateColSize: (id: string, colIndex: number, size: number) => void;
 }

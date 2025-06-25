@@ -1,10 +1,11 @@
-import { LayoutItem } from "../Types";
+import React from "react";
+import { ComponentProps } from "../Types";
 import { getDefaultFontSize, getItemTitle, hasTitle, itemSumSize } from "../Utils";
 
-export function getTextField(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
+const TextField: React.FC<ComponentProps> = ({ layoutItem, updateItem }) => {
   const fontSize = (): number => {
     return Math.min((getDefaultFontSize() * itemSumSize(layoutItem, 0, 1, 0.8)), getDefaultFontSize() + 6);
-  }
+  };
 
   return (
     <>
@@ -20,4 +21,6 @@ export function getTextField(layoutItem: LayoutItem, updateItem: (id: string, fi
       </div>
     </>
   );
-}
+};
+
+export default TextField;

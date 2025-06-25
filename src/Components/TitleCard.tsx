@@ -1,10 +1,11 @@
-import { LayoutItem } from "../Types";
+import React from "react";
+import { ComponentProps } from "../Types";
 import { getDefaultFontSize, getItemTitle, itemSumSize } from "../Utils";
 
-export function getTitleCard(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
+const TitleCard: React.FC<ComponentProps> = ({ layoutItem, updateItem }) => {
   const fontSize = (): number => {
     return Math.min((getDefaultFontSize() * itemSumSize(layoutItem, 0, 1.5, 1)), getDefaultFontSize() + 12);
-  }
+  };
 
   return (
     <>
@@ -13,4 +14,6 @@ export function getTitleCard(layoutItem: LayoutItem, updateItem: (id: string, fi
       </div>
     </>
   );
-}
+};
+
+export default TitleCard;

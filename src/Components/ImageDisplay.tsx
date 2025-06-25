@@ -1,13 +1,8 @@
 import React, { useRef } from "react";
-import { LayoutItem } from "../Types";
+import { ComponentProps } from "../Types";
 import { getDefaultFontSize, getItemTitle, hasTitle, itemSumSize } from "../Utils";
 
-type ImageDisplayProps = {
-  layoutItem: LayoutItem;
-  updateItem: (id: string, field: string, value: string) => void;
-};
-
-const ImageDisplay: React.FC<ImageDisplayProps> = ({ layoutItem, updateItem }) => {
+const ImageDisplay: React.FC<ComponentProps> = ({ layoutItem, updateItem }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const fontSize = (): number => {

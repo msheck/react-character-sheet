@@ -1,10 +1,11 @@
-import { LayoutItem } from "../Types";
+import React from "react";
+import { ComponentProps } from "../Types";
 import { hasTitle, itemSumSize, getDefaultFontSize, getItemTitle, useNumberInput } from "../Utils";
 
-export function getStatPool(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
+const StatPool: React.FC<ComponentProps> = ({ layoutItem, updateItem }) => {
   const fontSize = (): number => {
     return Math.min((getDefaultFontSize() * itemSumSize(layoutItem, 0.1, 0.4, 0.7)), getDefaultFontSize() + 4);
-  }
+  };
 
   return (
     <>
@@ -18,4 +19,6 @@ export function getStatPool(layoutItem: LayoutItem, updateItem: (id: string, fie
       </div>
     </>
   );
-}
+};
+
+export default StatPool;

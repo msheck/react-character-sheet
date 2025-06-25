@@ -1,12 +1,12 @@
 import { LayoutItem } from "../Types";
-import { getTitleCard } from "./TitleCard";
-import { getTextField } from "./TextField";
-import { getTextBox } from "./TextBox";
-import { getAttributeCounter } from "./AttributeCounter";
-import { getStatPool } from "./StatPool";
-import { getTextList } from "./TextList";
-import { getTextTable } from "./TextTable";
-import { getMathFormula } from "./MathFormula";
+import TitleCard from "./TitleCard";
+import TextField from "./TextField";
+import TextBox from "./TextBox";
+import AttributeCounter from "./AttributeCounter";
+import StatPool from "./StatPool";
+import TextList from "./TextList";
+import TextTable from "./TextTable";
+import MathFormula from "./MathFormula";
 import ImageDisplay from "./ImageDisplay";
 
 // Basic GridItem component, renders the remove and edit buttons, gets content by type
@@ -53,21 +53,21 @@ function getItemContent(
 ) {
   switch (layoutItem.type) {
     case 'title-card':
-      return getTitleCard(layoutItem, updateItem);
+      return <TitleCard layoutItem={layoutItem} updateItem={updateItem} />;
     case 'text-field':
-      return getTextField(layoutItem, updateItem);
+      return <TextField layoutItem={layoutItem} updateItem={updateItem} />;
     case 'text-box':
-      return getTextBox(layoutItem, updateItem)
+      return <TextBox layoutItem={layoutItem} updateItem={updateItem} />;
     case 'attribute-counter':
-      return getAttributeCounter(layoutItem, updateItem);
+      return <AttributeCounter layoutItem={layoutItem} updateItem={updateItem} />;
     case 'stat-pool':
-      return getStatPool(layoutItem, updateItem);
+      return <StatPool layoutItem={layoutItem} updateItem={updateItem} />;
     case 'text-list':
-      return getTextList(layoutItem, updateItem, removeItem, addItem);
+      return <TextList layoutItem={layoutItem} updateItem={updateItem} removeItem={removeItem} addItem={addItem} />;
     case 'text-table':
-      return getTextTable(layoutItem, updateItem, removeItem, addItem, updateColSize);
+      return <TextTable layoutItem={layoutItem} updateItem={updateItem} removeItem={removeItem} addItem={addItem} updateColSize={updateColSize} />;
     case 'math-formula':
-      return getMathFormula(layoutItem, updateItem);
+      return <MathFormula layoutItem={layoutItem} updateItem={updateItem} />;
     case 'image-display':
       return <ImageDisplay layoutItem={layoutItem} updateItem={updateItem} />;
     default:

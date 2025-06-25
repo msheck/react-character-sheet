@@ -1,10 +1,11 @@
-import { LayoutItem } from "../Types";
+import React from "react";
+import { ComponentProps } from "../Types";
 import { getDefaultFontSize, getItemTitle, hasTitle, itemSumSize, useCommandCall } from "../Utils";
 
-export function getTextBox(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
+const TextBox: React.FC<ComponentProps> = ({ layoutItem, updateItem }) => {
   const fontSize = (): number => {
     return Math.min((getDefaultFontSize() * itemSumSize(layoutItem, 0.1, 0.4, 0.8)), getDefaultFontSize() + 4);
-  }
+  };
 
   return (
     <>
@@ -25,4 +26,6 @@ export function getTextBox(layoutItem: LayoutItem, updateItem: (id: string, fiel
       </div>
     </>
   );
-}
+};
+
+export default TextBox;

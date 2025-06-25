@@ -1,10 +1,11 @@
-import { LayoutItem } from "../Types";
+import React from "react";
+import { ComponentProps } from "../Types";
 import { getDefaultFontSize, getItemTitle, hasTitle, itemSumSize, useNumberInput } from "../Utils";
 
-export function getAttributeCounter(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
+const AttributeCounter: React.FC<ComponentProps> = ({ layoutItem, updateItem }) => {
   const fontSize = (): number => {
     return Math.min((getDefaultFontSize() * itemSumSize(layoutItem, 0.1, 0.4, 0.7)), getDefaultFontSize() + 4);
-  }
+  };
 
   return (
     <>
@@ -14,4 +15,6 @@ export function getAttributeCounter(layoutItem: LayoutItem, updateItem: (id: str
       </div>
     </>
   );
-}
+};
+
+export default AttributeCounter;

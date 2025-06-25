@@ -1,34 +1,35 @@
-import { LayoutItem } from "../Types";
+import React from "react";
+import { ComponentProps, LayoutItem } from "../Types";
 import { getDefaultFontSize, hasTitle, itemSumSize, useNumberInput } from "../Utils";
 
-function calculateMathFormula(layoutItem: LayoutItem): string {
-  const formula = layoutItem.data?.at(0)?.at(0);
-  const x = layoutItem.data?.at(0)?.at(1);
+const MathFormula: React.FC<ComponentProps> = ({ layoutItem, updateItem }) => {
+  const calculateMathFormula = (layoutItem: LayoutItem): string => {
+    const formula = layoutItem.data?.at(0)?.at(0);
+    const x = layoutItem.data?.at(0)?.at(1);
 
-  if (formula && x !== undefined) {
-    try {
-      // Replace recognized math functions with their Math equivalents
-      const sanitizedFormula = formula
-        .replace(/[^-()\d/*+.x\s\w]/g, '') // Allow letters for function names
-        .replace(/\b(floor|ceil|sqrt|abs|sin|cos|tan|log|exp|pow)\b/g, 'Math.$1') // Map functions to Math
-        .replace(/x/g, x.toString()); // Replace 'x' with its value
+    if (formula && x !== undefined) {
+      try {
+        // Replace recognized math functions with their Math equivalents
+        const sanitizedFormula = formula
+          .replace(/[^-()\d/*+.x\s\w]/g, '') // Allow letters for function names
+          .replace(/\b(floor|ceil|sqrt|abs|sin|cos|tan|log|exp|pow)\b/g, 'Math.$1') // Map functions to Math
+          .replace(/x/g, x.toString()); // Replace 'x' with its value
 
-      // Use Function constructor for safer evaluation
-      const result = new Function(`return ${sanitizedFormula}`)();
-      return result.toString();
-    } catch (e) {
-      console.error("Error evaluating formula:", e);
+        // Use Function constructor for safer evaluation
+        const result = new Function(`return ${sanitizedFormula}`)();
+        return result.toString();
+      } catch (e) {
+        console.error("Error evaluating formula:", e);
+      }
     }
-  }
-  return "";
-}
+    return "";
+  };
 
-export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, field: string, value: string) => void) {
   const y = calculateMathFormula(layoutItem);
 
   const fontSize = (): number => {
     return Math.min((getDefaultFontSize() * itemSumSize(layoutItem, 0.1, 0.4, 0.7)), getDefaultFontSize() + 4);
-  }
+  };
 
   return (
     <>
@@ -76,4 +77,6 @@ export function getMathFormula(layoutItem: LayoutItem, updateItem: (id: string, 
       </div >
     </>
   );
-}
+};
+
+export default MathFormula;
