@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentProps, LayoutItem } from "../Types";
-import { getDefaultFontSize, hasTitle, itemSumSize, useNumberInput } from "../Utils";
+import { getDefaultFontSize, getItemTitle, hasTitle, itemSumSize, useNumberInput } from "../Utils";
 
 const MathFormula: React.FC<ComponentProps> = ({ layoutItem, updateItem }) => {
   const calculateMathFormula = (layoutItem: LayoutItem): string => {
@@ -35,32 +35,19 @@ const MathFormula: React.FC<ComponentProps> = ({ layoutItem, updateItem }) => {
     <>
       <div className="item-content" id={hasTitle(layoutItem) || !layoutItem.static ? "math-formula-content" : "math-formula-content-notitle"}>
         {
-          layoutItem.static ?
-            (hasTitle(layoutItem) &&
-              <h4
+          <div id={layoutItem.static ? "" : "math-formula-header"}>
+            {getItemTitle(layoutItem, updateItem, fontSize(), "math-formula-title")}
+            {!layoutItem.static &&
+              <input
                 id="math-formula-title"
+                type="text"
+                value={layoutItem.data?.at(0)?.at(0) || ""}
+                onChange={(e) => updateItem(layoutItem.i, "data-0", e.target.value)}
+                placeholder="Formula (e.g., 2*x+3)"
                 style={{ fontSize: fontSize() }}
-              >
-                {layoutItem.title}
-              </h4>
-            ) : (
-              <div id="math-formula-header">
-                <input
-                  type="text"
-                  value={layoutItem.title}
-                  onChange={(e) => updateItem(layoutItem.i, "title", e.target.value)}
-                  placeholder="Title"
-                  style={{ fontSize: fontSize() }}
-                />
-                <input
-                  type="text"
-                  value={layoutItem.data?.at(0)?.at(0) || ""}
-                  onChange={(e) => updateItem(layoutItem.i, "data-0", e.target.value)}
-                  placeholder="Formula (e.g., 2*x+3)"
-                  style={{ fontSize: fontSize() }}
-                />
-              </div>
-            )
+              />
+            }
+          </div>
         }
         <div className="item-content" id="math-formula-div">
           {useNumberInput(layoutItem, layoutItem.data?.at(0)?.at(1), 1, undefined, updateItem, fontSize(), layoutItem.isLocked, "math-formula-input")}

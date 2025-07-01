@@ -129,7 +129,7 @@ export function getItemTitle(
     ) : (
       <input
         id={idHtml}
-        className={classHtlm}
+        className={`input-title-edit ${classHtlm}`}
         type="text"
         style={{ fontSize: fontSize }}
         value={layoutItem.title}
