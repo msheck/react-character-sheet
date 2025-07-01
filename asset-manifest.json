@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/react-character-sheet/static/css/main.630a70c3.css",
-    "main.js": "/react-character-sheet/static/js/main.70be1110.js",
+    "main.js": "/react-character-sheet/static/js/main.0d0622f8.js",
     "index.html": "/react-character-sheet/index.html",
     "main.630a70c3.css.map": "/react-character-sheet/static/css/main.630a70c3.css.map",
-    "main.70be1110.js.map": "/react-character-sheet/static/js/main.70be1110.js.map"
+    "main.0d0622f8.js.map": "/react-character-sheet/static/js/main.0d0622f8.js.map"
   },
   "entrypoints": [
     "static/css/main.630a70c3.css",
-    "static/js/main.70be1110.js"
+    "static/js/main.0d0622f8.js"
   ]
 }
