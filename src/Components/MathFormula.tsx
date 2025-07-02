@@ -35,6 +35,7 @@ const MathFormula: React.FC<ComponentProps> = ({ layoutItem, updateItem }) => {
     <>
       <div className="item-content" id={hasTitle(layoutItem) || !layoutItem.static ? "math-formula-content" : "math-formula-content-notitle"}>
         {
+          (hasTitle(layoutItem) || !layoutItem.static) &&
           <div id={layoutItem.static ? "" : "math-formula-header"}>
             {getItemTitle(layoutItem, updateItem, fontSize(), "math-formula-title")}
             {!layoutItem.static &&
@@ -42,7 +43,7 @@ const MathFormula: React.FC<ComponentProps> = ({ layoutItem, updateItem }) => {
                 id="math-formula-title"
                 type="text"
                 value={layoutItem.data?.at(0)?.at(0) || ""}
-                onChange={(e) => updateItem(layoutItem.i, "data-0", e.target.value)}
+                onChange={e => updateItem(layoutItem.i, "data-0", e.target.value)}
                 placeholder="Formula (e.g., 2*x+3)"
                 style={{ fontSize: fontSize() }}
               />
