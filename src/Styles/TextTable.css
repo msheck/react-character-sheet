@@ -48,6 +48,10 @@
   transform: rotate(0);
 }
 
+.locked .react-resizable-handle {
+  transform: scale(0) !important;
+}
+
 #text-table-cell {
   height: 3rem;
   border: 1px ridge;

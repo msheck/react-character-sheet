@@ -31,7 +31,7 @@ const TextTable: React.FC<TextTableProps> = ({
         key={colIndex}
         scope="col"
       >
-        <div id="text-table-cell-headcontent">
+        <div id="text-table-cell-headcontent" className={layoutItem.isLocked ? "locked" : "unlocked"}>
           <ResizableBox
             width={layoutItem.colSizes?.[colIndex] || defaultColSize(layoutItem)}
             axis={layoutItem.isLocked ? "none" : "x"}
@@ -120,6 +120,7 @@ const TextTable: React.FC<TextTableProps> = ({
     return (
       <td
         id="text-table-cell"
+        className={layoutItem.isLocked ? "locked" : "unlocked"}
         key={colIndex}
         style={{ width: (layoutItem.colSizes?.[colIndex] || defaultColSize(layoutItem)) }}
       >
