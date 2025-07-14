@@ -242,7 +242,7 @@ const Sheet: FunctionComponent<SheetProps> = ({
           <Selecto
             dragContainer=".grid-container"
             selectableTargets={[".grid-item"]}
-            hitRate={60}
+            hitRate={20}
             selectByClick={false}
             toggleContinueSelect={["shift"]}
             onSelect={handleSelect}
