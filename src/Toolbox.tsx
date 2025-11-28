@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { SketchPicker } from "react-color";
 import { ColorItems, ToolboxProps } from "./Types";
 import { useDefaultColors } from "./DefaultColors";

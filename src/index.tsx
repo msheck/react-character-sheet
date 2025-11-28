@@ -38,7 +38,7 @@ function App() {
 
   // Add a new tab
   const handleAddTab = () => {
-    let base = "tab-";
+    const base = "tab-";
     const newTab = { id: `${base}${uuidv4()}`, label: `Tab ${tabs.length + 1}` };
     setTabs([...tabs, newTab]);
     setActiveTab(newTab.id);

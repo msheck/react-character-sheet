@@ -197,7 +197,7 @@ const TextTable: React.FC<TextTableProps> = ({
   };
 
   const addRow = () => {
-    layoutItem.data?.at(0)?.forEach((_, index) => {
+    layoutItem.data?.at(0)?.forEach(() => {
       addItem(layoutItem.i, layoutItem.data?.length ?? 0, "");
     });
   };

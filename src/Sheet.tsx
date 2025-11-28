@@ -1,7 +1,7 @@
 import { FunctionComponent, useState, useEffect, useRef, useCallback } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import Moveable, { OnDrag, OnDragGroup } from "react-moveable";
-import Selecto from "react-selecto";
+import Selecto, { OnSelect } from "react-selecto";
 import { LayoutItem, Layouts, SheetProps } from "./Types";
 import { useSheetFunctions } from "./SheetFunctions";
 import { useDefaultColors } from "./DefaultColors";
@@ -40,7 +40,8 @@ const Sheet: FunctionComponent<SheetProps> = ({
     setLayouts,
   } = useSheetFunctions(tabId, editMode);
 
-  const { defaultColors } = useDefaultColors(); // Ensure that colors are loaded from localStorage before opening the Toolbox
+  useDefaultColors(); // Ensure that colors are loaded from localStorage before opening the Toolbox
+
   const [mounted, setMounted] = useState(false);
   const [currentBreakpoint, setCurrentBreakpoint] = useState<"lg" | "md" | "sm" | "xs">("lg");
   const breakpointSets = {
@@ -138,9 +139,9 @@ const Sheet: FunctionComponent<SheetProps> = ({
   );
 
   // Handle for Selecto
-  const handleSelect = (e: any) => {
-    const ids = e.selected
-      .map((el: HTMLElement) => el.getAttribute("data-id"))
+  const handleSelect = (e: OnSelect<Selecto> | unknown) => {
+    const ids = (e as OnSelect<Selecto>).selected
+      .map((el: HTMLElement | SVGElement) => el.getAttribute("data-id"))
       .filter(Boolean) as string[];
     // Filter out ids that are static
     const selectableIds = ids.filter(id => {

@@ -4,8 +4,12 @@ import Dnd5eTemplate from "./Data/TemplateDnd5e.json";
 
 let defaultFontSizeValue = 10;
 
+interface AppData {
+  [key: string]: LayoutItem[] | ColorItems | Tab[] | undefined;
+}
+
 // Utility functions for localStorage
-function getAppDataFromLS(): { [key: string]: any } {
+function getAppDataFromLS(): AppData {
   if (global.localStorage) {
     try {
       return JSON.parse(global.localStorage.getItem("appData") || "{}");
@@ -16,7 +20,7 @@ function getAppDataFromLS(): { [key: string]: any } {
   return {};
 }
 
-function saveAppDataToLS(data: { [key: string]: any }): void {
+function saveAppDataToLS(data: AppData): void {
   if (global.localStorage) {
     try {
       global.localStorage.setItem("appData", JSON.stringify(data));
@@ -28,17 +32,17 @@ function saveAppDataToLS(data: { [key: string]: any }): void {
 
 export function getLayoutFromLS(key: string): LayoutItem[] {
   const ls = getAppDataFromLS();
-  return ls[key] || [];
+  return (ls[key] as LayoutItem[]) || [];
 }
 
-export function getColorsFromLS(): ColorItems {
+export function getColorsFromLS(): ColorItems | undefined {
   const ls = getAppDataFromLS();
-  return ls["defaultColors"];
+  return ls["defaultColors"] as ColorItems | undefined;
 }
 
 export function getTabsFromLS(): Tab[] {
   const ls = getAppDataFromLS();
-  return ls["tabs"] || [];
+  return (ls["tabs"] as Tab[]) || [];
 }
 
 export function saveTemplateToLS(): void {
@@ -103,7 +107,7 @@ export function itemSumSize(layoutItem: LayoutItem, widthMod: number = 1, height
 }
 
 export function getPaddingValue(layoutItem: LayoutItem, mod: number = 1, offset: number = 1, maxValue: number = Number.MAX_VALUE) {
-  let padding = (mod * itemSumSize(layoutItem)) + offset;
+  const padding = (mod * itemSumSize(layoutItem)) + offset;
   return padding > maxValue ? maxValue : padding;
 }
 
